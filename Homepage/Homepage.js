@@ -43,6 +43,10 @@ request.onupgradeneeded = function (event) {
 
 request.onsuccess = function(event) {
     db = event.target.result;
+    // 初始化课程数据
+    if (typeof initCoursesData === 'function') {
+        initCoursesData();
+    }
     loadCourses();
 };
 
