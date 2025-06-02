@@ -1,0 +1,361 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: white;
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.error-message {
+  /*亮红色*/
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  color: green;
+  margin-bottom: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+button {
+  background-color: #0b99ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background: #007bff;
+}
+
+/*个人资料*/
+
+.profile-container {
+  /* 设置容器宽度 */
+  width: 60%;
+  flex: 1;
+  margin: 50px auto;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 标签页的基本样式 */
+.tabs{
+  height: 50px;
+  margin: 0;
+  padding: 20px 34px 0px 34px;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #666;
+}
+
+.tabs-item{
+  font-size: 16px;
+  color: #666;
+  padding: 0 5px;
+  margin-right: 20px;
+  align-content: center;
+  text-decoration: none;
+}
+
+.tabs .active{
+  color:#F36C14;
+  text-decoration: #F36C14 underline;
+  text-underline-offset: 20px;
+}
+
+.tabs-content{
+  padding: 20px 34px;
+}
+
+/* 表单 */
+.profile-form label {
+  display: block;
+  font-weight: bold;
+}
+
+/* 头像 */
+.avatar-section {
+  position: relative; /* 确保子元素可以相对于此元素定位 */
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin: 20px auto; /* 与其他表单元素的间距 */
+}
+
+#edit-avatar {
+  text-decoration: none; /* 移除下划线 */
+  position: relative;
+  overflow: hidden; /* 确保覆盖层可以完全覆盖 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+#avatar {
+  width: 100px; /* 头像宽度 */
+  height: 100px; /* 头像高度 */
+  border-radius: 50%; /* 设置为圆形 */
+  object-fit: cover; /* 确保图片覆盖整个圆形区域，不变形 */
+  border: 1px solid #767575; /* 边框 */
+  z-index: 1; /* 确保头像在覆盖层下方 */
+}
+
+#change-avatar-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; /* 头像宽度 */
+  height: 100px; /* 头像高度 */
+  border-radius: 50%; /* 设置为圆形 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgba(51, 51, 51, 0.8); /* 半透明背景 */
+  opacity: 0; /* 初始不可见 */
+  z-index: 2; /* 确保覆盖层在头像上方 */
+  transition: all 0.3s; /* 过渡效果 */
+}
+
+#change-avatar-text:hover  {
+  opacity: 1; /* 悬停时可见 */
+}
+
+.profile-form input[type="text"]{
+  width: 20%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.profile-form input[type="date"]{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.profile-form input[type="password"]{
+  width: 20%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.gender-section {
+  display: flex;
+  gap: 10px;
+}
+
+.userid-section,
+.username-section,
+.phone-section,
+.signature-section,
+.password-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* 按钮 */
+.save-button,
+.confirm-button {
+  display: block; 
+  width: 10%; 
+  padding: 5px 10px; 
+  background: #4caf50; 
+  color: white;
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: all 0.3s; 
+}
+
+.save-button:hover {
+  background: #45a049;
+}
+
+/* 开关 */
+.switch-section {
+  display: flex;
+  /* 水平居右 */
+  justify-content: flex-end;
+}
+.switch-info{
+  color: #666;
+  padding-top: 4px;
+}
+.switch {
+  --button-width: 3.5em;
+  --button-height: 2em;
+  --toggle-diameter: 1.5em;
+  --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+  --toggle-shadow-offset: 10px;
+  --toggle-wider: 3em;
+  --color-grey: #cccccc;
+  --color-green: #4caf50;
+  scale: 0.8;
+}
+
+.slider {
+  display: inline-block;
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: var(--color-grey);
+  border-radius: calc(var(--button-height) / 2);
+  position: relative;
+  transition: 0.3s all ease-in-out;
+}
+
+.slider::after {
+  content: "";
+  display: inline-block;
+  width: var(--toggle-diameter);
+  height: var(--toggle-diameter);
+  background-color: #fff;
+  border-radius: calc(var(--toggle-diameter) / 2);
+  position: absolute;
+  top: var(--button-toggle-offset);
+  transform: translateX(var(--button-toggle-offset));
+  box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+  transition: 0.3s all ease-in-out;
+}
+
+.switch input[type="checkbox"]:checked+.slider {
+  background-color: var(--color-green);
+}
+
+.switch input[type="checkbox"]:checked+.slider::after {
+  transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+  box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+}
+
+.switch input[type="checkbox"] {
+  display: none;
+}
+
+.switch input[type="checkbox"]:active+.slider::after {
+  width: var(--toggle-wider);
+}
+
+.switch input[type="checkbox"]:checked:active+.slider::after {
+  transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+}
+
+/* 表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* 防止单元格内容溢出 */
+  border-spacing: 0; /* 移除单元格之间的间距 */
+  margin-bottom: 20px; /* 表格底部外边距 */
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #f8f8f8; /* 表头背景颜色 */
+  color: #666; /* 表头字体颜色 */
+  font-weight: bold; /* 字体加粗 */
+  border-bottom: 2px solid #ddd; /* 底部边框 */
+}
+
+th:last-child {
+  border-right: 1px solid #ddd; /* 右侧边框 */
+}
+
+tr{
+  color: #666;
+  transition: all 0.3s; /* 过渡效果 */
+}
+
+tr:last-child td {
+  border-bottom: 1px solid #ddd; /* 底部边框 */
+}
+
+tr:hover{
+  background-color: #e0f7fa;
+}
+
+td a {
+  text-decoration: none; 
+  color: #4caf50;
+  transition: all 0.3s;
+}
+
+/* 链接悬停时的样式 */
+td a:hover {
+  color: #e74d36; 
+}
+
+
+
+@media (max-width: 768px) {
+  .container {
+      width: 90%;
+      padding: 20px;
+  }
+}
+

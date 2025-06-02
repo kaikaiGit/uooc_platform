@@ -1,0 +1,218 @@
+/* 定位 first-button 类的按钮并在其后添加一个 "|" */
+.first-button::after {
+    content: "|";
+    margin-left: 15px;
+    /* 添加一些左边距以使分隔符与按钮有适当的间隔 */
+    margin-right: 0px;
+    /* 添加一些右边距以使分隔符与下一个元素有适当的间隔 */
+    color: gray;
+    /* 设置分隔符的颜色，可以根据需要调整 */
+}
+
+
+.category-container ,.courses-container{
+    background-color: #f9f9f9;
+    /* 浅灰色背景 */
+    padding: 30px 30px 10px 40px;
+    /* 内边距 */
+    border-radius: 5px;
+    /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* 阴影 */
+    margin: 25px auto 10px auto;
+    /* 居中显示，并保持上下各25px的间距 */
+    width: 90%;
+    /* 宽度设置为90% */
+    max-width: 1200px;
+    /* 最大宽度为1200px */
+}
+
+.category {
+    margin-bottom: 25px;
+    position: relative;
+    /* */
+    /* 调整每个分类的底部间距 */
+}
+
+.category-title {
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    margin-right: 5px;
+    position: relative;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.category-option ,.sort-option,#toggleSortOrder{
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: gray;
+    margin-right: 5px;
+    padding: 5px;
+    outline: none;
+}
+
+.category-same {
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: gray;
+    margin-right: 5px;
+    padding: 5px;
+    outline: none;
+}
+
+.category-option.active ,.sort-option.active{
+    color: rgb(41, 141, 207);
+}
+
+.category-same.active {
+    color: rgb(41, 141, 207);
+}
+
+.category-option:hover ,.sort-option:hover,#toggleSortOrder:hover{
+    text-decoration: underline;
+}
+
+.hidden-buttons {
+    display: none;
+    padding-left: 0;
+    /* 确保容器内的内容在左边无内边距 */
+    margin-left: 145px;
+    /* 或其他适当值，根据页面的具体布局调整 */
+    margin-top: 10px;
+}
+
+.more-btn .triangle {
+    transition: transform 0.3s;
+}
+
+.more-btn.active .triangle {
+    transform: rotate(0deg);
+    /* 正三角形 */
+}
+
+.category {
+    display: flex;
+    /* 添加 flex 布局 */
+    align-items: center;
+    /* 垂直居中子元素 */
+    margin-bottom: 25px;
+    padding-left: 0;
+    /* 清除左内边距，如果有的话 */
+    flex-wrap: wrap;
+}
+
+.category-title {
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    margin-right: 5px;
+    white-space: nowrap;
+    /* 防止标题被折行 */
+}
+
+.course-titles {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 40px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* 水平居中 */
+}
+
+.divider {
+    height: 2px;
+    background-color: rgb(190, 188, 188);
+    width: 90%;
+    max-width: 1200px;
+    margin: 0px auto 420px auto;
+}
+
+.course-titles button {
+    padding: 10px 20px;
+    border: none;
+    color: gray;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.course-titles button:hover {
+    color: rgb(41, 141, 207);
+}
+
+.course-titles button.active {
+    color: rgb(41, 141, 207);
+}
+
+/* 课程卡片 */
+.message{
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 40%;
+    position: relative;
+}
+
+.message p{
+    margin: 0;
+}
+
+.tabs-content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 34px;
+}
+
+.registered{
+    display: flex;
+    padding: 30px;
+    border-bottom: rgb(192, 192, 192) solid 1px;
+    position: relative;
+}
+
+.course-image{
+    width: 280px;
+    height: 193px;
+    margin-right: 40px;
+}
+
+.course-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-description{
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#preview-course {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#preview-course:hover {
+    background-color: #4cae4c;
+}
+
+.content {
+    width: 100%;
+    min-height: 600px;
+    background-color: #fff;
+}

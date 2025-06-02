@@ -1,0 +1,444 @@
+#courseManager body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#courseManager h1, h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: rgb(113, 110, 110) solid 1px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+#courseManager label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#courseManager input[type="text"], textarea{
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+select {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#courseManager textarea{
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#courseManager input[type="text"]{
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button,.submit-button button,#publishedCourses button,.course-info button{
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 16px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+button:hover,.submit-button button:hover,#publishedCourses button:hover,.course-info button:hover{
+    background-color: #4cae4c;
+}
+
+.form-group > button{
+    width: 110px;
+}
+
+
+#coursePublishForm > button{
+    width: 120px;
+}
+
+/* #courseManager button:hover {
+    background-color: #4cae4c;
+} */
+
+.carousel-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.carousel-item {
+    position: relative;
+}
+
+.carousel-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: move;
+    transition: transform 0.2s;
+}
+
+.carousel-image.dragging {
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+
+.carousel-image:hover {
+    border: 2px dashed #007BFF;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+.assignment-item {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+.assignment-item button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.assignment-item button:hover {
+    background-color: #c9302c;
+}
+
+.expand-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #337ab7;
+    transition: color 0.3s;
+}
+
+.expand-button:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+
+#selectedFiles {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+#savedCoursewares {
+    margin-top: 20px;
+}
+
+#courseManager ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.file-part{
+    width: 100%;
+    margin-left: 0;
+}
+
+.message-part{
+    width: 50%;
+    margin: auto;
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group-checkbox label{
+    padding-top: 5px;
+}
+
+.vertical-line {
+    border-left: 1px solid #ddd;
+    height: 100%;
+    margin: 0 20px;
+}
+
+#assignmentDeadline{
+    width: 150px;
+}
+
+.assignment-form{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#forget{
+    display: none;
+}
+
+/* 折叠面板整体样式 */
+#courseware {
+    margin-top: 10px;
+    width: 97%;
+    border: 1px solid #ddd;
+}
+
+/* 保存的折叠面板列表 */
+#savedCoursewares {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    /* 左对齐 */
+}
+
+/* 每个列表项的样式 */
+#savedCoursewares>li {
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+
+#savedCoursewares>li:last-child {
+    border-bottom: none;
+}
+
+/* 按钮样式 */
+.expand-button {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #666;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.expand-button:hover {
+    background-color: white;
+    color: #000;
+}
+
+/* 折叠内容样式 */
+#savedCoursewares ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 10px 0 0;
+}
+
+#savedCoursewares ul.show {
+    display: block;
+    /* 显示折叠内容 */
+}
+
+/* 文件名称与链接样式 */
+#savedCoursewares span {
+    color: #333;
+}
+
+#savedCoursewares a {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+#savedCoursewares a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.del {
+    background-color: white;
+    color: #d9534f;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.del:hover {
+    background-color: white;
+    color: #c9302c;
+}
+
+.teach {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    
+    transition: all 0.3s;
+}
+.teach:hover {
+    background-color: #f9f9f9;
+}
+
+.course-actions{
+    display: flex;
+    right: 20px;
+    position: absolute;
+}
+
+.course-actions a{
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.course-actions a:hover{
+    color: #F36C14;
+}
+
+.course-info{
+    position: relative;
+    flex: 1;
+}
+
+.del:hover {
+    color: #c9302c;
+}
+
+.showMessage {
+    margin-top: 10px;
+    width: 98%;
+    border: 1px solid #ddd;
+}
+
+.showMessage button{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #666;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding-bottom: 30px;
+}
+
+.showMessage button:hover {
+    background-color: #f9f9f9;
+    color: #000;
+}
+
+#register_students .student-list,
+#submit_assignments .assignment-list{
+    list-style: none;
+    padding-left: 50px;
+}
+
+/* 每个列表项的样式 */
+#register_students .student-list>li,
+#submit_assignments .assignment-list>li {
+    padding-bottom: 10px;
+}
+
+.course-info #assignmentsContainer{
+    margin-top: 10px;
+    width: 98%;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+.course-info #assignmentsContainer .assignment-item {
+    width: 90%;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+#toggle{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #666;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding-bottom: 30px;
+}
+
+#toggle:hover {
+    background-color: #f9f9f9;
+    color: #000;
+}

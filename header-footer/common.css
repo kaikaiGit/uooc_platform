@@ -1,0 +1,196 @@
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, blockquote, figure, fieldset, legend, textarea, pre, form, table, th, td, caption, hr {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f0f0;
+    overflow: scroll;
+    min-width: 1200px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    justify-content: space-between;
+    padding: 5px 170px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav{
+    display: flex;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav{
+    align-content: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin-left: 80px;
+}
+
+nav ul li {
+    margin: 0px 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: grey;
+    font-size: 14px;
+}
+
+nav ul li a:hover{
+    color: rgb(20, 119, 206);
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.login {
+    background-color: white;
+    color: #0b99ff;
+    padding: 5px 20px;
+    margin: 0 0 0 20px;
+    border: 1px solid #0b99ff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.login:hover {
+    background: rgb(198, 237, 250);
+}
+
+.register {
+    background-color: #0b99ff;
+    color: white;
+    padding: 5px 20px;
+    margin: 0 0 0 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.register:hover {
+    background: #007bff;
+}
+
+#user-head {
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+}
+
+.card {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; 
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+}
+
+.card ul {
+    display: flex;
+    flex-direction: column; 
+    padding: 0;
+    margin: 0;
+}
+
+.card li {
+    list-style: none;
+}
+
+.card a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.card a:hover {
+    background-color: #f1f1f1;
+}
+
+.info:hover .card {
+    display: block;
+}
+
+.footer {
+    background-color: #313131;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #e7e7e7;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-nav ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer-nav ul li {
+    margin: 0 15px;
+}
+
+.footer-nav ul li a {
+    text-decoration: none;
+    color: grey;
+    font-size: 14px;
+}
+
+.footer-nav ul li a:hover {
+    color: rgb(20, 119, 206);
+}
+
+.footer-info {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #777;
+}
+
+#searchButton:hover{
+    background-color: #f9f9f9;
+}

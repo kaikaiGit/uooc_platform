@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="account-login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>注册</h2>
+        <form id="register-form">
+            <div class="input-group">
+                <label for="userid">学号</label>
+                <input type="text" id="userid" placeholder="学号" required>
+                <span id="us-error-message" class="error-message"></span>
+            </div>
+            <div class="input-group">
+                <label for="phone">手机号</label>
+                <input type="text" id="phone" placeholder="请输入手机号" required>
+                <span id="ph-error-message" class="error-message"></span>
+            </div>
+            <div class="input-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" placeholder="输入密码" required>
+                <span id="pa-error-message" class="error-message"></span>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">确认密码</label>
+                <input type="password" id="confirm-password" placeholder="再次输入密码" required>
+                <span id="cp-error-message" class="error-message"></span>
+            </div>
+            <button id="btn" type="button" class="button">注册</button>
+            <div id="success-message" class="success-message"></div>
+        </form>
+        <p>
+            已有账号？<a href="login.html">登录</a>
+        </p>
+    </div>
+    <script src="../database.js"></script>
+    <script src="account.js"></script>
+    <script>
+        //检查是否开启注册功能
+        window.onload = function() {
+            const teacher = JSON.parse(localStorage.getItem('teacher'));
+            if(!teacher.allowRegister) {
+                alert('注册功能已关闭，请联系老师');
+                window.location.href = 'login.html';
+            }
+        }
+        //当离开用户id输入框时，验证是否填写用户id
+        document.getElementById('userid').addEventListener('blur', () => {
+            checkUserid();
+        });
+        //当离开手机号输入框时，验证是否填写手机号
+        document.getElementById('phone').addEventListener('blur', () => {
+            checkPhone();
+        });
+        //当离开密码输入框时，验证是否填写密码
+        document.getElementById('password').addEventListener('blur', () => {
+            checkPassword();
+        });
+        //当离开确认密码输入框时，验证是否填写确认密码
+        document.getElementById('confirm-password').addEventListener('blur', () => {
+            checkConfirmPassword();
+        });
+        //当点击注册按钮时，验证密码和确认密码是否一致
+        document.getElementById('btn').addEventListener('click', () => {
+            const userid = document.getElementById('userid').value;
+            const phone = document.getElementById('phone').value;
+            let password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            //验证是否填写信息
+            if(!checkUserid() || !checkPhone() || !checkPassword() || !checkConfirmPassword()) {
+                return;
+            }
+            //检验用户id是否已存在
+            const item = JSON.parse(localStorage.getItem(userid));
+            if (item) {
+                //在us-error-message中显示错误信息
+                document.getElementById('us-error-message').textContent = '用户id已存在';
+                return;
+            }
+            document.getElementById('us-error-message').textContent = '';
+            //验证密码和确认密码是否一致
+            if (password !== confirmPassword) {
+                //在pa-error-message中显示错误信息
+                document.getElementById('cp-error-message').textContent = '密码不一致，请重新输入';
+                return;
+            }
+            document.getElementById('cp-error-message').textContent = '';
+            //加盐哈希加密密码
+            password = simpleHash(password, userid);
+            //与localstorage交互，将用户信息存储到localstorage中
+            const user = {
+                userid: userid,
+                username: userid,// 用户名默认为userid
+                phone: phone,
+                password: password,
+                avatar: '../header-footer/images/ico.png', // 头像URL
+                identity: 'student',// 学生
+                gender: '不公开', // 性别
+                status: true, // 状态: 启用/禁用
+            }
+            localStorage.setItem(user.userid, JSON.stringify(user));//userid为键
+            //清空错误信息
+            document.getElementById('us-error-message').textContent = '';
+            document.getElementById('ph-error-message').textContent = '';
+            document.getElementById('pa-error-message').textContent = '';
+            document.getElementById('cp-error-message').textContent = '';
+            //在success-message中显示注册成功信息
+            document.getElementById('success-message').textContent = '注册成功！';
+            //1s后跳转到登录页面
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
