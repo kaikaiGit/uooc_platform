@@ -3,19 +3,19 @@ const commentsData = [
     {
         id: 1,
         courseId: 1, // Python课程
-        userid: "2022",
+        userid: "student",
         text: "这门Python课程讲解得非常清晰，特别适合零基础学习者！"
     },
     {
         id: 2,
         courseId: 1,
-        userid: "2022",
+        userid: "student",
         text: "希望能多讲一些实战项目案例"
     },
     {
         id: 3,
         courseId: 2, // Web前端课程
-        userid: "2022",
+        userid: "student",
         text: "Vue.js部分讲得深入浅出，收获很大"
     },
     
