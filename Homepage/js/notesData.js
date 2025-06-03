@@ -1,5 +1,6 @@
 // 笔记数据
 const notesData = [
+    // 原有笔记
     {
         id: 1748938918872,
         courseId: 1,
@@ -41,6 +42,50 @@ const notesData = [
         userid: "2022",
         text: "装饰器语法糖@的底层实现原理",
         timestamp: "2023-12-06T10:25:33Z"
+    },
+
+    // 新增学生笔记（userid固定为"student"）
+    {
+        id: 1748938918878,
+        courseId: 1,
+        userid: "student",
+        text: "Python列表推导式笔记：\n[表达式 for 变量 in 列表 if 条件]",
+        timestamp: "2023-12-07T08:15:22Z"
+    },
+    {
+        id: 1748938918879,
+        courseId: 2,
+        userid: "student",
+        text: "Vue生命周期钩子函数总结：\n- created: 实例创建后\n- mounted: DOM挂载后",
+        timestamp: "2023-12-08T14:30:45Z"
+    },
+    {
+        id: 1748938918880,
+        courseId: 3,
+        userid: "student",
+        text: "SQL JOIN类型比较：\n1. INNER JOIN\n2. LEFT JOIN\n3. RIGHT JOIN",
+        timestamp: "2023-12-09T10:20:33Z"
+    },
+    {
+        id: 1748938918881,
+        courseId: 1,
+        userid: "student",
+        text: "Python异常处理要点：\ntry-except-else-finally结构",
+        timestamp: "2023-12-10T16:45:18Z"
+    },
+    {
+        id: 1748938918882,
+        courseId: 4,
+        userid: "student",
+        text: "机器学习常用算法：\n- 线性回归\n- 决策树\n- SVM",
+        timestamp: "2023-12-11T11:10:27Z"
+    },
+    {
+        id: 1748938918883,
+        courseId: 2,
+        userid: "student",
+        text: "Vuex核心概念：\n- State\n- Getters\n- Mutations\n- Actions",
+        timestamp: "2023-12-12T09:55:41Z"
     }
 ];
 
@@ -51,22 +96,19 @@ async function initNotesData() {
     }
 
     try {
-        // 清空现有数据（可选）
         const transaction = db.transaction(['notes'], 'readwrite');
         const store = transaction.objectStore('notes');
         
-        // 检查是否已有数据
         const countRequest = store.count();
-        console.log(notesData)
+        
         countRequest.onsuccess = function() {
             if (countRequest.result === 0) {
-                // 如果没有数据，则添加笔记数据
                 notesData.forEach(note => {
                     store.add(note);
                 });
-                console.log('笔记数据初始化完成');
+                console.log('笔记数据初始化完成，共添加', notesData.length, '条笔记');
             } else {
-                console.log('笔记数据已存在，跳过初始化');
+                console.log('笔记数据已存在（现有', countRequest.result, '条），跳过初始化');
             }
         };
     } catch (error) {
@@ -74,5 +116,4 @@ async function initNotesData() {
     }
 }
 
-// window.notesData=notesData
-window.initNotesData=initNotesData
+window.initNotesData = initNotesData;

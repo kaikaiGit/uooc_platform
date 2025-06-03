@@ -20,10 +20,10 @@ const teacher = {
     allowRegister: true,// 学生自主注册功能,默认开启
 }
 const student = {
-    userid: '2022',          // 学号/邮箱
-    username: '张三',               // 学生姓名
+    userid: 'student',          // 学号/邮箱
+    username: 'student',               // 学生姓名
     phone: '13800138000',           // 手机号
-    password: '3a2b1c8d',           // 密码: student123 (示例哈希值)
+    password: '5f366c91',           // 密码: student123 (示例哈希值)
     avatar: '../header-footer/images/ico.png', // 头像URL
     identity: 'student',            // 身份标识
     status: true,                   // 状态: 启用

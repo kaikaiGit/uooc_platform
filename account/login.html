@@ -71,6 +71,8 @@
                 return;
             }
             //检验用户id是否存在
+            console.log(userid)
+            console.log(localStorage.getItem(userid))
             const item = JSON.parse(localStorage.getItem(userid));
             if (!item) {
                 document.getElementById('us-error-message').textContent = '用户id不存在';
@@ -146,6 +148,8 @@
         function isCorrect(password, userid, tPassword) {
             //根据localstorage判断密码是否正确
             password = simpleHash(password, userid);
+            // console.log(simpleHash(password, userid));
+            // console.log(tPassword);
             if(password !== tPassword){
                 return false;
             }
