@@ -19,9 +19,24 @@ const teacher = {
     status: true, // 状态: 启用
     allowRegister: true,// 学生自主注册功能,默认开启
 }
+const student = {
+    userid: '2022',          // 学号/邮箱
+    username: '张三',               // 学生姓名
+    phone: '13800138000',           // 手机号
+    password: '3a2b1c8d',           // 密码: student123 (示例哈希值)
+    avatar: '../header-footer/images/ico.png', // 头像URL
+    identity: 'student',            // 身份标识
+    status: true,                   // 状态: 启用
+    enrollmentDate: '2023-09-01',   // 入学日期（学生特有字段）
+    class: '计算机科学与技术1班',   // 所属班级（学生特有字段）
+    major: '计算机科学与技术'       // 专业（学生特有字段）
+};
 if (!localStorage.getItem(admin.userid)) {
     localStorage.setItem(admin.userid, JSON.stringify(admin));//userid为键
 }
 if (!localStorage.getItem(teacher.userid)) {
     localStorage.setItem(teacher.userid, JSON.stringify(teacher));//userid为键
+}
+if(!localStorage.getItem(student.userid)) {
+    localStorage.setItem(student.userid,JSON.stringify(student))
 }

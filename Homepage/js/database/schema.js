@@ -12,6 +12,7 @@ const dbSchema = {
         id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
         title: 'TEXT NOT NULL',
         description: 'TEXT',
+        courseIntro:'TEXT',
         teacher_id: 'INTEGER',
         category_id: 'INTEGER',
         cover_image: 'TEXT',

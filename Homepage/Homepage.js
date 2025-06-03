@@ -47,6 +47,12 @@ request.onsuccess = function(event) {
     if (typeof initCoursesData === 'function') {
         initCoursesData();
     }
+    if (typeof initCommentsData === 'function'){
+        initCommentsData();
+    }
+    if(typeof initNotesData === 'function'){
+        initNotesData();
+    }
     loadCourses();
 };
 

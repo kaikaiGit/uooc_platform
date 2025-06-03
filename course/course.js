@@ -62,6 +62,7 @@ function loadCourse(courseId) {
     request.onsuccess = function(event) {
         const course = event.target.result;
         if (course) {
+            console.log(course)
             displayCourse(course);
         } else {
             console.error('Course not found');
@@ -201,6 +202,7 @@ function loadComments(courseId) {
 
     request.onsuccess = function(event) {
         const comments = event.target.result;
+        console.log(comments);
         const commentsList = document.getElementById('commentsList');
         commentsList.innerHTML = '';
         comments.forEach(comment => {
