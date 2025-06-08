@@ -229,11 +229,11 @@
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="Website Homepage.html">首页</a></li>
+                    <li><a href="WebsiteHomepage.html">首页</a></li>
                     <li><a href="courseList.html">课程</a></li>
                     <li><a href="league.html" class="active">联盟院校</a></li>
                     <li><a href="about-us.html">关于我们</a></li>
@@ -398,7 +398,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <div class="footer-text">
                 <nav class="footer-nav">
@@ -418,6 +418,7 @@
 
     <script src="../database.js"></script>
     <script src="../account/account.js"></script>
+    <script src="../header-footer/navigation.js"></script>
 
     <!-- 页眉用户信息加载脚本 -->
     <script>
@@ -454,7 +455,7 @@
                 `;
                 document.getElementById('logout').addEventListener('click', () => {
                     localStorage.removeItem('token');
-                    window.location.href = 'Website Homepage.html';
+                    window.location.href = 'WebsiteHomepage.html';
                 });
             } else {
                 document.querySelector('.info').innerHTML = `

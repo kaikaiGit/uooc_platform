@@ -19,12 +19,12 @@
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="../Homepage/Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <nav>
                 <ul>
                     <!-- TODO 补充链接 -->
-                    <li><a href="../Homepage/Website Homepage.html">首页</a></li>
+                    <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
                     <li><a href="./courseList.html">课程</a></li>
                     <li><a href="./league.html">联盟院校</a></li>
                     <li><a href="./about-us.html">关于我们</a></li>
@@ -128,6 +128,7 @@
     <script src="js/commentsData.js"></script>
     <script src="js/coursesData.js"></script>
     <script src="../account/account.js"></script>
+    <script src="../header-footer/navigation.js"></script>
     <script src="Homepage.js"></script>
     <script src="carousel.js"></script>
 
@@ -170,7 +171,7 @@
                 //如果点击退出登录，清除token
                 document.getElementById('logout').addEventListener('click', () => {
                     localStorage.removeItem('token');
-                    window.location.href = '../Homepage/Website Homepage.html';
+                    window.location.href = '../Homepage/WebsiteHomepage.html';
                 });
             }
             else {

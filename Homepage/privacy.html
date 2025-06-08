@@ -16,11 +16,11 @@
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="../Homepage/Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="../Homepage/Website Homepage.html">首页</a></li>
+                    <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
                     <li><a href="./courseList.html">课程</a></li>
                     <li><a href="./league.html">联盟院校</a></li>
                     <li><a href="./about-us.html">关于我们</a></li>
@@ -39,7 +39,7 @@
     <main>
         <div class="info-page">
             <div class="breadcrumb">
-                <a href="../Homepage/Website Homepage.html">首页</a> > 隐私政策
+                <a href="../Homepage/WebsiteHomepage.html">首页</a> > 隐私政策
             </div>
             
             <h1>隐私政策</h1>
@@ -235,7 +235,7 @@
                 <p>感谢您信任优课联盟。我们将持续努力保护您的隐私权益，为您提供安全可靠的学习环境。</p>
             </div>
 
-            <a href="../Homepage/Website Homepage.html" class="btn">返回首页</a>
+            <a href="../Homepage/WebsiteHomepage.html" class="btn">返回首页</a>
             <a href="./terms.html" class="btn">服务条款</a>
         </div>
     </main>
@@ -244,7 +244,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="../Homepage/Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <div class="footer-text">
                 <nav class="footer-nav">
@@ -264,6 +264,7 @@
 
     <script src="../database.js"></script>
     <script src="../account/account.js"></script>
+    <script src="../header-footer/navigation.js"></script>
 
     <!--页眉js-->
     <script>
@@ -303,7 +304,7 @@
                 //如果点击退出登录，清除token
                 document.getElementById('logout').addEventListener('click', () => {
                     localStorage.removeItem('token');
-                    window.location.href = '../Homepage/Website Homepage.html';
+                    window.location.href = '../Homepage/WebsiteHomepage.html';
                 });
             }
             else {

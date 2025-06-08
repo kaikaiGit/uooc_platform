@@ -61,7 +61,7 @@ last_project/
 │   │   └── ...
 │   ├── css/                    # 样式文件目录
 │   ├── images/                 # 图片资源
-│   ├── Website Homepage.html   # 主页入口
+│   ├── WebsiteHomepage.html   # 主页入口
 │   ├── courseList.html         # 课程列表页
 │   ├── league.html             # 联盟院校页面
 │   ├── about-us.html           # 关于我们页面
@@ -123,7 +123,7 @@ last_project/
 
 3. **访问应用**
    ```
-   http://localhost:8000/Homepage/Website Homepage.html
+   http://localhost:8000/Homepage/WebsiteHomepage.html
    ```
 
 ### 默认账户

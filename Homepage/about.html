@@ -16,11 +16,11 @@
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="../Homepage/Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="../Homepage/Website Homepage.html">首页</a></li>
+                    <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
                     <li><a href="./courseList.html">课程</a></li>
                     <li><a href="./league.html">联盟院校</a></li>
                     <li><a href="./about-us.html">关于我们</a></li>
@@ -39,7 +39,7 @@
     <main>
         <div class="info-page">
             <div class="breadcrumb">
-                <a href="../Homepage/Website Homepage.html">首页</a> > 关于我们
+                <a href="../Homepage/WebsiteHomepage.html">首页</a> > 关于我们
             </div>
             
             <h1>关于优课联盟</h1>
@@ -92,7 +92,7 @@
                 <p>加入优课联盟，开启您的学习之旅！我们相信，每一次学习都是向更好的自己迈进的一步。</p>
             </div>
 
-            <a href="../Homepage/Website Homepage.html" class="btn">返回首页</a>
+            <a href="../Homepage/WebsiteHomepage.html" class="btn">返回首页</a>
             <a href="./contact.html" class="btn">联系我们</a>
         </div>
     </main>
@@ -101,7 +101,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="../Homepage/Website Homepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
             </div>
             <div class="footer-text">
                 <nav class="footer-nav">
@@ -121,6 +121,7 @@
 
     <script src="../database.js"></script>
     <script src="../account/account.js"></script>
+    <script src="../header-footer/navigation.js"></script>
 
     <!--页眉js-->
     <script>
@@ -160,7 +161,7 @@
                 //如果点击退出登录，清除token
                 document.getElementById('logout').addEventListener('click', () => {
                     localStorage.removeItem('token');
-                    window.location.href = '../Homepage/Website Homepage.html';
+                    window.location.href = '../Homepage/WebsiteHomepage.html';
                 });
             }
             else {
