@@ -25,8 +25,8 @@
                     <!-- TODO 补充链接 -->
                     <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
                     <li><a href="../Homepage/courseList.html">课程</a></li>
-                    <li><a href="#league">联盟院校</a></li>
-                    <li><a href="#about-us">关于我们</a></li>
+                    <li><a href="../Homepage/league.html">联盟院校</a></li>
+                    <li><a href="../Homepage/about.html">关于我们</a></li>
                 </ul>
             </nav>
         </div>
@@ -195,10 +195,10 @@
             <div class="footer-text">
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="#about">关于我们</a></li>
-                        <li><a href="#contact">联系我们</a></li>
-                        <li><a href="#privacy">隐私政策</a></li>
-                        <li><a href="#terms">服务条款</a></li>
+                        <li><a href="../Homepage/about.html">关于我们</a></li>
+                        <li><a href="../Homepage/contact.html">联系我们</a></li>
+                        <li><a href="../Homepage/privacy.html">隐私政策</a></li>
+                        <li><a href="../Homepage/terms.html">服务条款</a></li>
                     </ul>
                 </nav>
                 <div class="footer-info">
@@ -237,9 +237,10 @@
                     accountUrl = '../account/student-setting.html';
                 }
                 document.querySelector('.info').innerHTML = `
-                    <a href="${profileUrl}">
-                        <img id="user-head" src="${user.avatar}" alt="用户头像"></a>
-                    <div class="card">
+                    <div id="user-menu-trigger" style="cursor: pointer;">
+                        <img id="user-head" src="${user.avatar}" alt="用户头像">
+                    </div>
+                    <div class="card" id="user-dropdown">
                         <ul>
                             <li><a href="${profileUrl}">${profileName}</a></li>
                             <li><a href="${accountUrl}">账号设置</a></li>
@@ -252,6 +253,30 @@
                     localStorage.removeItem('token');
                     window.location.href = '../Homepage/WebsiteHomepage.html';
                 });
+
+                // 添加点击头像显示下拉菜单的功能
+                const userMenuTrigger = document.getElementById('user-menu-trigger');
+                const userDropdown = document.getElementById('user-dropdown');
+                
+                if (userMenuTrigger && userDropdown) {
+                    userMenuTrigger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+                        userDropdown.style.opacity = userDropdown.style.display === 'block' ? '1' : '0';
+                        userDropdown.style.transform = userDropdown.style.display === 'block' ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-10px)';
+                        userDropdown.style.pointerEvents = userDropdown.style.display === 'block' ? 'auto' : 'none';
+                    });
+
+                    // 点击其他地方关闭下拉菜单
+                    document.addEventListener('click', function(e) {
+                        if (!userMenuTrigger.contains(e.target) && !userDropdown.contains(e.target)) {
+                            userDropdown.style.display = 'none';
+                            userDropdown.style.opacity = '0';
+                            userDropdown.style.transform = 'translateX(-50%) translateY(-10px)';
+                            userDropdown.style.pointerEvents = 'none';
+                        }
+                    });
+                }
             }
             else {
                 document.querySelector('.info').innerHTML = `

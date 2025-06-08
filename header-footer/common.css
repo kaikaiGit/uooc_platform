@@ -98,17 +98,29 @@ nav ul li a:hover{
     border-radius: 50%;
 }
 
+/* 增加点击区域和交互稳定性 */
+.info {
+    cursor: pointer;
+}
+
+#user-head {
+    cursor: pointer;
+}
+
 .card {
     display: none;
     position: absolute;
     top: 65px;
     left: 50%;
-    transform: translateX(-50%);
     width: 100px; 
     background-color: white;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 1000;
     text-align: center;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
 }
 
 .card ul {
@@ -133,8 +145,24 @@ nav ul li a:hover{
     background-color: #f1f1f1;
 }
 
-.info:hover .card {
+.info:hover .card,
+.card.show {
     display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+/* 确保菜单在移动端也能正常工作 */
+@media (max-width: 768px) {
+    .card {
+        width: 120px;
+        font-size: 14px;
+    }
+    
+    .card a {
+        padding: 12px 8px;
+    }
 }
 
 .footer {
@@ -191,6 +219,69 @@ nav ul li a:hover{
     color: #777;
 }
 
-#searchButton:hover{
-    background-color: #f9f9f9;
+/* 搜索框样式 */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    background: #fff;
+    box-shadow: 0 0 0 2px #007bff;
+}
+
+.search-box input {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+    width: 200px;
+    color: #2c3e50;
+}
+
+.search-box input::placeholder {
+    color: #6c757d;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.search-box button:hover {
+    color: #007bff;
+}
+
+/* 移动端搜索框适配 */
+@media (max-width: 768px) {
+    .search-box {
+        margin-left: 15px;
+    }
+    
+    .search-box input {
+        width: 150px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-box {
+        padding: 6px 12px;
+        margin-left: 10px;
+    }
+    
+    .search-box input {
+        width: 120px;
+        font-size: 12px;
+    }
 }

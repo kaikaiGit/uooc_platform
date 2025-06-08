@@ -1,246 +1,481 @@
+/* 学生个人资料页面样式 - 现代化设计 */
+
+/* 个人资料头部区域 */
 .student-profile-header {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-bottom: 1px solid #e7e7e7;
-    display: flex;
-    justify-content: flex-start; /* 布局靠左 */
-    align-items: center;
-    background-image: url(images/topimgCenter.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.student-profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
 }
 
 .student-profile-head {
     display: flex;
     align-items: center;
-    margin-left: 15%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
 }
 
 .student-profile-head img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin-right: 20px;
-    border: #e7e7e7 solid 5px;
+    margin-right: 30px;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 }
 
-.student-profile-info {
-    display: flex;
-    flex-direction: column;
+.student-profile-head img:hover {
+    transform: scale(1.05);
 }
 
 .student-profile-info h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .student-profile-info p {
-    margin: 5px 0;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 16px;
-    color: #666;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* 主体内容区域 */
 .student-profile-body {
     display: flex;
-    padding-top: 20px;
-    background-color: #f0f0f0;
-    width: 80%;
-    margin: 0 auto;
-    height: 100%;
+    max-width: 1200px;
+    margin: -20px auto 0;
+    padding: 0 20px 40px;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+    background: transparent;
 }
 
+/* 侧边栏样式 */
 .sidebar {
-    width: 200px;
-    height: 100%;
-    margin-right: 20px;
-    background-color: #fff;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+    width: 160px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
 }
 
-.sidebar-item{
-    border-bottom: rgb(193, 192, 192) solid 1px;
+.sidebar-item {
+    text-align: center;
+    display: block;
+    padding: 18px 24px;
     text-decoration: none;
-    color: #666;
+    color: #64748b;
     font-size: 16px;
-    padding: 10px 0;
+    font-weight: 500;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sidebar-item:last-child {
+    border-bottom: none;
 }
 
 .sidebar-item:hover {
-    color: orange;
+    background: linear-gradient(90deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #0f172a;
 }
 
-.sidebar .active {
-    background-color: #F36C14;
-    color: white;
+.sidebar-item.active {
+    background: linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%);
+    color: #fff;
+    font-weight: 600;
 }
 
-#sub-list{
-    list-style: none;
-}
-
-#sub-list li{
-    border-top: rgb(192, 192, 192) solid 1px;
-}
-
+/* 主内容区域 */
 .content {
-    width: 100%;
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     min-height: 600px;
-    background-color: #fff;
 }
 
-.tabs{
-    height: 50px;
-    margin: 0;
-    padding: 20px 34px 0px 34px;
+/* 标签页样式 */
+.tabs {
     display: flex;
-    border-bottom: rgb(192, 192, 192) solid 1px;
+    padding: 20px 30px 0;
+    border-bottom: 2px solid #f1f5f9;
+    background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
 }
 
-.tabs-item{
-    font-size: 16px;
-    color: #666;
-    padding: 0 5px;
-    margin-right: 20px;
-    align-content: center;
+.tabs-item {
+    padding: 12px 24px;
+    margin-right: 8px;
     text-decoration: none;
-}
-
-.tabs .active{
-    color:#F36C14;
-    text-decoration: #F36C14 underline;
-    text-underline-offset: 20px;
-}
-
-.tabs-content{
-    display: flex;
-    flex-direction: column;
-    padding: 20px 34px;
-}
-
-.registered{
-    display: flex;
-    padding: 30px;
-    border-bottom: rgb(192, 192, 192) solid 1px;
+    color: #64748b;
+    font-weight: 500;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
     position: relative;
 }
 
-.course-image{
-    width: 280px;
-    height: 193px;
-    margin-right: 40px;
+.tabs-item:hover {
+    color: #0f172a;
+    background: rgba(14, 165, 233, 0.1);
 }
 
-.course-image img{
+.tabs-item.active {
+    color: #0ea5e9;
+    background: #fff;
+    font-weight: 600;
+}
+
+.tabs-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #0ea5e9;
+}
+
+/* 标签内容区域 */
+.tabs-content {
+    padding: 30px;
+}
+
+/* 课程展示样式 */
+.registered {
+    display: flex;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    background: #fff;
+    position: relative;
+}
+
+.registered:hover {
+    border-color: #0ea5e9;
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.1);
+    transform: translateY(-2px);
+}
+
+.course-image {
+    width: 280px;
+    height: 193px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.course-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-#drop-out{
-    color: #666;
+.course-image img:hover {
+    transform: scale(1.05);
+}
+
+.course-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-info h3 {
+    color: #1e293b;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.teacher {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.course-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* 课件和作业展示样式 */
+.courseware, .homework {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.courseware:hover, .homework:hover {
+    border-color: #0ea5e9;
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.1);
+    transform: translateY(-1px);
+}
+
+.courseware a {
+    color: #1e293b;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 20px;
     text-decoration: none;
-    font-size: 14px;
-    right: 20px;
-    position: absolute;
 }
 
-#drop-out:hover{
-    color: #F36C14;
-}
-
-.courseware, .homework{
-    display: flex;
-    padding: 10px;
-    border-bottom: rgb(192, 192, 192) solid 1px;
-    position: relative;
-}
-
-.courseware a{
-    color: black;
-    font-size: 15px;
-    margin-left: 20px;
-}
-
-.homework-info{
+.homework-info {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-    color: black;
-    font-size: 15px;
+    flex: 1;
 }
 
-.homework-info p{
-    color: #666;
+.homework-info h4 {
+    color: #1e293b;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+}
+
+.homework-info p {
+    color: #64748b;
     font-size: 14px;
-}
-
-
-.teacher{
-    color: #666;
-}
-
-.course-description{
-    color: #666;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-.submit a{
-    color: black;
-}
-
-#file-upload{
-    display: none;
-}
-
-.message{
-    height: 200px;
-    width: 200px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 40%;
-    position: relative;
-}
-
-.message p{
     margin: 0;
 }
 
-#preview-course {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    right: 20px;
-    position: absolute;
-}
-
-#preview-course:hover {
-    background-color: #4cae4c;
-}
-
-.mynotes,.mytalks{
+/* 笔记和讨论样式 */
+.mynotes, .mytalks {
     display: flex;
-    padding: 10px;
-    border-bottom: rgb(192, 192, 192) solid 1px;
-    position: relative;
+    align-items: flex-start;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    background: #fff;
 }
 
-.mynotes img,.mytalks img{
+.mynotes:hover, .mytalks:hover {
+    border-color: #0ea5e9;
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.1);
+    transform: translateY(-1px);
+}
+
+.mynotes img, .mytalks img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 16px;
+    border: 2px solid #e2e8f0;
 }
 
-.finished ul{
+/* 按钮样式 */
+button, #preview-course, #drop-out {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, #preview-course:hover {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
+}
+
+#drop-out {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+#drop-out:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: #fff;
+}
+
+#preview-course {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+/* 空状态消息样式 */
+.message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    border: 2px dashed #cbd5e1;
+    margin: 20px 0;
+}
+
+.message img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+    opacity: 0.6;
+}
+
+.message p {
+    color: #64748b;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* 文件上传隐藏 */
+#file-upload {
+    display: none;
+}
+
+/* 已完成列表样式 */
+.finished ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.finished li {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 8px;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* 子列表样式 */
+#sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sub-list li {
+    border-top: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* 响应式设计 */
+@media (max-width: 968px) {
+    .student-profile-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+    
+    .student-profile-head {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .student-profile-head img {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .registered {
+        flex-direction: column;
+    }
+    
+    .course-image {
+        width: 100%;
+        height: 200px;
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+    
+    #drop-out, #preview-course {
+        position: static;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .student-profile-body {
+        margin: -20px 10px 0;
+        padding: 0 10px 20px;
+    }
+    
+    .tabs-content {
+        padding: 20px;
+    }
+    
+    .student-profile-header {
+        padding: 30px 0;
+    }
+    
+    .student-profile-head img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .student-profile-info h2 {
+        font-size: 24px;
+    }
+    
+    .tabs {
+        padding: 15px 20px 0;
+        flex-wrap: wrap;
+    }
+    
+    .tabs-item {
+        margin-bottom: 8px;
+    }
 }
