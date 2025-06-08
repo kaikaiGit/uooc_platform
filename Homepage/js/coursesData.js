@@ -17,6 +17,7 @@ const coursesData = [
         category: '计算机',
         teacher: '张伟教授',
         registerCount: 1580,
+        likes: 245,
         recommend: true,
         carouselImages: ['../Homepage/images/courses/cs-1.jpg']
     },
