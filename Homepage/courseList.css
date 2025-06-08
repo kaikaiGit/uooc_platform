@@ -33,6 +33,37 @@
     overflow: hidden;
 }
 
+/* 搜索结果标题样式 */
+.search-title {
+    background: linear-gradient(135deg, #2196F3, #21CBF3);
+    color: white;
+    padding: 25px 40px;
+    margin: 0;
+    text-align: left;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-title h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-title h2 i {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.search-title .search-info {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
 .category {
     margin-bottom: 25px;
     position: relative;
@@ -167,8 +198,23 @@
     position: relative;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+}
+
+/* 空状态样式 - 跨越整个网格 */
+.empty-state {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -422,6 +468,12 @@
         margin: 16px auto;
     }
     
+    .empty-state {
+        margin: 20px auto;
+        padding: 30px 20px;
+        max-width: 90%;
+    }
+    
     .message img {
         width: 60px;
         height: 60px;
@@ -429,6 +481,23 @@
     
     .message p {
         font-size: 14px;
+    }
+
+    /* 搜索结果标题移动端样式 */
+    .search-title {
+        padding: 20px 20px;
+        margin: 15px 0;
+    }
+
+    .search-title h2 {
+        font-size: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .search-title .search-info {
+        font-size: 0.9rem;
     }
 }
 
@@ -461,6 +530,11 @@
         padding: 8px 16px;
         font-size: 12px;
         min-width: 90px;
+    }
+    
+    .empty-state {
+        padding: 20px 16px;
+        margin: 16px auto;
     }
 }
 

@@ -117,19 +117,33 @@ class HomePage {
         searchForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const query = searchInput.value.trim();
-            if (query) {
-                const results = await homeService.searchCourses(query);
-                this.showSearchResults(results);
+            if (!query) {
+                alert('请输入搜索关键词');
+                searchInput.focus();
+                return;
             }
+            const results = await homeService.searchCourses(query);
+            this.showSearchResults(results, query);
         });
     }
 
-    showSearchResults(courses) {
+    showSearchResults(courses, searchQuery = '') {
         const resultsContainer = document.querySelector('.search-results');
         resultsContainer.innerHTML = '';
         
+        // 如果有搜索关键词，显示搜索标题
+        if (searchQuery) {
+            const searchTitle = document.createElement('div');
+            searchTitle.className = 'search-title';
+            searchTitle.innerHTML = `
+                <h2><i class="fas fa-search"></i> 搜索结果: "${searchQuery}"</h2>
+                <p class="search-info">共找到 ${courses.length} 门相关课程</p>
+            `;
+            resultsContainer.appendChild(searchTitle);
+        }
+        
         if (courses.length === 0) {
-            resultsContainer.innerHTML = '<p class="no-results">未找到相关课程</p>';
+            resultsContainer.innerHTML += '<p class="no-results">未找到相关课程</p>';
             return;
         }
 

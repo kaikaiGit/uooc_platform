@@ -51,6 +51,43 @@ section h2::before {
     border-radius: 2px;
 }
 
+/* 搜索结果标题样式 */
+.search-title {
+    background: linear-gradient(135deg, #2196F3, #21CBF3);
+    color: white;
+    padding: 25px 40px;
+    margin: 20px 0;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.search-title h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+}
+
+.search-title h2::before {
+    display: none; /* 隐藏section h2的伪元素 */
+}
+
+.search-title h2 i {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.search-title .search-info {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
 /* 课程卡片样式 */
 .course-list {
     display: grid;
@@ -230,5 +267,22 @@ section h2::before {
 
     .course-card img {
         height: 160px;
+    }
+
+    /* 搜索结果标题移动端样式 */
+    .search-title {
+        padding: 20px 20px;
+        margin: 15px 0;
+    }
+
+    .search-title h2 {
+        font-size: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .search-title .search-info {
+        font-size: 0.9rem;
     }
 }

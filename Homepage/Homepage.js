@@ -227,6 +227,11 @@ function filterCoursesByCategory(event) {
 }
 
 function searchCourses() {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase();
-    window.location.href = `courseList.html?search=${encodeURIComponent(searchInput)}`;
+    const searchInput = document.getElementById('searchInput').value.trim();
+    if (!searchInput) {
+        alert('请输入搜索关键词');
+        document.getElementById('searchInput').focus();
+        return;
+    }
+    window.location.href = `courseList.html?search=${encodeURIComponent(searchInput.toLowerCase())}`;
 }

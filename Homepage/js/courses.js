@@ -45,10 +45,24 @@ class CourseManager {
         const searchBox = document.querySelector('.search-box input');
         const searchBtn = document.querySelector('.search-box button');
         if (searchBox && searchBtn) {
-            searchBtn.addEventListener('click', () => this.searchCourses(searchBox.value));
+            searchBtn.addEventListener('click', () => {
+                const query = searchBox.value.trim();
+                if (!query) {
+                    alert('请输入搜索关键词');
+                    searchBox.focus();
+                    return;
+                }
+                this.searchCourses(query);
+            });
             searchBox.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    this.searchCourses(searchBox.value);
+                    const query = searchBox.value.trim();
+                    if (!query) {
+                        alert('请输入搜索关键词');
+                        searchBox.focus();
+                        return;
+                    }
+                    this.searchCourses(query);
                 }
             });
         }

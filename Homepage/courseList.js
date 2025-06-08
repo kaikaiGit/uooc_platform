@@ -142,9 +142,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 添加搜索按钮点击事件监听器
     const searchButton = document.getElementById('searchButton');
+    const searchInputElement = document.getElementById('searchInput');
+    
     searchButton.addEventListener('click', function() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase();
-        searchCourses(searchInput, currentSortField, currentSortOrder);
+        const searchInput = searchInputElement.value.trim();
+        if (!searchInput) {
+            alert('请输入搜索关键词');
+            searchInputElement.focus();
+            return;
+        }
+        searchCourses(searchInput.toLowerCase(), currentSortField, currentSortOrder);
+    });
+
+    // 添加回车键搜索支持
+    searchInputElement.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const searchInput = searchInputElement.value.trim();
+            if (!searchInput) {
+                alert('请输入搜索关键词');
+                searchInputElement.focus();
+                return;
+            }
+            searchCourses(searchInput.toLowerCase(), currentSortField, currentSortOrder);
+        }
     });
 });
 
@@ -158,6 +178,8 @@ function loadCoursesByCategory(category, sortField, sortOrder) {
         let courses = event.target.result.filter(course => course.category == category);
         courses = sortCourses(courses, sortField, sortOrder);
 
+        // 清除搜索结果标题
+        clearSearchTitle();
         displayCourses(courses);
     };
     
@@ -175,12 +197,43 @@ function loadAllCourses(sortField, sortOrder) {
         let courses = event.target.result;
         courses = sortCourses(courses, sortField, sortOrder);
 
+        // 清除搜索结果标题
+        clearSearchTitle();
         displayCourses(courses);
     };
 
     request.onerror = function(event) {
         console.error('IndexedDB error:', event.target.errorCode);
     };
+}
+
+// 清除搜索结果标题
+function clearSearchTitle() {
+    const coursesContainer = document.querySelector('.courses-container');
+    const searchTitle = coursesContainer.querySelector('.search-title');
+    if (searchTitle) {
+        searchTitle.remove();
+    }
+}
+
+// 显示搜索结果，包含搜索关键词标题
+function displaySearchResults(courses, searchKeyword) {
+    const coursesContainer = document.querySelector('.courses-container');
+    
+    // 添加搜索结果标题
+    let searchTitle = coursesContainer.querySelector('.search-title');
+    if (!searchTitle) {
+        searchTitle = document.createElement('div');
+        searchTitle.className = 'search-title';
+        coursesContainer.insertBefore(searchTitle, coursesContainer.firstChild);
+    }
+    
+    searchTitle.innerHTML = `
+        <h2><i class="fas fa-search"></i> 搜索结果: "${searchKeyword}"</h2>
+        <p class="search-info">共找到 ${courses.length} 门相关课程</p>
+    `;
+    
+    displayCourses(courses);
 }
 
 function displayCourses(courses) {
@@ -201,7 +254,7 @@ function displayCourses(courses) {
 
     if(courses.length === 0) {
         var noCourse = document.createElement('div');
-        noCourse.classList.add('message');
+        noCourse.classList.add('message', 'empty-state');
         noCourse.innerHTML = `
             <img src="../student/images/smile.png" alt="笑脸图片">
             <p class="message">目前还没有任何课程</p>
@@ -349,7 +402,8 @@ function searchCourses(searchInput, sortField, sortOrder) {
         });
         courses = sortCourses(courses, sortField, sortOrder);
 
-        displayCourses(courses);
+        // 显示搜索关键词
+        displaySearchResults(courses, searchInput);
     };
 
     request.onerror = function(event) {
