@@ -8,8 +8,15 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f0f0f0;
-    overflow: scroll;
+    /* overflow: scroll; */
     min-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
 }
 
 .navbar {
@@ -105,6 +112,7 @@ nav ul li a:hover{
 
 #user-head {
     cursor: pointer;
+    object-fit: cover;
 }
 
 .card {
@@ -170,9 +178,7 @@ nav ul li a:hover{
     padding: 20px 0;
     text-align: center;
     border-top: 1px solid #e7e7e7;
-    position: relative;
-    width: 100%;
-    bottom: 0;
+    flex-shrink: 0;
 }
 
 .footer-content {
