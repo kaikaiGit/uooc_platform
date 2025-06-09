@@ -299,6 +299,187 @@
     transform: translateY(-1px);
 }
 
+/* 评论工具栏样式 */
+.comments-toolbar {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.comments-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.comments-stats {
+    margin-left: auto;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 美化后的评论卡片样式 */
+.comment-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.comment-card:hover {
+    border-color: #f5576c;
+    box-shadow: 0 20px 40px rgba(245, 87, 108, 0.15);
+    transform: translateY(-8px);
+}
+
+.comment-card:hover::before {
+    opacity: 1;
+}
+
+.comment-card-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+}
+
+/* 评论头部样式 */
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 24px 16px;
+    background: linear-gradient(135deg, #fef7f7 0%, #f8fafc 100%);
+    border-bottom: 1px solid #f1f5f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.comment-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+/* 评论主体内容 */
+.comment-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+}
+
+.comment-content {
+    padding: 20px 24px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.comment-text {
+    color: #374151;
+    line-height: 1.8;
+    font-size: 16px;
+    margin: 0;
+    word-break: break-word;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.comment-text.expandable {
+    position: relative;
+}
+
+.comment-text.expandable:not(.expanded) {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.comment-text.expandable:not(.expanded)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(transparent 0%, #fff 70%);
+    pointer-events: none;
+}
+
+/* 评论底部样式 */
+.comment-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.comment-stats {
+    display: flex;
+    gap: 12px;
+}
+
+.comment-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* 评论的评论时间样式 */
+.comment-time {
+    font-size: 14px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+/* 兼容老样式 */
 .mynotes img, .mytalks img {
     width: 50px;
     height: 50px;
@@ -885,14 +1066,14 @@ button:hover, #preview-course:hover {
     transform: translateY(-1px);
 }
 
-/* 响应式设计 - 笔记部分 */
+/* 响应式设计 - 笔记和评论部分 */
 @media (max-width: 768px) {
-    .notes-toolbar {
+    .notes-toolbar, .comments-toolbar {
         padding: 16px;
         margin-bottom: 20px;
     }
     
-    .notes-controls {
+    .notes-controls, .comments-controls {
         flex-direction: column;
         align-items: stretch;
         gap: 16px;
@@ -907,27 +1088,27 @@ button:hover, #preview-course:hover {
         min-width: 0;
     }
     
-    .notes-stats {
+    .notes-stats, .comments-stats {
         margin-left: 0;
         text-align: center;
     }
     
-    .note-card {
+    .note-card, .comment-card {
         margin-bottom: 20px;
         border-radius: 16px;
     }
     
-    .note-header {
+    .note-header, .comment-header {
         padding: 16px 20px 12px;
     }
     
-    .note-meta {
+    .note-meta, .comment-meta {
         flex-direction: column;
         gap: 16px;
         align-items: stretch;
     }
     
-    .note-author {
+    .note-author, .comment-author {
         gap: 12px;
     }
     
@@ -936,11 +1117,12 @@ button:hover, #preview-course:hover {
         align-self: flex-start;
     }
     
-    .note-actions {
+    .note-actions, .comment-actions {
         justify-content: flex-end;
         gap: 8px;
         align-self: flex-end;
         margin-top: -10px;
+        margin-left: 0;
     }
     
     .action-btn {
@@ -961,7 +1143,7 @@ button:hover, #preview-course:hover {
         font-size: 16px;
     }
     
-    .note-time {
+    .note-time, .comment-time {
         font-size: 13px;
     }
     
@@ -970,27 +1152,27 @@ button:hover, #preview-course:hover {
         padding: 8px 16px;
     }
     
-    .note-content {
+    .note-content, .comment-content {
         padding: 16px 20px;
     }
     
-    .note-text {
+    .note-text, .comment-text {
         font-size: 14px;
         line-height: 1.6;
     }
     
-    .note-footer {
+    .note-footer, .comment-footer {
         padding: 12px 20px 16px;
         flex-direction: column;
         gap: 12px;
         align-items: stretch;
     }
     
-    .note-stats {
+    .note-stats, .comment-stats {
         justify-content: center;
     }
     
-    .note-tags {
+    .note-tags, .comment-tags {
         justify-content: center;
     }
     

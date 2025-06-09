@@ -329,6 +329,33 @@ function loadComments() {
         var comments = event.target.result;
         var talks = document.getElementsByClassName('tabs-content')[5];
         talks.innerHTML = '';
+        
+        // 添加评论工具栏
+        if (comments.length > 0) {
+            var commentsToolbar = document.createElement('div');
+            commentsToolbar.classList.add('comments-toolbar');
+            commentsToolbar.innerHTML = `
+                <div class="comments-controls">
+                    <div class="search-container">
+                        <input type="text" id="commentSearchInput" placeholder="搜索评论..." onkeyup="searchComments()">
+                        <button class="search-btn" onclick="searchComments()">🔍</button>
+                    </div>
+                    <div class="sort-container">
+                        <label>排序方式：</label>
+                        <select id="commentSortSelect" onchange="sortComments(this.value)">
+                            <option value="time">按时间</option>
+                            <option value="length">按长度</option>
+                            <option value="course">按课程</option>
+                        </select>
+                    </div>
+                    <div class="comments-stats">
+                        <span class="total-comments">共 ${comments.length} 条评论</span>
+                    </div>
+                </div>
+            `;
+            talks.appendChild(commentsToolbar);
+        }
+        
         if (comments.length === 0) {
             var noComment = document.createElement('div');
             noComment.classList.add('message');
@@ -350,11 +377,61 @@ function loadComments() {
                     var course = event.target.result;
                     var commentItem = document.createElement('div');
                     commentItem.classList.add('mytalks');
+                    commentItem.classList.add('comment-card');
+                    
+                    // 格式化时间戳（如果有的话）
+                    var timeStamp = comment.timestamp ? new Date(comment.timestamp).toLocaleString('zh-CN') : '最近';
+                    
+                    // 截取评论内容预览
+                    var commentPreview = comment.text.length > 100 ? comment.text.substring(0, 100) + '...' : comment.text;
+                    
                     commentItem.innerHTML = `
-                        <img src="${avatar}" alt="用户头像">
-                        <div class="comment-info">
-                            <h2>${course.title}</h2>
-                            <p>${comment.text}</p>
+                        <div class="comment-card-inner">
+                            <div class="comment-header">
+                                <div class="comment-meta">
+                                    <div class="comment-author">
+                                        <img src="${avatar}" alt="用户头像" class="avatar-small">
+                                        <div class="author-details">
+                                            <span class="author-name">${user.name || '我'}</span>
+                                            <span class="comment-time">💬 ${timeStamp}</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-badge">
+                                        <span class="course-tag">📚 ${course.title}</span>
+                                    </div>
+                                </div>
+                                <div class="comment-actions">
+                                    <button class="action-btn edit-btn" onclick="editComment(${comment.id})" title="编辑评论">
+                                        <span class="btn-icon">✏️</span>
+                                    </button>
+                                    <button class="action-btn delete-btn" onclick="deleteComment(${comment.id})" title="删除评论">
+                                        <span class="btn-icon">🗑️</span>
+                                    </button>
+                                    ${comment.text.length > 100 ? `
+                                    <button class="action-btn expand-btn" onclick="toggleCommentExpansion(this)" title="展开/收起">
+                                        <span class="btn-icon">💭</span>
+                                    </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <div class="comment-content">
+                                    <div class="comment-text ${comment.text.length > 100 ? 'expandable' : ''}" data-full-text="${encodeURIComponent(comment.text)}">
+                                        ${commentPreview}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-footer">
+                                <div class="comment-stats">
+                                    <span class="stat-item">
+                                        <span class="stat-icon">💬</span>
+                                        <span class="stat-text">${comment.text.length} 字</span>
+                                    </span>
+                                </div>
+                                <div class="comment-tags">
+                                    ${comment.tags ? comment.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
+                                </div>
+                            </div>
                         </div>
                     `;
                     talks.appendChild(commentItem);
@@ -792,5 +869,130 @@ function sortNotes(sortBy) {
         messageElements.forEach(el => notesContainer.appendChild(el));
     } else {
         noteItems.forEach(item => notesContainer.appendChild(item));
+    }
+}
+
+// 评论相关功能函数
+function editComment(commentId) {
+    const transaction = db.transaction(['comments'], 'readwrite');
+    const objectStore = transaction.objectStore('comments');
+    const request = objectStore.get(commentId);
+    
+    request.onsuccess = function(event) {
+        const comment = event.target.result;
+        const newText = prompt('编辑评论内容：', comment.text);
+        
+        if (newText !== null && newText.trim() !== '') {
+            comment.text = newText.trim();
+            comment.timestamp = Date.now(); // 更新时间戳
+            
+            const updateRequest = objectStore.put(comment);
+            updateRequest.onsuccess = function() {
+                alert('评论编辑成功！');
+                loadComments(); // 重新加载评论
+            };
+            updateRequest.onerror = function() {
+                alert('编辑失败，请重试！');
+            };
+        }
+    };
+    
+    request.onerror = function() {
+        alert('获取评论失败！');
+    };
+}
+
+function deleteComment(commentId) {
+    if (confirm('确定要删除这条评论吗？删除后无法恢复！')) {
+        const transaction = db.transaction(['comments'], 'readwrite');
+        const objectStore = transaction.objectStore('comments');
+        const request = objectStore.delete(commentId);
+        
+        request.onsuccess = function() {
+            alert('评论删除成功！');
+            loadComments(); // 重新加载评论
+        };
+        
+        request.onerror = function() {
+            alert('删除失败，请重试！');
+        };
+    }
+}
+
+function toggleCommentExpansion(button) {
+    const commentItem = button.closest('.mytalks');
+    const commentText = commentItem.querySelector('.comment-text');
+    const expandIcon = button.querySelector('.btn-icon');
+    
+    if (commentText.classList.contains('expandable')) {
+        if (commentText.classList.contains('expanded')) {
+            // 收起
+            const fullText = decodeURIComponent(commentText.dataset.fullText);
+            const preview = fullText.length > 100 ? fullText.substring(0, 100) + '...' : fullText;
+            commentText.innerHTML = preview;
+            commentText.classList.remove('expanded');
+            expandIcon.textContent = '💭';
+            button.title = '展开全文';
+        } else {
+            // 展开
+            const fullText = decodeURIComponent(commentText.dataset.fullText);
+            commentText.innerHTML = fullText;
+            commentText.classList.add('expanded');
+            expandIcon.textContent = '📄';
+            button.title = '收起';
+        }
+    }
+}
+
+// 添加评论搜索功能
+function searchComments() {
+    const searchInput = document.getElementById('commentSearchInput');
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const commentItems = document.querySelectorAll('.mytalks');
+    
+    commentItems.forEach(function(commentItem) {
+        const commentText = commentItem.querySelector('.comment-text').textContent.toLowerCase();
+        const courseTitle = commentItem.querySelector('.course-tag').textContent.toLowerCase();
+        
+        if (commentText.includes(searchTerm) || courseTitle.includes(searchTerm) || searchTerm === '') {
+            commentItem.style.display = 'block';
+        } else {
+            commentItem.style.display = 'none';
+        }
+    });
+}
+
+// 评论排序功能
+function sortComments(sortBy) {
+    const commentsContainer = document.getElementsByClassName('tabs-content')[5];
+    const commentItems = Array.from(commentsContainer.querySelectorAll('.mytalks'));
+    
+    commentItems.sort(function(a, b) {
+        if (sortBy === 'time') {
+            const timeA = a.querySelector('.comment-time').textContent;
+            const timeB = b.querySelector('.comment-time').textContent;
+            return new Date(timeB) - new Date(timeA); // 最新在前
+        } else if (sortBy === 'length') {
+            const lengthA = parseInt(a.querySelector('.stat-text').textContent);
+            const lengthB = parseInt(b.querySelector('.stat-text').textContent);
+            return lengthB - lengthA; // 长的在前
+        } else if (sortBy === 'course') {
+            const courseA = a.querySelector('.course-tag').textContent;
+            const courseB = b.querySelector('.course-tag').textContent;
+            return courseA.localeCompare(courseB); // 按课程名排序
+        }
+        return 0;
+    });
+    
+    // 清空容器并重新添加排序后的元素
+    const messageElements = commentsContainer.querySelectorAll('.message');
+    commentsContainer.innerHTML = '';
+    
+    if (commentItems.length === 0 && messageElements.length > 0) {
+        messageElements.forEach(el => commentsContainer.appendChild(el));
+    } else {
+        commentItems.forEach(item => commentsContainer.appendChild(item));
     }
 }
