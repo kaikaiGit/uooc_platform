@@ -485,3 +485,522 @@ button:hover, #preview-course:hover {
         margin-bottom: 8px;
     }
 }
+
+/* 笔记工具栏样式 */
+.notes-toolbar {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.notes-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    width: 200px;
+    font-size: 14px;
+    background: transparent;
+}
+
+.search-btn {
+    background: #0ea5e9;
+    border: none;
+    padding: 10px 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: #0284c7;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-container label {
+    font-weight: 500;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.sort-container select {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+.notes-stats {
+    margin-left: auto;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 美化后的笔记卡片样式 */
+.note-card {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.note-card:hover {
+    border-color: #0ea5e9;
+    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
+    transform: translateY(-8px);
+}
+
+.note-card:hover::before {
+    opacity: 1;
+}
+
+.note-card-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+}
+
+/* 笔记头部重新设计 */
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 24px 16px;
+    background: linear-gradient(135deg, #fafbff 0%, #f8fafc 100%);
+    border-bottom: 1px solid #f1f5f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.note-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.note-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.avatar-small {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.avatar-small:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.author-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.author-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.note-time {
+    font-size: 14px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.course-badge {
+    margin-left: 0;
+    flex-shrink: 0;
+}
+
+.course-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.course-tag:hover::before {
+    left: 100%;
+}
+
+.course-tag:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.action-btn:hover::before {
+    opacity: 1;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-icon {
+    font-size: 16px;
+    filter: grayscale(0.3);
+    transition: filter 0.3s ease;
+}
+
+.action-btn:hover .btn-icon {
+    filter: grayscale(0);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+}
+
+.expand-btn:hover {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+/* 笔记主体内容 */
+.note-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+}
+
+.note-content {
+    padding: 20px 24px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.note-text {
+    color: #374151;
+    line-height: 1.8;
+    font-size: 16px;
+    margin: 0;
+    word-break: break-word;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.note-text.expandable {
+    position: relative;
+}
+
+.note-text.expandable:not(.expanded) {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.note-text.expandable:not(.expanded)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(transparent 0%, #fff 70%);
+    pointer-events: none;
+}
+
+/* 笔记底部重新设计 */
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.note-stats {
+    display: flex;
+    gap: 12px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon {
+    font-size: 14px;
+}
+
+.note-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    color: #64748b;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* 响应式设计 - 笔记部分 */
+@media (max-width: 768px) {
+    .notes-toolbar {
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .notes-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+    
+    .search-container {
+        width: 100%;
+    }
+    
+    .search-container input {
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .notes-stats {
+        margin-left: 0;
+        text-align: center;
+    }
+    
+    .note-card {
+        margin-bottom: 20px;
+        border-radius: 16px;
+    }
+    
+    .note-header {
+        padding: 16px 20px 12px;
+    }
+    
+    .note-meta {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+    
+    .note-author {
+        gap: 12px;
+    }
+    
+    .course-badge {
+        margin-left: 0;
+        align-self: flex-start;
+    }
+    
+    .note-actions {
+        justify-content: flex-end;
+        gap: 8px;
+        align-self: flex-end;
+        margin-top: -10px;
+    }
+    
+    .action-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .btn-icon {
+        font-size: 14px;
+    }
+    
+    .avatar-small {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .author-name {
+        font-size: 16px;
+    }
+    
+    .note-time {
+        font-size: 13px;
+    }
+    
+    .course-tag {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+    
+    .note-content {
+        padding: 16px 20px;
+    }
+    
+    .note-text {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .note-footer {
+        padding: 12px 20px 16px;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .note-stats {
+        justify-content: center;
+    }
+    
+    .note-tags {
+        justify-content: center;
+    }
+    
+    .stat-item {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}

@@ -206,6 +206,33 @@ function loadMyNotes() {
         var notes = event.target.result;
         var myNotes = document.getElementsByClassName('tabs-content')[2];
         myNotes.innerHTML = '';
+        
+        // 添加笔记工具栏
+        if (notes.length > 0) {
+            var notesToolbar = document.createElement('div');
+            notesToolbar.classList.add('notes-toolbar');
+            notesToolbar.innerHTML = `
+                <div class="notes-controls">
+                    <div class="search-container">
+                        <input type="text" id="noteSearchInput" placeholder="搜索笔记..." onkeyup="searchNotes()">
+                        <button class="search-btn" onclick="searchNotes()">🔍</button>
+                    </div>
+                    <div class="sort-container">
+                        <label>排序方式：</label>
+                        <select id="noteSortSelect" onchange="sortNotes(this.value)">
+                            <option value="time">按时间</option>
+                            <option value="length">按长度</option>
+                            <option value="course">按课程</option>
+                        </select>
+                    </div>
+                    <div class="notes-stats">
+                        <span class="total-notes">共 ${notes.length} 条笔记</span>
+                    </div>
+                </div>
+            `;
+            myNotes.appendChild(notesToolbar);
+        }
+        
         if (notes.length === 0) {
             var noNote = document.createElement('div');
             noNote.classList.add('message');
@@ -227,11 +254,61 @@ function loadMyNotes() {
                     var course = event.target.result;
                     var noteItem = document.createElement('div');
                     noteItem.classList.add('mynotes');
+                    noteItem.classList.add('note-card');
+                    
+                    // 格式化时间戳（如果有的话）
+                    var timeStamp = note.timestamp ? new Date(note.timestamp).toLocaleString('zh-CN') : '最近';
+                    
+                    // 截取笔记内容预览
+                    var notePreview = note.text.length > 120 ? note.text.substring(0, 120) + '...' : note.text;
+                    
                     noteItem.innerHTML = `
-                        <img src="${avatar}" alt="用户头像">
-                        <div class="note-info">
-                            <h2>${course.title}</h2>
-                            <p>${note.text}</p>
+                        <div class="note-card-inner">
+                            <div class="note-header">
+                                <div class="note-meta">
+                                    <div class="note-author">
+                                        <img src="${avatar}" alt="用户头像" class="avatar-small">
+                                        <div class="author-details">
+                                            <span class="author-name">${user.name || '我'}</span>
+                                            <span class="note-time">📅 ${timeStamp}</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-badge">
+                                        <span class="course-tag">📚 ${course.title}</span>
+                                    </div>
+                                </div>
+                                <div class="note-actions">
+                                    <button class="action-btn edit-btn" onclick="editNote(${note.id})" title="编辑笔记">
+                                        <span class="btn-icon">✏️</span>
+                                    </button>
+                                    <button class="action-btn delete-btn" onclick="deleteNote(${note.id})" title="删除笔记">
+                                        <span class="btn-icon">🗑️</span>
+                                    </button>
+                                    ${note.text.length > 120 ? `
+                                    <button class="action-btn expand-btn" onclick="toggleNoteExpansion(this)" title="展开/收起">
+                                        <span class="btn-icon">📖</span>
+                                    </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                            <div class="note-body">
+                                <div class="note-content">
+                                    <div class="note-text ${note.text.length > 120 ? 'expandable' : ''}" data-full-text="${encodeURIComponent(note.text)}">
+                                        ${notePreview}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="note-footer">
+                                <div class="note-stats">
+                                    <span class="stat-item">
+                                        <span class="stat-icon">📝</span>
+                                        <span class="stat-text">${note.text.length} 字</span>
+                                    </span>
+                                </div>
+                                <div class="note-tags">
+                                    ${note.tags ? note.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
+                                </div>
+                            </div>
                         </div>
                     `;
                     myNotes.appendChild(noteItem);
@@ -591,4 +668,129 @@ function searchCourses() {
         return;
     }
     window.location.href = `../Homepage/courseList.html?search=${encodeURIComponent(searchInput.toLowerCase())}`;
+}
+
+// 笔记相关功能函数
+function editNote(noteId) {
+    const transaction = db.transaction(['notes'], 'readwrite');
+    const objectStore = transaction.objectStore('notes');
+    const request = objectStore.get(noteId);
+    
+    request.onsuccess = function(event) {
+        const note = event.target.result;
+        const newText = prompt('编辑笔记内容：', note.text);
+        
+        if (newText !== null && newText.trim() !== '') {
+            note.text = newText.trim();
+            note.timestamp = Date.now(); // 更新时间戳
+            
+            const updateRequest = objectStore.put(note);
+            updateRequest.onsuccess = function() {
+                alert('笔记编辑成功！');
+                loadMyNotes(); // 重新加载笔记
+            };
+            updateRequest.onerror = function() {
+                alert('编辑失败，请重试！');
+            };
+        }
+    };
+    
+    request.onerror = function() {
+        alert('获取笔记失败！');
+    };
+}
+
+function deleteNote(noteId) {
+    if (confirm('确定要删除这条笔记吗？删除后无法恢复！')) {
+        const transaction = db.transaction(['notes'], 'readwrite');
+        const objectStore = transaction.objectStore('notes');
+        const request = objectStore.delete(noteId);
+        
+        request.onsuccess = function() {
+            alert('笔记删除成功！');
+            loadMyNotes(); // 重新加载笔记
+        };
+        
+        request.onerror = function() {
+            alert('删除失败，请重试！');
+        };
+    }
+}
+
+function toggleNoteExpansion(button) {
+    const noteItem = button.closest('.mynotes');
+    const noteText = noteItem.querySelector('.note-text');
+    const expandIcon = button.querySelector('.btn-icon');
+    
+    if (noteText.classList.contains('expandable')) {
+        if (noteText.classList.contains('expanded')) {
+            // 收起
+            const fullText = decodeURIComponent(noteText.dataset.fullText);
+            const preview = fullText.length > 120 ? fullText.substring(0, 120) + '...' : fullText;
+            noteText.innerHTML = preview;
+            noteText.classList.remove('expanded');
+            expandIcon.textContent = '📖';
+            button.title = '展开全文';
+        } else {
+            // 展开
+            const fullText = decodeURIComponent(noteText.dataset.fullText);
+            noteText.innerHTML = fullText;
+            noteText.classList.add('expanded');
+            expandIcon.textContent = '📄';
+            button.title = '收起';
+        }
+    }
+}
+
+// 添加笔记搜索功能
+function searchNotes() {
+    const searchInput = document.getElementById('noteSearchInput');
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const noteItems = document.querySelectorAll('.mynotes');
+    
+    noteItems.forEach(function(noteItem) {
+        const noteText = noteItem.querySelector('.note-text').textContent.toLowerCase();
+        const courseTitle = noteItem.querySelector('.course-tag').textContent.toLowerCase();
+        
+        if (noteText.includes(searchTerm) || courseTitle.includes(searchTerm) || searchTerm === '') {
+            noteItem.style.display = 'block';
+        } else {
+            noteItem.style.display = 'none';
+        }
+    });
+}
+
+// 笔记排序功能
+function sortNotes(sortBy) {
+    const notesContainer = document.getElementsByClassName('tabs-content')[2];
+    const noteItems = Array.from(notesContainer.querySelectorAll('.mynotes'));
+    
+    noteItems.sort(function(a, b) {
+        if (sortBy === 'time') {
+            const timeA = a.querySelector('.note-time').textContent;
+            const timeB = b.querySelector('.note-time').textContent;
+            return new Date(timeB) - new Date(timeA); // 最新在前
+        } else if (sortBy === 'length') {
+            const lengthA = parseInt(a.querySelector('.word-count').textContent);
+            const lengthB = parseInt(b.querySelector('.word-count').textContent);
+            return lengthB - lengthA; // 长的在前
+        } else if (sortBy === 'course') {
+            const courseA = a.querySelector('.course-tag').textContent;
+            const courseB = b.querySelector('.course-tag').textContent;
+            return courseA.localeCompare(courseB); // 按课程名排序
+        }
+        return 0;
+    });
+    
+    // 清空容器并重新添加排序后的元素
+    const messageElements = notesContainer.querySelectorAll('.message');
+    notesContainer.innerHTML = '';
+    
+    if (noteItems.length === 0 && messageElements.length > 0) {
+        messageElements.forEach(el => notesContainer.appendChild(el));
+    } else {
+        noteItems.forEach(item => notesContainer.appendChild(item));
+    }
 }
