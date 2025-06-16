@@ -213,7 +213,7 @@ async function initCourseWaveData() {
                 coursewave.forEach(note => {
                     store.add(note);
                 });
-                console.log('课件数据初始化完成，共添加', notesData.length, '条记录');
+                console.log('课件数据初始化完成，共添加', coursewave.length, '条记录');
             } else {
                 console.log('课件数据已存在（现有', countRequest.result, '条），跳过初始化');
             }

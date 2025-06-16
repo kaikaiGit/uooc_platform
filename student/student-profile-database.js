@@ -473,8 +473,14 @@ function loadDocuments() {
             objectStore = transaction.objectStore('coursewares');
             var index = objectStore.index('courseId');
 
-            courseIds.sort();
-            var request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            courseIds.sort((a, b) => a - b); // 数字排序，防止字符串排序导致的范围错误
+            var request;
+            if (courseIds.length === 1) {
+                // 单个ID时直接查询，避免bound错误
+                request = index.getAll(courseIds[0]);
+            } else {
+                request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            }
             request.onsuccess = function (event) {
                 var coursewares = event.target.result;
                 var documents = document.getElementsByClassName('tabs-content')[1];
@@ -586,8 +592,14 @@ function loadHomeworks() {
             objectStore = transaction.objectStore('assignments');
             var index = objectStore.index('courseId');
 
-            courseIds.sort();
-            var request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            courseIds.sort((a, b) => a - b); // 数字排序，防止字符串排序导致的范围错误
+            var request;
+            if (courseIds.length === 1) {
+                // 单个ID时直接查询，避免bound错误
+                request = index.getAll(courseIds[0]);
+            } else {
+                request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            }
             request.onsuccess = function (event) {
                 var assignments = event.target.result;
                 var homeworks = document.getElementsByClassName('tabs-content')[1];
