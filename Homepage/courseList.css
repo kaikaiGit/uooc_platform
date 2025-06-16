@@ -111,7 +111,7 @@
     color: rgb(41, 141, 207);
 }
 
-.category-option:hover ,.sort-option:hover,#toggleSortOrder:hover{
+.category-option:hover ,.sort-option:hover,#toggleSortOrder:hover,.first-button:hover{
     text-decoration: underline;
 }
 
@@ -593,3 +593,153 @@
 .registered:nth-child(3n) {
     animation-delay: 0.2s;
 }
+
+/* 分类容器 - 主样式 */
+.category-container {
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.03),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+  margin: 1.5rem auto;
+  width: 92%;
+  max-width: 1200px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 玻璃质感背景效果（可选） */
+.category-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+/* 分类标题样式 */
+.category-title {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.95rem;
+  margin-right: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 分类标题装饰元素 */
+.category-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background: linear-gradient(to bottom, #667eea, #764ba2);
+  border-radius: 2px;
+  margin-right: 0.8rem;
+}
+
+/* 分类选项按钮 */
+.category-option, 
+.sort-option {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a5568;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+/* 按钮悬停效果 */
+.category-option:hover, 
+.sort-option:hover {
+  background: rgba(102, 126, 234, 0.08);
+  color: #667eea;
+}
+
+/* 按钮激活状态 */
+.category-option.active, 
+.sort-option.active {
+  background: rgba(102, 126, 234, 0.12);
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* 按钮激活状态指示器 */
+.category-option.active::after, 
+.sort-option.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* 排序方向按钮特殊样式 */
+#toggleSortOrder {
+  cursor: pointer;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(102, 126, 234, 0.3);
+}
+
+#toggleSortOrder:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+}
+
+/* 分隔线优化 */
+.first-button::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 0.8rem;
+}
+.first-button.active::after {
+    left: 30%;
+}
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .category-container {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+  
+  .category-option, 
+  .sort-option,
+  #toggleSortOrder {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category-title {
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
+  
+  .first-button::after {
+    display: none;
+  }
+}
+

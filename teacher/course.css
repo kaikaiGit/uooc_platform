@@ -123,6 +123,7 @@ button:hover {
 /* 下方其他信息 */
 #otherMessage{
     margin: 20px;
+    width: 1200px;
 }
 
 .tabs{

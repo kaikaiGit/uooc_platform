@@ -120,6 +120,7 @@ button:hover {
 #otherMessage{
     margin: 20px;
     min-height: 25vh;
+    width: 1200px;
 }
 
 .tabs{
@@ -277,6 +278,10 @@ button:hover {
     background: none;
     cursor: pointer;
     transition: transform 0.3s ease;
+    background-color: white;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 .expand-button:hover {

@@ -53,6 +53,9 @@ request.onsuccess = function(event) {
     if(typeof initNotesData === 'function'){
         initNotesData();
     }
+    if(typeof initCourseWaveData==='function'){
+        initCourseWaveData();
+    }
     loadCourses();
 };
 

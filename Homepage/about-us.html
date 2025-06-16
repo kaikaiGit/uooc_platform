@@ -149,65 +149,57 @@
             line-height: 1.6;
         }
 
-        .timeline {
+        /* 横向时间轴样式 */
+        .horizontal-timeline {
             position: relative;
-            padding: 40px 0;
+            padding: 60px 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .timeline::before {
-            content: '';
+        .timeline-container {
+            display: flex;
+            min-width: 1000px;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-line {
             position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
+            left: 0;
+            right: 0;
+            top: 50px;
+            height: 4px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transform: translateX(-50%);
+            z-index: 1;
         }
 
         .timeline-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 60px;
+            flex: 1;
             position: relative;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
+            padding: 0 20px;
+            z-index: 2;
         }
 
         .timeline-content {
-            flex: 1;
-            padding: 30px;
+            padding-top: 30px;
             background: white;
             border-radius: 15px;
+            padding: 30px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 0 30px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
         }
 
-        .timeline-year {
-            font-size: 1.5rem;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .timeline-desc {
-            color: #7f8c8d;
-            line-height: 1.6;
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .timeline-dot {
             position: absolute;
+            top: 50px;
             left: 50%;
-            top: 50%;
             transform: translate(-50%, -50%);
             width: 20px;
             height: 20px;
@@ -215,6 +207,30 @@
             border-radius: 50%;
             border: 4px solid white;
             box-shadow: 0 0 0 4px #667eea;
+            z-index: 3;
+        }
+
+        .timeline-year {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .timeline-desc {
+            color: #7f8c8d;
+            line-height: 1.6;
+            text-align: center;
         }
 
         .team-grid {
@@ -339,21 +355,47 @@
                 grid-template-columns: 1fr;
             }
             
-            .timeline::before {
-                left: 30px;
+            /* 移动端时间轴改为垂直 */
+            .horizontal-timeline {
+                overflow-x: visible;
+            }
+            
+            .timeline-container {
+                flex-direction: column;
+                min-width: auto;
+                padding-bottom: 0;
+            }
+            
+            .timeline-line {
+                left: 50px;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                height: auto;
             }
             
             .timeline-item {
-                flex-direction: row !important;
-                padding-left: 60px;
-            }
-            
-            .timeline-content {
-                margin: 0;
+                padding: 20px 0 20px 80px;
+                text-align: left;
             }
             
             .timeline-dot {
-                left: 30px;
+                top: 0;
+                left: 50px;
+            }
+            
+            .timeline-content {
+                margin-top: 0;
+                box-shadow: none;
+                border-left: 3px solid #667eea;
+                border-radius: 0;
+                padding-left: 30px;
+            }
+            
+            .timeline-year,
+            .timeline-title,
+            .timeline-desc {
+                text-align: left;
             }
             
             .contact-section {
@@ -461,41 +503,44 @@
                 </div>
             </section>
 
-            <!-- 发展历程 -->
+            <!-- 发展历程 - 横向时间轴 -->
             <section class="section">
                 <h2 class="section-title">发展历程</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-year">2025年</div>
-                            <h3 class="timeline-title">平台升级</h3>
-                            <p class="timeline-desc">全面升级技术架构，推出AI智能学习助手，用户体验显著提升</p>
+                <div class="horizontal-timeline">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">2025年</div>
+                                <h3 class="timeline-title">平台升级</h3>
+                                <p class="timeline-desc">全面升级技术架构，推出AI智能学习助手，用户体验显著提升</p>
+                            </div>
                         </div>
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-year">2023年</div>
-                            <h3 class="timeline-title">联盟扩大</h3>
-                            <p class="timeline-desc">联盟院校突破50所，课程数量超过1000门，注册用户达到30万</p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">2023年</div>
+                                <h3 class="timeline-title">联盟扩大</h3>
+                                <p class="timeline-desc">联盟院校突破50所，课程数量超过1000门，注册用户达到30万</p>
+                            </div>
                         </div>
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-year">2022年</div>
-                            <h3 class="timeline-title">快速发展</h3>
-                            <p class="timeline-desc">获得B轮融资，与多所知名高校建立合作关系，推出移动端应用</p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">2022年</div>
+                                <h3 class="timeline-title">快速发展</h3>
+                                <p class="timeline-desc">获得B轮融资，与多所知名高校建立合作关系，推出移动端应用</p>
+                            </div>
                         </div>
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-year">2021年</div>
-                            <h3 class="timeline-title">平台创立</h3>
-                            <p class="timeline-desc">优课联盟正式成立，发布第一个版本的在线教育平台</p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-year">2021年</div>
+                                <h3 class="timeline-title">平台创立</h3>
+                                <p class="timeline-desc">优课联盟正式成立，发布第一个版本的在线教育平台</p>
+                            </div>
                         </div>
-                        <div class="timeline-dot"></div>
                     </div>
                 </div>
             </section>
@@ -638,4 +683,4 @@
     </script>
 </body>
 
-</html> 
+</html>
