@@ -1,6 +1,6 @@
 /* 定位 first-button 类的按钮并在其后添加一个 "|" */
 .first-button::after {
-    content: "|";
+    /* content: ""; */
     margin-left: 15px;
     /* 添加一些左边距以使分隔符与按钮有适当的间隔 */
     margin-right: 0px;
@@ -351,7 +351,7 @@
 
 /* 新的按钮样式 */
 .btn-preview {
-    background: linear-gradient(135deg, #4285f4, #34a853);
+    background: linear-gradient(135deg, #4285f4, #1976d2); /* 蓝色渐变 */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -371,7 +371,7 @@
 }
 
 .btn-preview:hover {
-    background: linear-gradient(135deg, #3367d6, #2e8b57);
+    background: linear-gradient(135deg, #3367d6, #0d47a1); /* 深蓝色渐变 */
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
 }
@@ -621,9 +621,26 @@
 }
 
 /* 分类标题样式 */
+/* 分类容器 - 主样式 */
+.category-container {
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 6px rgba(33, 150, 243, 0.08),  /* 改为蓝色调阴影 */
+    0 1px 2px rgba(33, 150, 243, 0.06);
+  margin: 1.5rem auto;
+  width: 92%;
+  max-width: 1200px;
+  border: 1px solid rgba(33, 150, 243, 0.15);  /* 改为蓝色边框 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* 分类标题样式 */
 .category-title {
   font-weight: 600;
-  color: #4a5568;
+  color: #1976D2;  /* 改为深蓝色 */
   font-size: 0.95rem;
   margin-right: 1rem;
   position: relative;
@@ -637,7 +654,7 @@
   display: inline-block;
   width: 4px;
   height: 16px;
-  background: linear-gradient(to bottom, #667eea, #764ba2);
+  background: linear-gradient(to bottom, #2196F3, #0D47A1);  /* 改为蓝色渐变 */
   border-radius: 2px;
   margin-right: 0.8rem;
 }
@@ -652,7 +669,7 @@
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #4a5568;
+  color: #546E7A;  /* 改为蓝灰色 */
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   margin-right: 0.5rem;
@@ -661,36 +678,35 @@
 /* 按钮悬停效果 */
 .category-option:hover, 
 .sort-option:hover {
-  background: rgba(102, 126, 234, 0.08);
-  color: #667eea;
+  background: rgba(33, 150, 243, 0.08);  /* 改为浅蓝色背景 */
+  color: #1976D2;  /* 改为深蓝色 */
 }
 
 /* 按钮激活状态 */
 .category-option.active, 
 .sort-option.active {
-  background: rgba(102, 126, 234, 0.12);
-  color: #667eea;
+  background: rgba(33, 150, 243, 0.12);  /* 改为浅蓝色背景 */
+  color: #416cad;  /* 改为深蓝色 */
   font-weight: 600;
 }
 
 /* 按钮激活状态指示器 */
 .category-option.active::after, 
 .sort-option.active::after {
-  content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 40%;
   height: 2px;
-  background: linear-gradient(to right, #667eea, #764ba2);
+  background: linear-gradient(to right, #2196F3, #0D47A1);  /* 改为蓝色渐变 */
   border-radius: 2px;
 }
 
 /* 排序方向按钮特殊样式 */
 #toggleSortOrder {
   cursor: pointer;
-  background: linear-gradient(to right, #667eea, #764ba2);
+  background: linear-gradient(to right, #2196F3, #1976D2);  /* 改为蓝色渐变 */
   color: white;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -698,26 +714,26 @@
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.25s ease;
-  box-shadow: 0 2px 5px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 5px rgba(33, 150, 243, 0.3);  /* 改为蓝色阴影 */
 }
 
 #toggleSortOrder:hover {
+  background: linear-gradient(to right, #1976D2, #0D47A1);  /* 改为深蓝色渐变 */
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);  /* 改为蓝色阴影 */
 }
 
 /* 分隔线优化 */
 .first-button::after {
-  content: "";
   display: inline-block;
   width: 1px;
   height: 16px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(33, 150, 243, 0.3);  /* 改为蓝色分隔线 */
   margin: 0 0.8rem;
 }
-.first-button.active::after {
+/* .first-button.active::after {
     left: 30%;
-}
+} */
 /* 响应式调整 */
 @media (max-width: 768px) {
   .category-container {

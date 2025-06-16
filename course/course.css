@@ -317,7 +317,7 @@ button:hover {
     text-decoration: underline;
     color: #0056b3;
 }
-
+/* 
 #likeButton{
     background: url(like.jpg) no-repeat center center;
     background-size: cover;
@@ -325,5 +325,41 @@ button:hover {
     padding: 0;
     width: 30px;
     height: 30px;
+} */
+#likeButton {
+    background: url('like-outline.svg') no-repeat center center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+    filter: 
+        invert(48%)      /* 将黑色转为白色 */ 
+        sepia(79%)       /* 添加黄色色调 */
+        saturate(2476%)  /* 提高饱和度 */
+        hue-rotate(176deg) /* 旋转到蓝色 */
+        brightness(98%)  /* 亮度微调 */
+        contrast(91%)    /* 对比度微调 */
+        opacity(0.6);    /* 透明度 */
+}
+
+#likeButton:hover {
+    filter: 
+        invert(48%) sepia(79%) saturate(2476%) 
+        hue-rotate(176deg) brightness(120%) contrast(91%)
+        opacity(1);
+    transform: scale(1.1);
+}
+
+#likeButton.active {
+    filter: 
+        invert(16%) sepia(99%) saturate(3657%) 
+        hue-rotate(216deg) brightness(90%) contrast(101%);
+    animation: pulse 0.5s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 
