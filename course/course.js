@@ -76,10 +76,12 @@ function loadCourse(courseId) {
 
 function displayCourse(course) {
     const previewContainer = document.getElementById('coursePreview');
+    // 先检查用户是否已注册该课程
+    const isRegistered = checkIfUserRegistered(course.id); // 需要实现这个函数
+
     previewContainer.innerHTML = `
         <div class="course-content">
             <div class="carousel-container">
-
                 <div class="carousel-slide">
                     ${(Array.isArray(course.carouselImages) ? course.carouselImages : []).map(src => `
                         <div class="carousel-item">
@@ -87,27 +89,25 @@ function displayCourse(course) {
                         </div>
                     `).join('')}
                 </div>
-
                 <div class="carousel-buttons">
                     <button class="carousel-button" id="prevBtn">&#10094;</button>
                     <button class="carousel-button" id="nextBtn">&#10095;</button>
                 </div>
-
             </div>
             <div class="course-details">
                 <h2>${course.title}</h2>
                 <p>类别: ${course.category}</p>
                 <p>${course.description}</p>
-                <button id="temp" onclick="registerCourse(${course.id})">注册课程</button>
+                <button id="temp" onclick="${isRegistered ? 'startLearning(' + course.id + ')' : 'registerCourse(' + course.id + ')'}">
+                    ${isRegistered ? '开始学习' : '注册课程'}
+                </button>
                 
                 <div class="like-section">
                     <button onclick="likeCourse(${course.id})" id="likeButton"></button>
-                    <span id="likeCount">${course.likes || 0}</span>个点赞
+                    <span id="likeCount">${course.likes || 0}</span><span>个点赞</span>
                 </div>
-            
             </div>
         </div>
-
     `;
 
     // 课程简介
@@ -187,7 +187,28 @@ function displayCourse(course) {
     });
 
 }
-
+// 检查用户是否注册课程
+function checkIfUserRegistered(courseId) {
+    const currentUser = getCurrentUserId(); // 获取当前用户ID
+    if (!currentUser) return false;
+    
+    return new Promise((resolve) => {
+        const transaction = db.transaction(['ref_student_course'], 'readonly');
+        const objectStore = transaction.objectStore('ref_student_course');
+        const index = objectStore.index('studentId');
+        const request = index.getAll(currentUser);
+        
+        request.onsuccess = function(event) {
+            const registrations = event.target.result;
+            const isRegistered = registrations.some(reg => reg.courseId === courseId);
+            resolve(isRegistered);
+        };
+        
+        request.onerror = function() {
+            resolve(false);
+        };
+    });
+}
 function getCurrentUserId() {
     return localStorage.getItem('token');
 }
@@ -238,7 +259,27 @@ function loadComments(courseId) {
         console.error('IndexedDB error:', event.target.errorCode);
     };
 }
-
+function checkIfUserRegistered(courseId) {
+    const currentUser = getCurrentUserId(); // 获取当前用户ID
+    if (!currentUser) return false;
+    
+    return new Promise((resolve) => {
+        const transaction = db.transaction(['ref_student_course'], 'readonly');
+        const objectStore = transaction.objectStore('ref_student_course');
+        const index = objectStore.index('studentId');
+        const request = index.getAll(currentUser);
+        
+        request.onsuccess = function(event) {
+            const registrations = event.target.result;
+            const isRegistered = registrations.some(reg => reg.courseId === courseId);
+            resolve(isRegistered);
+        };
+        
+        request.onerror = function() {
+            resolve(false);
+        };
+    });
+}
 function addComment(courseId) {
 
     const currentUser = localStorage.getItem('token'); // 获取当前用户
@@ -514,6 +555,18 @@ function registerCourse(courseId) {
 }
 
 function checkAndRegisterCourse(courseId) {
+    // 首先检查当前用户角色
+    const currentUser = getCurrentUserId(); // 假设有一个获取当前用户信息的函数
+    // console.log(currentUser)
+    if(!currentUser){
+        alert('请先登录，再注册课程');
+        return; // 直接返回，不执行后续逻辑       
+    }
+    if (currentUser === 'teacher') {
+        alert('老师不能注册课程');
+        return; // 直接返回，不执行后续逻辑
+    }
+
     const transaction = db.transaction(['ref_student_course'], 'readwrite');
     const objectStore = transaction.objectStore('ref_student_course');
     const request = objectStore.openCursor();
@@ -541,11 +594,9 @@ function checkAndRegisterCourse(courseId) {
 
                 registerRequest.onsuccess = function() {
                     alert('注册成功');
+                    document.getElementById('temp').innerHTML = '开始学习';
+                    updateCourseRegisterCount(courseId);
                 };
-
-                document.getElementById('temp').innerHTML = '开始学习';
-                
-                updateCourseRegisterCount(courseId);
 
                 registerRequest.onerror = function(event) {
                     console.error('IndexedDB error:', event.target.errorCode);
@@ -624,4 +675,8 @@ function searchCourses() {
         return;
     }
     window.location.href = `../Homepage/courseList.html?search=${encodeURIComponent(searchInput.toLowerCase())}`;
+}
+function startLearning(courseId) {
+    // 跳转到课程学习页面或其他处理
+    // window.location.href = `/course/learn.html?id=${courseId}`;
 }
