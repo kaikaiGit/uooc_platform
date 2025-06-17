@@ -392,14 +392,6 @@
                         performSearch();
                     }
                 });
-                
-                // 实时搜索（可选）
-                searchInput.addEventListener('input', function() {
-                    const query = this.value.trim();
-                    if (query.length > 2) {
-                        debounce(performSearch, 300)();
-                    }
-                });
             }
         }
 

@@ -473,8 +473,14 @@ function loadDocuments() {
             objectStore = transaction.objectStore('coursewares');
             var index = objectStore.index('courseId');
 
-            courseIds.sort();
-            var request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            courseIds.sort((a, b) => a - b); // 数字排序，防止字符串排序导致的范围错误
+            var request;
+            if (courseIds.length === 1) {
+                // 单个ID时直接查询，避免bound错误
+                request = index.getAll(courseIds[0]);
+            } else {
+                request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            }
             request.onsuccess = function (event) {
                 var coursewares = event.target.result;
                 var documents = document.getElementsByClassName('tabs-content')[1];
@@ -586,8 +592,14 @@ function loadHomeworks() {
             objectStore = transaction.objectStore('assignments');
             var index = objectStore.index('courseId');
 
-            courseIds.sort();
-            var request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            courseIds.sort((a, b) => a - b); // 数字排序，防止字符串排序导致的范围错误
+            var request;
+            if (courseIds.length === 1) {
+                // 单个ID时直接查询，避免bound错误
+                request = index.getAll(courseIds[0]);
+            } else {
+                request = index.getAll(IDBKeyRange.bound(courseIds[0], courseIds[courseIds.length - 1]));
+            }
             request.onsuccess = function (event) {
                 var assignments = event.target.result;
                 var homeworks = document.getElementsByClassName('tabs-content')[1];
@@ -844,32 +856,44 @@ function sortNotes(sortBy) {
     const notesContainer = document.getElementsByClassName('tabs-content')[2];
     const noteItems = Array.from(notesContainer.querySelectorAll('.mynotes'));
     
+    // 如果没有笔记项，直接返回
+    if (noteItems.length === 0) return;
+    
     noteItems.sort(function(a, b) {
         if (sortBy === 'time') {
-            const timeA = a.querySelector('.note-time').textContent;
-            const timeB = b.querySelector('.note-time').textContent;
+            // 提取时间文本并解析（去掉前面的emoji符号）
+            const timeA = a.querySelector('.note-time').textContent.replace('📅 ', '');
+            const timeB = b.querySelector('.note-time').textContent.replace('📅 ', '');
+            
+            // 处理"最近"这种特殊情况
+            if (timeA === '最近' && timeB === '最近') return 0;
+            if (timeA === '最近') return -1; // 最近的排在前面
+            if (timeB === '最近') return 1;
+            
             return new Date(timeB) - new Date(timeA); // 最新在前
         } else if (sortBy === 'length') {
-            const lengthA = parseInt(a.querySelector('.word-count').textContent);
-            const lengthB = parseInt(b.querySelector('.word-count').textContent);
+            // 修正选择器，使用正确的class名
+            const lengthA = parseInt(a.querySelector('.stat-text').textContent);
+            const lengthB = parseInt(b.querySelector('.stat-text').textContent);
             return lengthB - lengthA; // 长的在前
         } else if (sortBy === 'course') {
-            const courseA = a.querySelector('.course-tag').textContent;
-            const courseB = b.querySelector('.course-tag').textContent;
+            // 去掉前面的emoji符号
+            const courseA = a.querySelector('.course-tag').textContent.replace('📚 ', '');
+            const courseB = b.querySelector('.course-tag').textContent.replace('📚 ', '');
             return courseA.localeCompare(courseB); // 按课程名排序
         }
         return 0;
     });
     
-    // 清空容器并重新添加排序后的元素
+    // 保留工具栏，只重新排列笔记项
+    const toolbar = notesContainer.querySelector('.notes-toolbar');
     const messageElements = notesContainer.querySelectorAll('.message');
-    notesContainer.innerHTML = '';
     
-    if (noteItems.length === 0 && messageElements.length > 0) {
-        messageElements.forEach(el => notesContainer.appendChild(el));
-    } else {
-        noteItems.forEach(item => notesContainer.appendChild(item));
-    }
+    // 先移除所有笔记项（保留工具栏和消息）
+    noteItems.forEach(item => item.remove());
+    
+    // 重新添加排序后的笔记项
+    noteItems.forEach(item => notesContainer.appendChild(item));
 }
 
 // 评论相关功能函数
@@ -969,30 +993,41 @@ function sortComments(sortBy) {
     const commentsContainer = document.getElementsByClassName('tabs-content')[5];
     const commentItems = Array.from(commentsContainer.querySelectorAll('.mytalks'));
     
+    // 如果没有评论项，直接返回
+    if (commentItems.length === 0) return;
+    
     commentItems.sort(function(a, b) {
         if (sortBy === 'time') {
-            const timeA = a.querySelector('.comment-time').textContent;
-            const timeB = b.querySelector('.comment-time').textContent;
+            // 提取时间文本并解析（去掉前面的emoji符号）
+            const timeA = a.querySelector('.comment-time').textContent.replace('💬 ', '');
+            const timeB = b.querySelector('.comment-time').textContent.replace('💬 ', '');
+            
+            // 处理"最近"这种特殊情况
+            if (timeA === '最近' && timeB === '最近') return 0;
+            if (timeA === '最近') return -1; // 最近的排在前面
+            if (timeB === '最近') return 1;
+            
             return new Date(timeB) - new Date(timeA); // 最新在前
         } else if (sortBy === 'length') {
             const lengthA = parseInt(a.querySelector('.stat-text').textContent);
             const lengthB = parseInt(b.querySelector('.stat-text').textContent);
             return lengthB - lengthA; // 长的在前
         } else if (sortBy === 'course') {
-            const courseA = a.querySelector('.course-tag').textContent;
-            const courseB = b.querySelector('.course-tag').textContent;
+            // 去掉前面的emoji符号
+            const courseA = a.querySelector('.course-tag').textContent.replace('📚 ', '');
+            const courseB = b.querySelector('.course-tag').textContent.replace('📚 ', '');
             return courseA.localeCompare(courseB); // 按课程名排序
         }
         return 0;
     });
     
-    // 清空容器并重新添加排序后的元素
+    // 保留工具栏，只重新排列评论项
+    const toolbar = commentsContainer.querySelector('.comments-toolbar');
     const messageElements = commentsContainer.querySelectorAll('.message');
-    commentsContainer.innerHTML = '';
     
-    if (commentItems.length === 0 && messageElements.length > 0) {
-        messageElements.forEach(el => commentsContainer.appendChild(el));
-    } else {
-        commentItems.forEach(item => commentsContainer.appendChild(item));
-    }
+    // 先移除所有评论项（保留工具栏和消息）
+    commentItems.forEach(item => item.remove());
+    
+    // 重新添加排序后的评论项
+    commentItems.forEach(item => commentsContainer.appendChild(item));
 }
