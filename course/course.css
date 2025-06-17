@@ -94,7 +94,7 @@
 }
 
 .course-details button{
-    margin-top: 20px;
+    /* margin-top: 20px; */
     align-self: flex-start;
 }
 
@@ -109,9 +109,10 @@
 }
 
 .tabs{
+    width: 95%;
     height: 50px;
     margin: 0;
-    padding: 20px 34px 0px 34px;
+    padding: 20px 0px 0px 0px;
     display: flex;
     border-bottom: rgb(192, 192, 192) solid 1px;
 }
@@ -126,8 +127,8 @@
 }
 
 .tabs .active{
-    color:#F36C14;
-    text-decoration: #F36C14 underline;
+    /* color:#F36C14; */
+    /* text-decoration: #F36C14 underline; */
     text-underline-offset: 20px;
 }
 
@@ -251,27 +252,33 @@
 
 /* 按钮样式 */
 .expand-button {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+    /* 布局样式（保持不变） */
+    width: 30px;
+    height: 25px;
     line-height: 16px;
     text-align: center;
     margin-right: 10px;
-    font-weight: bold;
-    color: #666;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    background-color: white;
-    /* display: flex;
+    margin-left: 10px;
+    display: inline-flex;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
+    
+    /* 视觉样式 */
+    font-weight: bold;
+    color: #666; /* 默认文字颜色 */
+    border: none;
+    background-color: white; /* 默认背景 */
+    cursor: pointer;
+    border-radius: 2px; /* 可选：轻微圆角 */
+    transition: all 0.3s ease; /* 过渡所有属性 */
 }
 
+/* 悬停效果 */
 .expand-button:hover {
-    background-color: white;
-    color: #000;
+    background-color: #0b99ff; /* 深蓝色背景 */
+    color: white; /* 文字变白 */
+    transform: scale(1.1); /* 轻微放大（可选） */
+    box-shadow: 0 2px 4px rgba(11, 153, 255, 0.3); /* 可选：阴影增强立体感 */
 }
 
 /* 折叠内容样式 */
@@ -297,18 +304,21 @@
     font-size: 14px;
     margin-left: 10px;
 }
-
+#temp {
+    margin-top: 10px;
+}
 #savedCoursewares a:hover {
     text-decoration: underline;
     color: #0056b3;
 }
 
 #likeButton {
-    background: url('like-outline.svg') no-repeat center center;
-    background-size: contain;
+    background: url('thumb.svg') no-repeat center center;
+    background-size: cover;
     width: 30px;
     height: 30px;
     transition: all 0.3s ease;
+    border: none;
     filter: 
         invert(48%)      /* 将黑色转为白色 */ 
         sepia(79%)       /* 添加黄色色调 */

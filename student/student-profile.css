@@ -490,7 +490,7 @@
 }
 
 /* 按钮样式 */
-button, #preview-course, #drop-out {
+#temp,#preview-course, #drop-out {
     background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
     color: #fff;
     border: none;
@@ -505,7 +505,7 @@ button, #preview-course, #drop-out {
     display: inline-block;
 }
 
-button:hover, #preview-course:hover {
+#like-button,#temp,#preview-course:hover {
     background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);

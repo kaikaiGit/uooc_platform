@@ -69,7 +69,7 @@ nav ul li a:hover{
 
 .login {
     background-color: white;
-    color: #0b99ff;
+    /* color: #0b99ff; */
     padding: 5px 20px;
     margin: 0 0 0 20px;
     border: 1px solid #0b99ff;
@@ -81,6 +81,7 @@ nav ul li a:hover{
 
 .login:hover {
     background: rgb(198, 237, 250);
+    color: #0b99ff;
 }
 
 .register {

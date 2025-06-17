@@ -149,6 +149,7 @@ button:hover {
 }
 
 .tabs{
+    /* width: 1000px; */
     height: 50px;
     margin: 0;
     padding: 20px 0px 0px 0px; /* 移除左右padding，保持与上方container内容对齐 */
@@ -159,7 +160,7 @@ button:hover {
 .tabs-item{
     font-size: 16px;
     color: #666;
-    padding: 0 5px;
+    /* padding: 0 5px; */
     margin-right: 20px;
     align-content: center;
     text-decoration: none;
