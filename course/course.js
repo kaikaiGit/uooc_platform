@@ -98,7 +98,7 @@ function displayCourse(course) {
                 <h2>${course.title}</h2>
                 <p>类别: ${course.category}</p>
                 <p>${course.description}</p>
-                <div style="display: flex; justify-content: space-between;align-items: center;gap: 20px;">
+                <div class="course-actions" style="display: flex; justify-content: space-between;align-items: center;gap: 20px;">
                     <div>
                         <button id="temp" onclick="registerCourse(${course.id})">注册课程</button>
                     </div>

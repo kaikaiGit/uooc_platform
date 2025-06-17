@@ -1,6 +1,7 @@
 /* course.css */
 
 .container {
+    width: 1200px;
     margin: 30px auto;
     background: #fff;
     border-radius: 8px;
@@ -80,7 +81,7 @@
 
 .course-content {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 20px;
 }
 
@@ -90,24 +91,6 @@
     margin: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-}
-
-button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s;
-}
-
-button:hover {
-    background-color: #4cae4c;
 }
 
 .course-details button{
@@ -115,11 +98,14 @@ button:hover {
     align-self: flex-start;
 }
 
+.course-actions {
+    margin-top: auto;
+}
+
 /* 下方其他信息 */
 #otherMessage{
     margin: 20px;
     min-height: 25vh;
-    width: 1200px;
 }
 
 .tabs{
