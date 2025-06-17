@@ -1,7 +1,6 @@
 /* course.css */
 
 .container {
-    max-width: 1200px;
     margin: 30px auto;
     background: #fff;
     border-radius: 8px;
@@ -317,15 +316,7 @@ button:hover {
     text-decoration: underline;
     color: #0056b3;
 }
-/* 
-#likeButton{
-    background: url(like.jpg) no-repeat center center;
-    background-size: cover;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-} */
+
 #likeButton {
     background: url('like-outline.svg') no-repeat center center;
     background-size: contain;

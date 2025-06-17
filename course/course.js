@@ -98,17 +98,23 @@ function displayCourse(course) {
                 <h2>${course.title}</h2>
                 <p>类别: ${course.category}</p>
                 <p>${course.description}</p>
-                <button id="temp" onclick="registerCourse(${course.id})">注册课程</button>
+                <div style="display: flex; justify-content: space-between;align-items: center;gap: 20px;">
+                    <div>
+                        <button id="temp" onclick="registerCourse(${course.id})">注册课程</button>
+                    </div>
                 
-                <div class="like-section">
-                    <button onclick="likeCourse(${course.id})" id="likeButton"></button>
-                    <span id="likeCount">${course.likes || 0}</span>个点赞
+                    <div class="like-section">
+                        <button onclick="likeCourse(${course.id})" id="likeButton"></button>
+                        <span id="likeCount">${course.likes || 0}</span>个点赞
+                    </div>
                 </div>
-            
             </div>
         </div>
 
     `;
+
+    // 检查用户是否已注册该课程
+    checkCourseRegistrationStatus(course.id);
 
     // 课程简介
     const intro = document.getElementById('Intro');
@@ -190,6 +196,40 @@ function displayCourse(course) {
 
 function getCurrentUserId() {
     return localStorage.getItem('token');
+}
+
+// 检查课程注册状态
+function checkCourseRegistrationStatus(courseId) {
+    const currentUser = getCurrentUserId();
+    if (!currentUser) {
+        // 如果用户未登录，保持显示"注册课程"
+        return;
+    }
+
+    const transaction = db.transaction(['ref_student_course'], 'readonly');
+    const objectStore = transaction.objectStore('ref_student_course');
+    const request = objectStore.openCursor();
+
+    request.onsuccess = function(event) {
+        const cursor = event.target.result;
+        if (cursor) {
+            const record = cursor.value;
+            if (record.courseId === courseId && record.studentId === currentUser) {
+                // 用户已注册该课程，更新按钮显示
+                const button = document.getElementById('temp');
+                if (button) {
+                    button.innerHTML = '开始学习';
+                }
+                return;
+            }
+            cursor.continue();
+        }
+        // 如果遍历完成且没有找到注册记录，保持显示"注册课程"
+    };
+
+    request.onerror = function(event) {
+        console.error('检查注册状态时发生错误:', event.target.errorCode);
+    };
 }
 
 // 评论
@@ -501,8 +541,22 @@ function showTabContent(className) {
     });
 }
 
-// 注册课程
+// 注册课程或开始学习
 function registerCourse(courseId) {
+    const currentUser = getCurrentUserId();
+    if (!currentUser) {
+        alert('请先登录');
+        return;
+    }
+
+    // 检查是否已注册，如果已注册则跳转到视频页面
+    const button = document.getElementById('temp');
+    if (button && button.innerHTML === '开始学习') {
+        window.location.href = `../CourseVideo/video-player.html?courseId=${courseId}`;
+        return;
+    }
+
+    // 否则执行注册逻辑
     if (!db) {
         request.onsuccess = function(event) {
             db = event.target.result;
@@ -514,6 +568,12 @@ function registerCourse(courseId) {
 }
 
 function checkAndRegisterCourse(courseId) {
+    const currentUser = getCurrentUserId();
+    if (!currentUser) {
+        alert('请先登录');
+        return;
+    }
+
     const transaction = db.transaction(['ref_student_course'], 'readwrite');
     const objectStore = transaction.objectStore('ref_student_course');
     const request = objectStore.openCursor();
@@ -523,7 +583,7 @@ function checkAndRegisterCourse(courseId) {
         const cursor = event.target.result;
         if (cursor) {
             const record = cursor.value;
-            if (record.courseId === courseId && record.studentId === getCurrentUserId()) {
+            if (record.courseId === courseId && record.studentId === currentUser) {
                 isRegistered = true;
                 alert('已注册该课程');
                 return;
@@ -533,7 +593,7 @@ function checkAndRegisterCourse(courseId) {
             if (!isRegistered) {
                 const ref = {
                     courseId,
-                    studentId: getCurrentUserId(),
+                    studentId: currentUser,
                     id: Date.now()
                 };
 
@@ -541,10 +601,12 @@ function checkAndRegisterCourse(courseId) {
 
                 registerRequest.onsuccess = function() {
                     alert('注册成功');
+                    const button = document.getElementById('temp');
+                    if (button) {
+                        button.innerHTML = '开始学习';
+                    }
                 };
 
-                document.getElementById('temp').innerHTML = '开始学习';
-                
                 updateCourseRegisterCount(courseId);
 
                 registerRequest.onerror = function(event) {
