@@ -9,8 +9,10 @@ class VideoPlayer {
         this.db = null;
         
         this.initializeDatabase();
+        this.initializeVideoPlayer();
         this.bindEvents();
         this.parseUrlParams();
+        this.initializeControls();
     }
 
     // 初始化IndexedDB连接
@@ -91,7 +93,7 @@ class VideoPlayer {
     // 获取默认视频URL（演示用）
     getDefaultVideoUrl() {
         // 使用示例视频URL，实际项目中应该从数据库获取
-        return 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+        return "video/exampleVideo.mp4";
     }
 
 
@@ -189,6 +191,7 @@ class VideoPlayer {
     // 初始化视频播放器
     initializeVideoPlayer() {
         this.video = document.getElementById('videoPlayer');
+        console.log(this.video)
         if (!this.video) return;
 
         // 设置默认视频源
@@ -280,6 +283,7 @@ class VideoPlayer {
 
     // 播放/暂停切换
     togglePlayPause() {
+        console.log(11111111)
         if (!this.video) return;
         
         if (this.video.paused) {

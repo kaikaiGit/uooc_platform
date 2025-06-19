@@ -530,7 +530,33 @@
     right: 20px;
     bottom: 20px;
 }
+.progress-container {
+    display: block;
+    width: 60%;
+    height: 25px;
+    background-color: #e2e8f0;
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
 
+/* 进度条 */
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+
+/* 进度百分比 */
+.progress-percent {
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 500;
+}
 /* 空状态消息样式 */
 .message {
     display: flex;

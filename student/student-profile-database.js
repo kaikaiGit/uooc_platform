@@ -152,9 +152,16 @@ function loadCourses() {
                                 <br>
                                 <h2>${course.title}</h2>
                                 <p class="course-description">${course.description}</p>
-                                <button id="preview-course" onclick="previewCourse(${courseItem.id})">查看详情</button>
+                                
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: ${ref_student_courses.progress}%"></div>
+                                    <text class="progress-percent">已完成: ${ref_student_courses.progress}%</text>
+                                </div>
+                                <button id="preview-course" onclick="previewCourse(${courseItem.id})">继续学习</button>
                             </div>
+                            
                         </div>
+
                     `;
                     registeredCourses.appendChild(courseItem);
                 };

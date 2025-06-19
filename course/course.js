@@ -640,7 +640,8 @@ function checkAndRegisterCourse(courseId) {
                 const ref = {
                     courseId,
                     studentId: currentUser,
-                    id: Date.now()
+                    id: Date.now(),
+                    progress:23
                 };
 
                 const registerRequest = objectStore.add(ref);
