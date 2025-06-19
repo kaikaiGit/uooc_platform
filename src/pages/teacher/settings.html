@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理学生 - 教师模块</title>
+    <link rel="stylesheet" href="../header-footer/common.css">
+    <link rel="stylesheet" href="account-styles.css">
+</head>
+<body>
+    <!-- 页眉 -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#home"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+        </div>
+        <nav>
+            <ul>
+                <!-- TODO 补充链接 -->
+                <li><a href="#home">首页</a></li>
+                <li><a href="#course">课程</a></li>
+            </ul>
+        </nav>
+        <div class="info">
+            <!-- TODO 补充链接 -->
+        </div>
+    </header>
+    <!-- 主体内容 -->
+    <div class="profile-container">
+        <div class="tabs-content">
+            <h2>管理学生</h2>
+            <div class="switch-section">
+                <span class="switch-info">学生自主注册</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>手机号码</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 学生数据 -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="#home"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+            </div>
+            <div class="footer-text">
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                        <li><a href="#privacy">隐私政策</a></li>
+                        <li><a href="#terms">服务条款</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-info">
+                    <p>&copy; 2025 优课联盟. 保留所有权利.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../database.js"></script>
+    <script src="account.js"></script>
+    <script>
+        //根据token获取用户信息
+        window.onload = function() {
+            const userid = localStorage.getItem('token');
+            //如果有用户登录，在info的div中显示用户头像，如果没用，显示登录注册按钮
+            if(userid) {
+                const user = JSON.parse(localStorage.getItem(userid));
+                document.querySelector('.info').innerHTML = `
+                    <a href="#study"><img id="user-head" src="${user.avatar}" alt="用户头像"></a>
+                    <div class="card">
+                        <ul>
+                            <li><a href="#study">我的学习</a></li>
+                            <li><a href="../account/profile-setting.html">账号设置</a></li>
+                            <li><a id="logout" href="#logout">退出登录</a></li>
+                        </ul>
+                    </div>
+                `;
+                //如果点击退出登录，清除token
+                document.getElementById('logout').addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    location.reload();
+                });
+            }
+            else{
+                document.querySelector('.info').innerHTML = `
+                    <a href="../account/login.html"><button class="login">登录</button></a>
+                    <a href="../account/register.html"><button class="register">注册</button></a>
+                `;
+            }
+        }
+    </script>
+    <script>
+        //TODO 只有老师才能访问此页面
+        // if(localStorage.getItem('token') !== 'teacher'){
+        //     alert('您无权访问此页面！');
+        //     window.location.href = '../account/login.html';
+        // }
+        //渲染,利用map和join方法来渲染表格
+        const tbody = document.querySelector('tbody');
+        function render(){
+            let teacher = JSON.parse(localStorage.getItem('teacher'));
+            if(teacher.allowRegister){
+                //将开关打开
+                document.querySelector('.switch input').checked = true;
+            }
+            let students = getStudents();
+            const trStu = students.map(function(student, index){
+                return`
+                    <tr>
+                        <td>${student.userid}</td>
+                        <td>${student.username}</td>
+                        <td>${student.gender}</td>
+                        <td>${student.phone}</td>
+                        <td>
+                            <a id="reset-password" class="reset-password" href="#" 
+                                data-id="${index}">重置密码</a>
+                            <a id="disable" class="disable" href="#" data-id="${index}">
+                                ${student.status === false ? '启用' : '禁用'}</a>
+                            <a id="delete" class="delete" href="#" data-id="${index}">删除</a>
+                        </td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = trStu.join('');
+        };
+        render();
+        //管理学生自主注册功能
+        document.querySelector('.switch input').addEventListener('change', function(e){
+            e.preventDefault();
+            const teacher = JSON.parse(localStorage.getItem('teacher'));
+            teacher.allowRegister = !teacher.allowRegister;
+            localStorage.setItem('teacher', JSON.stringify(teacher));
+            render();
+        });
+        //点击重置密码、禁用/启用、删除按钮时的操作
+        tbody.addEventListener('click',function(e){
+            if(e.target.id === 'reset-password'){
+                resetPassword(e);
+            }
+            else if(e.target.id === 'disable'){
+                changeStatus(e);
+            }
+            else if(e.target.id === 'delete'){
+                deleteAccount(e);
+            }
+        });
+        //获取localStorage中所有的值
+        function getStudents() {
+            var students = [];
+            for (var i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                //如果key是学生的学号，就把学生信息加入students数组
+                if (key.startsWith('2')) {
+                    students.push(JSON.parse(localStorage.getItem(key)));
+                }
+            }
+            return students;
+        }
+        //重置密码
+        function resetPassword(e){
+            let students = getStudents();
+            const index = e.target.dataset.id;
+            const student = students[index];
+            const userid = student.userid;
+            student.password = simpleHash(userid, userid);//重置密码为学号
+            localStorage.setItem(student.userid, JSON.stringify(student));
+            render();
+            alert('密码重置成功！');
+        }
+        //禁用/启用账号
+        function changeStatus(e){
+            let students = getStudents();
+            const index = e.target.dataset.id;
+            const student = students[index];
+            student.status = !student.status;
+            localStorage.setItem(student.userid, JSON.stringify(student));
+            render();
+            alert(`账号已${student.status ? '启用' : '禁用'}！`);
+        }
+        //删除账号
+        function deleteAccount(e){
+            let students = getStudents();
+            const index = e.target.dataset.id;
+            const student = students[index];
+            if (confirm('确定删除此账号？')) {
+                localStorage.removeItem(student.userid);
+                render();
+                alert('账号已删除！');
+            }
+        }
+    </script>
+    <script>
+        
+    </script>
+</body>
+</html>
