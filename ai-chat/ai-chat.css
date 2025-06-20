@@ -318,6 +318,7 @@ body {
 }
 
 .message-bubble {
+    display: inline-block;
     background: var(--background-color);
     padding: 0.75rem 1rem;
     border-radius: 18px;
@@ -329,7 +330,6 @@ body {
 .message.user .message-bubble {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
     color: white;
-    margin-left: auto;
 }
 
 .message-time {
@@ -415,6 +415,10 @@ body {
     line-height: 1.5;
     min-height: 24px;
     max-height: 120px;
+    padding: 0.5rem 0;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
 }
 
 .input-actions {
@@ -434,6 +438,20 @@ body {
 
 .char-count {
     font-variant-numeric: tabular-nums;
+}
+
+.save-status {
+    color: var(--success-color);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.save-status.error {
+    color: var(--error-color);
+}
+
+.save-status.warning {
+    color: var(--warning-color);
 }
 
 .input-hint {
@@ -643,8 +661,6 @@ body {
         right: -100%;
     }
 
-
-
     .message-content {
         max-width: 85%;
     }
@@ -724,6 +740,213 @@ input:disabled,
 textarea:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+/* Markdown内容样式 */
+.message-bubble .markdown-content {
+    line-height: 1.7;
+}
+
+.message-bubble .markdown-content h1,
+.message-bubble .markdown-content h2,
+.message-bubble .markdown-content h3,
+.message-bubble .markdown-content h4,
+.message-bubble .markdown-content h5,
+.message-bubble .markdown-content h6 {
+    margin: 1rem 0 0.5rem 0;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.message-bubble .markdown-content h1 { font-size: 1.5rem; }
+.message-bubble .markdown-content h2 { font-size: 1.3rem; }
+.message-bubble .markdown-content h3 { font-size: 1.15rem; }
+.message-bubble .markdown-content h4 { font-size: 1rem; }
+.message-bubble .markdown-content h5 { font-size: 0.9rem; }
+.message-bubble .markdown-content h6 { font-size: 0.8rem; }
+
+.message-bubble .markdown-content p {
+    margin: 0.8rem 0;
+}
+
+.message-bubble .markdown-content ul,
+.message-bubble .markdown-content ol {
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+}
+
+.message-bubble .markdown-content li {
+    margin: 0.3rem 0;
+}
+
+.message-bubble .markdown-content blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid var(--primary-color);
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+.message.user .message-bubble .markdown-content blockquote {
+    border-left-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.message-bubble .markdown-content pre {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.message.user .message-bubble .markdown-content pre {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.message-bubble .markdown-content code {
+    padding: 0.2rem 0.4rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.message.user .message-bubble .markdown-content code {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.message-bubble .markdown-content pre code {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+}
+
+.message-bubble .markdown-content table {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.message-bubble .markdown-content th,
+.message-bubble .markdown-content td {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.message-bubble .markdown-content th {
+    background: var(--background-color);
+    font-weight: 600;
+}
+
+.message.user .message-bubble .markdown-content th {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.message-bubble .markdown-content a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.message-bubble .markdown-content a:hover {
+    border-bottom-color: var(--primary-color);
+}
+
+.message.user .message-bubble .markdown-content a {
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-color: transparent;
+}
+
+.message.user .message-bubble .markdown-content a:hover {
+    border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+.message-bubble .markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+
+.message-bubble .markdown-content hr {
+    margin: 1.5rem 0;
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.message.user .message-bubble .markdown-content hr {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.message-bubble .markdown-content strong {
+    font-weight: 600;
+}
+
+.message-bubble .markdown-content em {
+    font-style: italic;
+}
+
+/* 代码语言标签 */
+.message-bubble .markdown-content pre[data-lang]:before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: var(--card-background);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.message-bubble .markdown-content pre {
+    position: relative;
+}
+
+/* 复制按钮样式 */
+.code-block-wrapper {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.copy-code-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.code-block-wrapper:hover .copy-code-btn {
+    opacity: 1;
+}
+
+.copy-code-btn:hover {
+    background: var(--background-color);
+    color: var(--text-primary);
 }
 
 /* 动画优化 */

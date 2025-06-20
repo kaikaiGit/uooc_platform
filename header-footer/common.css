@@ -292,3 +292,313 @@ nav ul li a:hover{
         font-size: 12px;
     }
 }
+
+/* AI助手悬浮按钮样式 */
+.ai-assistant-float-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.ai-assistant-float-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+}
+
+.ai-assistant-float-btn:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+.ai-assistant-float-btn .icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+    fill: currentColor;
+}
+
+.ai-assistant-float-btn .text {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 悬浮按钮动画效果 */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+.ai-assistant-float-btn.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* 气泡提示 */
+.ai-assistant-float-btn::before {
+    content: 'AI学习助手';
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.ai-assistant-float-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 62px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.ai-assistant-float-btn:hover::before,
+.ai-assistant-float-btn:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-assistant-float-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .ai-assistant-float-btn .icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .ai-assistant-float-btn .text {
+        font-size: 18px;
+    }
+
+    .ai-assistant-float-btn::before {
+        font-size: 11px;
+        bottom: 65px;
+    }
+
+    .ai-assistant-float-btn::after {
+        bottom: 57px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-assistant-float-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .ai-assistant-float-btn .icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .ai-assistant-float-btn .text {
+        font-size: 16px;
+    }
+
+    .ai-assistant-float-btn::before {
+        font-size: 10px;
+        bottom: 60px;
+        padding: 6px 10px;
+    }
+
+    .ai-assistant-float-btn::after {
+        bottom: 52px;
+    }
+}
+
+/* AI助手悬浮按钮样式 */
+.ai-assistant-float-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.ai-assistant-float-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+}
+
+.ai-assistant-float-btn:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+.ai-assistant-float-btn .icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+    fill: currentColor;
+}
+
+.ai-assistant-float-btn .text {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 悬浮按钮动画效果 */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+.ai-assistant-float-btn.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* 气泡提示 */
+.ai-assistant-float-btn::before {
+    content: 'AI学习助手';
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.ai-assistant-float-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 62px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.ai-assistant-float-btn:hover::before,
+.ai-assistant-float-btn:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-assistant-float-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .ai-assistant-float-btn .icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .ai-assistant-float-btn .text {
+        font-size: 18px;
+    }
+
+    .ai-assistant-float-btn::before {
+        font-size: 11px;
+        bottom: 65px;
+    }
+
+    .ai-assistant-float-btn::after {
+        bottom: 57px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-assistant-float-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .ai-assistant-float-btn .icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .ai-assistant-float-btn .text {
+        font-size: 16px;
+    }
+
+    .ai-assistant-float-btn::before {
+        font-size: 10px;
+        bottom: 60px;
+        padding: 6px 10px;
+    }
+
+    .ai-assistant-float-btn::after {
+        bottom: 52px;
+    }
+}
