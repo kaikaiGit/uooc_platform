@@ -317,8 +317,8 @@
     background-size: cover;
     width: 30px;
     height: 30px;
+    margin-right: 10px;
     transition: all 0.3s ease;
-    margin-top: 10px;
     border: none;
     filter: 
         invert(48%)      /* 将黑色转为白色 */ 
@@ -343,6 +343,11 @@
         invert(16%) sepia(99%) saturate(3657%) 
         hue-rotate(216deg) brightness(90%) contrast(101%);
     animation: pulse 0.5s;
+}
+
+.like-section {
+    display: flex;
+    align-items: center;
 }
 
 @keyframes pulse {
