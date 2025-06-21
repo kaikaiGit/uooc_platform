@@ -283,7 +283,6 @@ class VideoPlayer {
 
     // 播放/暂停切换
     togglePlayPause() {
-        console.log(11111111)
         if (!this.video) return;
         
         if (this.video.paused) {

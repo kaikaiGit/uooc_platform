@@ -446,6 +446,67 @@ function getSavedCoursewares(courseId,callback) {
     };
 }
 
+
+async function getSummaryFromIndexedDB() {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(['courses'], 'readonly');
+        const store = transaction.objectStore('courses');
+        const getRequest = store.get(1); // 假设课程ID为1
+        
+        getRequest.onsuccess = function() {
+            // 检查返回的数据是否存在且包含 summary_text
+            if (!getRequest.result) {
+                reject('未找到课程数据');
+                return;
+            }
+            
+            if (typeof getRequest.result.summary_text !== 'string') {
+                reject('摘要数据格式不正确');
+                return;
+            }
+            
+            resolve(getRequest.result.summary_text);
+        };
+        
+        getRequest.onerror = function() {
+            reject('获取摘要数据失败');
+        };
+    });
+}
+
+async function streamText(text, element) {
+    // 首先检查传入的参数是否有效
+    if (!element || !(element instanceof HTMLElement)) {
+        console.error('无效的DOM元素');
+        return;
+    }
+    
+    if (typeof text !== 'string') {
+        console.error('无效的文本数据:', text);
+        element.innerHTML = '无法显示内容：数据无效';
+        return;
+    }
+    
+    element.innerHTML = ''; // 清空现有内容
+    element.classList.add('typing'); // 添加打字效果样式
+    
+    // 模拟逐字显示效果
+    let index = 0;
+    const speed = 20; // 控制显示速度（毫秒/字符）
+    
+    return new Promise((resolve) => {
+        const interval = setInterval(() => {
+            if (index < text.length) {
+                element.innerHTML += text.charAt(index);
+                index++;
+            } else {
+                clearInterval(interval);
+                element.classList.remove('typing'); // 移除打字效果样式
+                resolve();
+            }
+        }, speed);
+    });
+}
 function categorizeCoursewares(coursewares) {
     const root = [];
 
@@ -641,7 +702,7 @@ function checkAndRegisterCourse(courseId) {
                     courseId,
                     studentId: currentUser,
                     id: Date.now(),
-                    progress:23
+                    progress:Math.floor(Math.random() * 101)
                 };
 
                 const registerRequest = objectStore.add(ref);
@@ -738,3 +799,4 @@ function startLearning(courseId) {
     // 跳转到课程学习页面或其他处理
     // window.location.href = `/course/learn.html?id=${courseId}`;
 }
+

@@ -2,24 +2,27 @@
 const coursesData = [
     // 计算机类课程
     {
-        id: 1,
-        title: 'Python编程基础入门',
-        description: '零基础学Python，从环境搭建到项目实战，掌握编程思维和基础语法',
-        courseIntro: '本课程专为编程初学者设计，从Python基础语法讲起，涵盖变量、数据类型、控制结构、函数等核心概念，通过实际案例和小项目帮助学员快速掌握编程思维。课程采用循序渐进的教学方式，配合大量练习，使学员能够独立完成简单程序开发，为后续学习打下坚实基础。',
-        teacher_id: 1,
-        category_id: 2, // 计算机
-        cover_image: '../Homepage/images/courses/cs-1.jpg',
-        status: 'published',
-        enableNotes:'开启',
-        enableComments:'开启',
-        created_at: '2025-01-15T09:00:00.000Z',
-        updated_at: '2025-01-20T14:30:00.000Z',
-        category: '计算机',
-        teacher: '张伟教授',
-        registerCount: 1580,
-        likes: 245,
-        recommend: true,
-        carouselImages: ['../Homepage/images/courses/cs-1.jpg']
+    id: 1,
+    title: 'Python编程基础入门',
+    description: '零基础学Python，从环境搭建到项目实战，掌握编程思维和基础语法',
+    courseIntro: '本课程专为编程初学者设计，从Python基础语法讲起，涵盖变量、数据类型、控制结构、函数等核心概念，通过实际案例和小项目帮助学员快速掌握编程思维。课程采用循序渐进的教学方式，配合大量练习，使学员能够独立完成简单程序开发，为后续学习打下坚实基础。',
+    teacher_id: 1,
+    category_id: 2, // 计算机
+    cover_image: '../Homepage/images/courses/cs-1.jpg',
+    status: 'published',
+    enableNotes: '开启',
+    enableComments: '开启',
+    created_at: '2025-01-15T09:00:00.000Z',
+    updated_at: '2025-01-20T14:30:00.000Z',
+    category: '计算机',
+    teacher: '张伟教授',
+    registerCount: 1580,
+    likes: 245,
+    recommend: true,
+    carouselImages: ['../Homepage/images/courses/cs-1.jpg'],
+    summary_text: `这是一门非常适合编程初学者的《Python编程基础入门》课程，由经验丰富的张伟教授主讲。课程从零开始系统讲解Python编程，内容涵盖环境搭建、基础语法、变量与数据类型、控制结构、函数等核心知识点，通过循序渐进的教学方式和丰富的实战案例，帮助学员快速建立编程思维并掌握基础开发能力。课程自2025年1月开课以来，已吸引1580名学员报名，获得245次点赞，并被平台列为推荐课程。
+
+    学员普遍反馈课程设计合理、讲解清晰易懂。许多零基础学员表示，通过课程中的小项目实践，他们成功实现了从"完全不懂编程"到"能独立完成简单程序"的跨越。部分学员特别提到案例教学和课后练习对巩固知识很有帮助，张教授耐心细致的答疑也让他们受益匪浅。也有学员建议可以增加更多实际应用场景的案例，这些宝贵意见为课程的持续优化提供了方向。整体来看，这门课程以扎实的内容和良好的教学效果，成为了编程入门者的优质选择。`
     },
     {
         id: 2,
