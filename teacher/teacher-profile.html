@@ -215,13 +215,6 @@
                 </div>
                 <div class="tabs-content">
                     <div class="account">
-                        <div class="switch-section">
-                            <span class="switch-info">学生自主注册</span>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
                         <table>
                             <thead>
                                 <tr>
@@ -286,7 +279,7 @@
                 } else if (userid === 'teacher') {
                     profileUrl = '../teacher/teacher-profile.html';
                     profileName = '个人中心';
-                    accountUrl = '../teacher/teacher-profile.html';
+                    accountUrl = '../account/teacher-setting.html';
                 } else {
                     profileUrl = '../student/student-profile.html';
                     profileName = '我的学习';
@@ -396,14 +389,6 @@
             tbody.innerHTML = trStu.join('');
         };
         render();
-        //管理学生自主注册功能
-        document.querySelector('.switch input').addEventListener('change', function (e) {
-            e.preventDefault();
-            const teacher = JSON.parse(localStorage.getItem('teacher'));
-            teacher.allowRegister = !teacher.allowRegister;
-            localStorage.setItem('teacher', JSON.stringify(teacher));
-            render();
-        });
         //点击重置密码、禁用/启用、删除按钮时的操作
         tbody.addEventListener('click', function (e) {
             if (e.target.id === 'reset-password') {
@@ -422,7 +407,7 @@
             for (var i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 //如果key是学生的学号，就把学生信息加入students数组
-                if (key.startsWith('2')) {
+                if (key.startsWith('2') || key.startsWith('student')) {
                     students.push(JSON.parse(localStorage.getItem(key)));
                 }
             }
