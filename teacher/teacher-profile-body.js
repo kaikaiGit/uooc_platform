@@ -71,3 +71,67 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function publishManualExam() {
+    // 验证表单数据
+    const examTitle = document.getElementById('examTitle').value;
+    const examDuration = document.getElementById('examDuration').value;
+    const examTotalScore = document.getElementById('examTotalScore').value;
+    
+    if (!examTitle || !examDuration || !examTotalScore) {
+        alert('请填写完整的试卷信息');
+        return;
+    }
+    
+    const questions = [];
+    document.querySelectorAll('.question-item').forEach(q => {
+        const id = q.getAttribute('data-id');
+        const type = document.getElementById(`questionType${id}`).value;
+        const text = document.getElementById(`questionText${id}`).value;
+        const score = document.getElementById(`questionScore${id}`).value;
+        
+        if (!text || !score) {
+            alert(`试题 #${id} 的内容或分值未填写完整`);
+            return;
+        }
+        
+        const question = { id, type, text, score };
+        
+        if (type !== 'fill_blank' && type !== 'short_answer') {
+            const options = [];
+            q.querySelectorAll('.option-item input').forEach((input, i) => {
+                options.push({
+                    id: i,
+                    text: input.value || `选项${String.fromCharCode(65 + i)}`
+                });
+            });
+            question.options = options;
+        }
+        
+        questions.push(question);
+    });
+    
+    if (questions.length === 0) {
+        alert('请至少添加一道试题');
+        return;
+    }
+    
+    // 构建试卷对象
+    const examData = {
+        title: examTitle,
+        duration: parseInt(examDuration),
+        totalScore: parseInt(examTotalScore),
+        questions: questions,
+        createdAt: new Date().toISOString(),
+        createdBy: JSON.parse(localStorage.getItem('teacher')).username
+    };
+    
+    // 在实际应用中，这里应该将试卷数据保存到数据库
+    console.log('发布的试卷数据:', examData);
+    alert('试卷发布成功！');
+    
+    // 重置表单
+    document.getElementById('manualExamForm').reset();
+    document.getElementById('questionList').innerHTML = '';
+    document.getElementById('examPreview').style.display = 'none';
+}

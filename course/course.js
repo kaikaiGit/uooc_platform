@@ -77,7 +77,7 @@ function loadCourse(courseId) {
 function displayCourse(course) {
     const previewContainer = document.getElementById('coursePreview');
     // 先检查用户是否已注册该课程
-    const isRegistered = checkIfUserRegistered(course.id); // 需要实现这个函数
+    // const isRegistered = checkIfUserRegistered(course.id); // 需要实现这个函数
 
     previewContainer.innerHTML = `
         <div class="course-content">

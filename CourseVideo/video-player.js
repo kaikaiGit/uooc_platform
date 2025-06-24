@@ -13,6 +13,7 @@ class VideoPlayer {
         this.bindEvents();
         this.parseUrlParams();
         this.initializeControls();
+
     }
 
     // 初始化IndexedDB连接
@@ -40,7 +41,7 @@ class VideoPlayer {
             this.loadCourseData();
         }
     }
-
+    
     // 加载课程数据
     loadCourseData() {
         if (!this.db) return;
@@ -62,7 +63,38 @@ class VideoPlayer {
             console.error('加载课程数据失败:', event.target.errorCode);
         };
     }
+    getCurrentUserId() {
+        return localStorage.getItem('token');
+    }
+    addComment() {
+        const currentUser = localStorage.getItem('token'); // 获取当前用户
+        if (!currentUser) {
+            alert('游客不能评论');
+            return;
+        }
+        const courseId=this.courseId;
+        const commentText = document.getElementById('commentInput').value;
+        if (!commentText) return;
+        if (!this.db) return;
+        const transaction = this.db.transaction(['comments'], 'readwrite');
+        const objectStore = transaction.objectStore('comments');
+        const comment = {
+            courseId,
+            text: commentText,
+            id: Date.now(),
+            userid: this.getCurrentUserId()
+        };
+        const request = objectStore.add(comment);
 
+        request.onsuccess = function() {
+            document.getElementById('commentInput').value = '';
+            this.loadComments(courseId);
+        };
+
+        request.onerror = function(event) {
+            console.error('IndexedDB error:', event.target.errorCode);
+        };
+    }
     // 显示课程信息
     displayCourseInfo(course) {
         document.getElementById('courseTitle').textContent = course.title || '课程标题';
@@ -661,3 +693,11 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
+
+window.submitComment=function(){
+    if (videoPlayer) {
+        videoPlayer.submitComment();
+    } else {
+        console.error("videoPlayer 未初始化！");
+    }
+}

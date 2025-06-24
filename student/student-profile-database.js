@@ -727,6 +727,7 @@ function showTabContent(id) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    initExamTabs();
     request.onsuccess = function (event) {
         db = event.target.result;
         // 为侧边栏的链接添加点击事件
@@ -1038,3 +1039,179 @@ function sortComments(sortBy) {
     // 重新添加排序后的评论项
     commentItems.forEach(item => commentsContainer.appendChild(item));
 }
+
+// 考试数据
+const examsData = {
+    all: [
+        {
+            id: 1,
+            title: "期末考试",
+            course: "高等数学",
+            startTime: "2023-06-15T09:00:00",
+            endTime: "2023-06-15T11:00:00",
+            duration: 120,
+            weight: 30,
+            status: "upcoming"
+        },
+        {
+            id: 2,
+            title: "期中考试",
+            course: "大学英语",
+            startTime: "2023-05-10T14:00:00",
+            endTime: "2023-05-10T16:00:00",
+            duration: 120,
+            weight: 20,
+            status: "completed"
+        },
+        {
+            id: 3,
+            title: "单元测试",
+            course: "数据结构",
+            startTime: "2023-06-01T10:00:00",
+            endTime: "2023-06-01T11:30:00",
+            duration: 90,
+            weight: 15,
+            status: "ongoing"
+        }
+    ],
+    upcoming: [
+        {
+            id: 1,
+            title: "期末考试",
+            course: "高等数学",
+            startTime: "2023-06-15T09:00:00",
+            endTime: "2023-06-15T11:00:00",
+            duration: 120,
+            weight: 30,
+            status: "upcoming"
+        }
+    ],
+    ongoing: [
+        {
+            id: 3,
+            title: "单元测试",
+            course: "数据结构",
+            startTime: "2023-06-01T10:00:00",
+            endTime: "2023-06-01T11:30:00",
+            duration: 90,
+            weight: 15,
+            status: "ongoing"
+        }
+    ],
+    completed: [
+        {
+            id: 2,
+            title: "期中考试",
+            course: "大学英语",
+            startTime: "2023-05-10T14:00:00",
+            endTime: "2023-05-10T16:00:00",
+            duration: 120,
+            weight: 20,
+            status: "completed"
+        }
+    ]
+};
+
+// 渲染考试列表
+function renderExamList(exams) {
+    const examListContainer = document.querySelector('.exam-list');
+    examListContainer.innerHTML = '';
+    
+    if (exams.length === 0) {
+        examListContainer.innerHTML = `
+            <div class="no-exams">
+                <img src="images/smile.png" alt="笑脸图片">
+                <p>当前没有考试</p>
+            </div>
+        `;
+        return;
+    }
+    
+    exams.forEach(exam => {
+        const statusText = {
+            upcoming: "即将开始",
+            ongoing: "进行中",
+            completed: "已完成"
+        }[exam.status];
+        
+        const statusClass = `status-${exam.status}`;
+        
+        const examCard = document.createElement('div');
+        examCard.className = 'exam-card';
+        examCard.innerHTML = `
+            <div class="exam-header">
+                <h3 class="exam-title">${exam.title} - ${exam.course}</h3>
+                <span class="exam-status ${statusClass}">${statusText}</span>
+            </div>
+            <div class="exam-details">
+                <p><i class="far fa-calendar-alt"></i> 考试时间: ${formatDateTime(exam.startTime)} - ${formatTime(exam.endTime)}</p>
+                <p><i class="far fa-clock"></i> 持续时间: ${exam.duration}分钟</p>
+                <p><i class="fas fa-percentage"></i> 占总成绩: ${exam.weight}%</p>
+            </div>
+            <div class="exam-actions">
+                <button class="btn-view" data-exam-id="${exam.id}">查看详情</button>
+            </div>
+        `;
+        
+        examListContainer.appendChild(examCard);
+    });
+    
+    // 添加查看详情按钮事件
+    document.querySelectorAll('.btn-view').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const examId = this.getAttribute('data-exam-id');
+            viewExamDetails(examId);
+        });
+    });
+}
+
+// 格式化日期时间
+function formatDateTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+    return `${date.getFullYear()}-${padZero(date.getMonth() + 1)}-${padZero(date.getDate())} ${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
+}
+
+function formatTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+    return `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
+}
+
+function padZero(num) {
+    return num.toString().padStart(2, '0');
+}
+
+// 查看考试详情
+function viewExamDetails(examId) {
+    // 这里可以跳转到考试详情页或显示模态框
+    window.location.href = '../exams/exam.html';
+}
+
+// 初始化考试标签页
+function initExamTabs() {
+    const examTabs = document.querySelectorAll('#exams .tabs-item');
+    
+    examTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 更新活动标签
+            examTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // 根据标签加载对应考试数据
+            const tabId = this.id;
+            const examType = tabId.split('-')[0];
+            renderExamList(examsData[examType]);
+        });
+    });
+    
+    // 默认加载全部考试
+    renderExamList(examsData.all);
+}
+
+// 在页面加载完成后初始化
+// document.addEventListener('DOMContentLoaded', function() {
+//     initExamTabs();
+    
+//     // 其他初始化代码...
+// });

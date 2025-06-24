@@ -1094,6 +1094,98 @@
     color: #1d4ed8;
     transform: translateY(-1px);
 }
+/* 考试卡片样式 */
+.exam-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.exam-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.exam-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.exam-title {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.exam-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-upcoming {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-ongoing {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.status-completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.exam-details {
+    margin-bottom: 15px;
+}
+
+.exam-details p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.exam-details i {
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+.exam-actions {
+    text-align: right;
+}
+
+.btn-view {
+    background-color: #4e73df;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-view:hover {
+    background-color: #2e59d9;
+}
 
 /* 响应式设计 - 笔记和评论部分 */
 @media (max-width: 768px) {

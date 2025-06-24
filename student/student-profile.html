@@ -53,6 +53,7 @@
             <a class="sidebar-item" href="#notes">学习笔记</a>
             <a class="sidebar-item" href="#collects">我的收藏</a>
             <a class="sidebar-item" href="#mistakes">我的错题</a>
+            <a class="sidebar-item" href="#exams">我的考试</a>
             <a class="sidebar-item" href="#talks">我的讨论</a>
         </div>
         <div class="content">
@@ -93,6 +94,45 @@
                     <div class="message collects-courses">
                         <img src="images/smile.png" alt="笑脸图片">
                         <p class="message">目前还没有任何收藏</p>
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="exams">
+                <div class="tabs">
+                    <a id="collects-courses" class="tabs-item" href="#collects/collects-courses">收藏课程</a>
+                </div>
+                <div class="tabs-content">
+                    <div class="message collects-courses">
+                        <img src="images/smile.png" alt="笑脸图片">
+                        <p class="message">目前还没有任何收藏</p>
+                    </div>
+                </div>
+            </div> -->
+            <div id="exams">
+                <div class="tabs">
+                    <a id="all-exams" class="tabs-item active" href="#exams/all">全部考试</a>
+                    <a id="upcoming-exams" class="tabs-item" href="#exams/upcoming">即将开始</a>
+                    <a id="ongoing-exams" class="tabs-item" href="#exams/ongoing">进行中</a>
+                    <a id="completed-exams" class="tabs-item" href="#exams/completed">已完成</a>
+                </div>
+                <div class="tabs-content">
+                    <!-- 考试列表将通过JavaScript动态生成 -->
+                    <div class="exam-list">
+                        <!-- 示例考试卡片 -->
+                        <div class="exam-card">
+                            <div class="exam-header">
+                                <h3 class="exam-title">期末考试</h3>
+                                <span class="exam-status status-upcoming">即将开始</span>
+                            </div>
+                            <div class="exam-details">
+                                <p><i class="far fa-calendar-alt"></i> 考试时间: 2023-06-15 09:00 - 11:00</p>
+                                <p><i class="far fa-clock"></i> 持续时间: 120分钟</p>
+                                <p><i class="fas fa-percentage"></i> 占总成绩: 30%</p>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn-view">查看详情</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
