@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>修改个人资料</title>
+    <title>Edit Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../Homepage/css/header.css">
@@ -14,44 +14,44 @@
     <link rel="stylesheet" href="account-styles.css">
 </head>
 <body>
-    <!-- 页眉 -->
+    <!-- Header -->
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="UOOC Alliance"></a>
             </div>
             <nav>
                 <ul>
-                    <!-- TODO 补充链接 -->
-                    <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
-                    <li><a href="../Homepage/courseList.html">课程</a></li>
-                    <li><a href="../Homepage/league.html">联盟院校</a></li>
-                    <li><a href="../Homepage/about-us.html">关于我们</a></li>
+                    <!-- TODO Add links -->
+                    <li><a href="../Homepage/WebsiteHomepage.html">Home</a></li>
+                    <li><a href="../Homepage/courseList.html">Courses</a></li>
+                    <li><a href="../Homepage/league.html">Alliance Universities</a></li>
+                    <li><a href="../Homepage/about-us.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
         
         <div class="info">
-            <!-- TODO 补充链接 -->
+            <!-- TODO Add links -->
         </div>
     </header>
-    <!-- 主体内容 -->
+    <!-- Main Content -->
     <div class="container mt-5 main-content">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">基本信息</button>
+                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Basic Info</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false">修改密码</button>
+                <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false">Change Password</button>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <!-- 基本信息 -->
+            <!-- Basic Info -->
             <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
                 <form id="profile-form" class="profile-form p-4">
-                    <!-- 头像 -->
+                    <!-- Avatar -->
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">头像</label>
+                        <label class="col-sm-2 col-form-label">Avatar</label>
                         <div id="avatar-container" class="position-relative" style="width: 100px; height: 100px;padding: 0;">
                             <img id="avatar-img" class="rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
                             <div id="avatar-overlay" class="position-absolute top-0 start-0 w-100 h-100 rounded-circle d-flex justify-content-center align-items-center">
@@ -61,89 +61,89 @@
                         </div>
                     </div>
             
-                    <!--用户id-->
+                    <!-- User ID -->
                     <div class="mb-3 row">
-                        <label for="userid" class="col-sm-2 col-form-label">用户ID:</label>
+                        <label for="userid" class="col-sm-2 col-form-label">User ID:</label>
                         <div class="col-sm-10">
                             <span id="userid" class="form-control-plaintext"></span>
                         </div>
                     </div>
-                    <!-- 昵称 -->
+                    <!-- Nickname -->
                     <div class="mb-3 row">
-                        <label for="username" class="col-sm-2 col-form-label">* 昵称:</label>
+                        <label for="username" class="col-sm-2 col-form-label">* Nickname:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="username" required>
                         </div>
                     </div>
-                    <!-- 性别 -->
+                    <!-- Gender -->
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">* 性别:</label>
+                        <label class="col-sm-2 col-form-label">* Gender:</label>
                         <div class="col-sm-10">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="man" type="radio" name="gender" value="男">
-                                <label class="form-check-label" for="man">男</label>
+                                <input class="form-check-input" id="man" type="radio" name="gender" value="Male">
+                                <label class="form-check-label" for="man">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="woman" type="radio" name="gender" value="女">
-                                <label class="form-check-label" for="woman">女</label>
+                                <input class="form-check-input" id="woman" type="radio" name="gender" value="Female">
+                                <label class="form-check-label" for="woman">Female</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="unknown" type="radio" name="gender" value="不公开">
-                                <label class="form-check-label" for="unknown">不公开</label>
+                                <input class="form-check-input" id="unknown" type="radio" name="gender" value="Prefer not to say">
+                                <label class="form-check-label" for="unknown">Prefer not to say</label>
                             </div>
                         </div>
                     </div>
-                    <!-- 手机 -->
+                    <!-- Phone -->
                     <div class="mb-3 row">
-                        <label for="phone" class="col-sm-2 col-form-label">* 手机:</label>
+                        <label for="phone" class="col-sm-2 col-form-label">* Phone:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="phone" required>
                             <span id="ph-error-message" class="text-danger"></span>
                         </div>
                     </div>
-                    <!-- 签名档 -->
+                    <!-- Signature -->
                     <div class="mb-3 row">
-                        <label for="signature" class="col-sm-2 col-form-label">签名档:</label>
+                        <label for="signature" class="col-sm-2 col-form-label">Signature:</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="signature" placeholder="请输入签名档"></textarea>
+                            <textarea class="form-control" id="signature" placeholder="Enter your signature"></textarea>
                         </div>
                     </div>
-                    <!-- 保存按钮 -->
+                    <!-- Save Button -->
                     <div class="mb-3 row">
                         <div class="col-sm-10 offset-sm-2">
-                            <button type="submit" class="btn btn-primary">保存</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                             <div id="success-message" class="mt-3 alert alert-success" style="display: none;"></div>
                         </div>
                     </div>
                 </form>
             </div>
-            <!-- 修改密码 -->
+            <!-- Change Password -->
             <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab" tabindex="0">
                 <form id="reset-password-form" class="profile-form p-4">
                     <div class="mb-3 row">
-                        <label for="old-password" class="col-sm-3 col-form-label">原密码:</label>
+                        <label for="old-password" class="col-sm-3 col-form-label">Old Password:</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="old-password" placeholder="输入原密码" required>
+                            <input type="password" class="form-control" id="old-password" placeholder="Enter old password" required>
                             <span id="op-error-message" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="password" class="col-sm-3 col-form-label">新密码:</label>
+                        <label for="password" class="col-sm-3 col-form-label">New Password:</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" placeholder="输入新密码" required>
+                            <input type="password" class="form-control" id="password" placeholder="Enter new password" required>
                             <span id="pa-error-message" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="confirm-password" class="col-sm-3 col-form-label">确认新密码:</label>
+                        <label for="confirm-password" class="col-sm-3 col-form-label">Confirm New Password:</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="confirm-password" placeholder="再次输入新密码" required>
+                            <input type="password" class="form-control" id="confirm-password" placeholder="Re-enter new password" required>
                             <span id="cp-error-message" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col-sm-9 offset-sm-3">
-                            <button type="submit" class="btn btn-primary">确认</button>
+                            <button type="submit" class="btn btn-primary">Confirm</button>
                             <div id="success-message-password" class="mt-3 alert alert-success" style="display: none;"></div>
                         </div>
                     </div>
@@ -151,23 +151,23 @@
             </div>
         </div>
     </div>
-    <!-- 页脚 -->
+    <!-- Footer -->
     <footer class="footer mt-5">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="#home"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="#home"><img src="../header-footer/images/logo.png" alt="UOOC Alliance"></a>
             </div>
             <div class="footer-text">
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="#about">关于我们</a></li>
-                        <li><a href="#contact">联系我们</a></li>
-                        <li><a href="#privacy">隐私政策</a></li>
-                        <li><a href="#terms">服务条款</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
                     </ul>
                 </nav>
                 <div class="footer-info">
-                    <p>&copy; 2025 优课联盟. 保留所有权利.</p>
+                    <p>&copy; 2025 UOOC Alliance. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -176,23 +176,23 @@
     <script src="../database.js"></script>
     <script src="../account/account.js"></script>
     <script>
-        //根据token获取用户信息
+        // Get user info by token
         window.onload = function() {
             const userid = localStorage.getItem('token');
-            //如果有用户登录，在info的div中显示用户头像，如果没用，显示登录注册按钮
+            // If user is logged in, show avatar in .info div, else show login/register buttons
             if(userid) {
                 const user = JSON.parse(localStorage.getItem(userid));
                 document.querySelector('.info').innerHTML = `
-                    <a href="../student/student-profile.html"><img id="user-head" src="${user.avatar}" alt="用户头像"></a>
+                    <a href="../student/student-profile.html"><img id="user-head" src="${user.avatar}" alt="User Avatar"></a>
                     <div class="card">
                         <ul>
-                            <li><a href="../student/student-profile.html">我的学习</a></li>
-                            <li><a href="../account/student-setting.html">账号设置</a></li>
-                            <li><a id="logout" href="#logout">退出登录</a></li>
+                            <li><a href="../student/student-profile.html">My Learning</a></li>
+                            <li><a href="../account/student-setting.html">Account Settings</a></li>
+                            <li><a id="logout" href="#logout">Logout</a></li>
                         </ul>
                     </div>
                 `;
-                //如果点击退出登录，清除token
+                // If click logout, clear token
                 document.getElementById('logout').addEventListener('click', () => {
                     localStorage.removeItem('token');
                     window.location.href = '../Homepage/WebsiteHomepage.html';
@@ -200,18 +200,15 @@
             }
             else{
                 document.querySelector('.info').innerHTML = `
-                    <a href="../account/login.html"><button class="login">登录</button></a>
-                    <a href="../account/register.html"><button class="register">注册</button></a>
+                    <a href="../account/login.html"><button class="login">Login</button></a>
+                    <a href="../account/register.html"><button class="register">Register</button></a>
                 `;
             }
         }
     </script>
-    <!--主体内容初始化-->
+    <!-- Main content initialization -->
     <script>
-        //默认选中第一个tab
-        // document.querySelector('.tabs-item').classList.add('active');
-        // document.querySelectorAll('.tabs-content')[0].style.display = 'block';
-        // document.querySelectorAll('.tabs-content')[1].style.display = 'none';
+        // Set default selected tab
         const userid = localStorage.getItem('token');
         const user = JSON.parse(localStorage.getItem(userid));
         const gender = user.gender;
@@ -219,30 +216,15 @@
         document.getElementById('avatar-img').src = user.avatar;
         document.getElementById('userid').textContent = user.userid;
         document.getElementById('username').value = user.username;
-        if(gender === '不公开') document.getElementById('unknown').checked = true;
-        else if(gender === '男') document.getElementById('man').checked = true;
+        if(gender === 'Prefer not to say') document.getElementById('unknown').checked = true;
+        else if(gender === 'Male') document.getElementById('man').checked = true;
         else document.getElementById('woman').checked = true;
         document.getElementById('phone').value = user.phone;
         if(signature) document.getElementById('signature').value = signature;
     </script>
     <script>
-        //点击tab切换
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     let tabs = document.querySelectorAll('.tabs-item');
-        //     let tabContents = document.querySelectorAll('.tabs-content');
-        //     tabs.forEach((tab, index) => {
-        //         tab.addEventListener('click', (e) => {
-        //             e.preventDefault();
-        //             // 移除所有tabs的active类
-        //             tabs.forEach(t => t.classList.remove('active'));
-        //             tabContents.forEach(tc => tc.style.display = 'none');
-        //             // 为当前点击的tab添加active类
-        //             tab.classList.add('active');
-        //             tabContents[index].style.display = 'block';
-        //         });
-        //     });
-        // });
-        //点击更换头像
+        // Tab switching
+        // Click to change avatar
         document.getElementById('avatar-container').addEventListener('click', () => {
             document.getElementById('change-avatar').click();
         });
@@ -258,54 +240,54 @@
             }
             reader.readAsDataURL(file);
         });
-        //离开手机号输入框时验证手机号
+        // Validate phone on blur
         document.getElementById('phone').addEventListener('blur', () => {
             const phone = document.getElementById('phone').value;
             checkPhone(phone);
         });
-        //保存按钮点击事件
+        // Save button click event
         document.getElementById('profile-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const userid = localStorage.getItem('token');
             let user = JSON.parse(localStorage.getItem(userid));
             const phone = document.getElementById('phone').value;
-            //验证手机号
+            // Validate phone
             if(!checkPhone(phone)) return;
-            //更新用户信息
+            // Update user info
             user.avatar = document.getElementById('avatar-img').src;
             user.username = document.getElementById('username').value;
-            if(document.getElementById('man').checked) user.gender = '男';
-            else if(document.getElementById('woman').checked) user.gender = '女';
-            else if(document.getElementById('unknown').checked) user.gender = '不公开';
+            if(document.getElementById('man').checked) user.gender = 'Male';
+            else if(document.getElementById('woman').checked) user.gender = 'Female';
+            else if(document.getElementById('unknown').checked) user.gender = 'Prefer not to say';
             user.phone = phone;
             user.signature = document.getElementById('signature').value;
-            //更新localstorage
+            // Update localstorage
             localStorage.setItem(userid, JSON.stringify(user));
-            //提示保存成功
+            // Show success message
             const successMsg = document.getElementById('success-message');
-            successMsg.textContent = '保存成功！';
+            successMsg.textContent = 'Saved successfully!';
             successMsg.style.display = 'block';
             setTimeout(() => successMsg.classList.add('show'), 10);
 
-            //1s后更新页面
+            // Update page after 1s
             setTimeout(() => {
                 location.reload();
             }, 1000);
         });
 
-        //离开原密码输入框时验证原密码
+        // Validate old password on blur
         document.getElementById('old-password').addEventListener('blur', () => {
             checkOldPassword();
         });
-        //离开新密码输入框时验证新密码
+        // Validate new password on blur
         document.getElementById('password').addEventListener('blur', () => {
             checkPassword();
         });
-        //离开确认密码输入框时验证确认密码
+        // Validate confirm password on blur
         document.getElementById('confirm-password').addEventListener('blur', () => {
             checkConfirmPassword();
         });
-        //确认按钮点击事件
+        // Confirm button click event
         document.getElementById('reset-password-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const userid = localStorage.getItem('token');
@@ -313,47 +295,47 @@
             const oldPassword = document.getElementById('old-password').value;
             let password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
-            //验证信息是否填写完整
+            // Validate all fields
             if(!checkOldPassword() || !checkPassword() || !checkConfirmPassword()) return;
-            //验证新密码和确认密码是否一致
+            // Validate new password and confirm password match
             if(password !== confirmPassword) {
-                document.getElementById('cp-error-message').textContent = '密码不一致，请重新输入';
-                //清空密码输入框
+                document.getElementById('cp-error-message').textContent = 'Passwords do not match, please re-enter.';
+                // Clear password fields
                 document.getElementById('old-password').value = '';
                 document.getElementById('password').value = '';
                 document.getElementById('confirm-password').value = '';
                 return;
             }
-            //验证原密码是否正确
+            // Validate old password
             if(simpleHash(oldPassword, userid) !== user.password) {
-                document.getElementById('op-error-message').textContent = '原密码错误';
-                //清空密码输入框
+                document.getElementById('op-error-message').textContent = 'Old password is incorrect.';
+                // Clear password fields
                 document.getElementById('old-password').value = '';
                 document.getElementById('password').value = '';
                 document.getElementById('confirm-password').value = '';
                 return;
             }
-            //更新密码
+            // Update password
             password = simpleHash(password, userid);
             user.password = password;
-            //更新localstorage
+            // Update localstorage
             localStorage.setItem(userid, JSON.stringify(user));
-            //提示保存成功
+            // Show success message
             const successMsgPass = document.getElementById('success-message-password');
-            successMsgPass.textContent = '密码修改成功！';
+            successMsgPass.textContent = 'Password changed successfully!';
             successMsgPass.style.display = 'block';
             setTimeout(() => successMsgPass.classList.add('show'), 10);
             
-            //2s后跳转到登录页面
+            // Redirect to login after 2s
             setTimeout(() => {
                 window.location.href = '../account/login.html';
             }, 2000);
         });
-        //验证是否填写密码
+        // Validate old password
         function checkOldPassword() {
             const oldPassword = document.getElementById('old-password').value;
             if(!oldPassword) {
-                document.getElementById('op-error-message').textContent = '原密码不能为空';
+                document.getElementById('op-error-message').textContent = 'Old password cannot be empty.';
                 return false;
             }
             else {
@@ -364,7 +346,7 @@
         function checkPassword() {
             const password = document.getElementById('password').value;
             if(!password) {
-                document.getElementById('pa-error-message').textContent = '新密码不能为空';
+                document.getElementById('pa-error-message').textContent = 'New password cannot be empty.';
                 return false;
             }
             else {
@@ -376,11 +358,11 @@
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
             if(!confirmPassword) {
-                document.getElementById('cp-error-message').textContent = '确认密码不能为空';
+                document.getElementById('cp-error-message').textContent = 'Confirm password cannot be empty.';
                 return false;
             }
             else if(password !== confirmPassword) {
-                document.getElementById('cp-error-message').textContent = '两次输入的密码不一致';
+                document.getElementById('cp-error-message').textContent = 'The two passwords do not match.';
                 return false;
             }
             else {

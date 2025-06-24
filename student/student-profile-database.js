@@ -56,7 +56,7 @@ request.onerror = function (event) {
 };
 
 
-//存储文件到IndexedDB
+// Store files to IndexedDB
 function storeFileInIndexedDB(files, title) {
     const filesName = [];
     const filesData = [];
@@ -91,13 +91,13 @@ function storeFileInIndexedDB(files, title) {
     });
 }
 
-//为“申请退课”添加点击事件
+// Add click event for "Drop Course"
 function dropOut(id) {
     var dropout = document.getElementById('drop-out');
     dropout.addEventListener('click', function (event) {
         event.preventDefault();
-        if (confirm("确定要退课吗？")) {
-            alert("退课成功！");
+        if (confirm("Are you sure you want to drop this course?")) {
+            alert("Course dropped successfully!");
         }
         var transaction = db.transaction(['ref_student_course'], 'readwrite');
         var objectStore = transaction.objectStore('ref_student_course');
@@ -110,12 +110,12 @@ function dropOut(id) {
 }
 
 
-//为“查看详情”添加点击事件
+// Add click event for "View Details"
 function previewCourse(id) {
     window.open(`../course/course.html?courseId=${id}`, '_blank');
 }
 
-//从IndexedDB中加载课程
+// Load courses from IndexedDB
 function loadCourses() {
     var transaction = db.transaction(['ref_student_course'], 'readonly');
     var objectStore = transaction.objectStore('ref_student_course');
@@ -130,8 +130,8 @@ function loadCourses() {
             var noCourse = document.createElement('div');
             noCourse.classList.add('message');
             noCourse.innerHTML = `
-                <img src="images/smile.png" alt="笑脸图片">
-                <p class="message">目前还没有任何课程</p>
+                <img src="images/smile.png" alt="Smile Image">
+                <p class="message">No courses yet</p>
             `;
             registeredCourses.appendChild(noCourse);
         }
@@ -146,18 +146,18 @@ function loadCourses() {
                     courseItem.classList.add('registered');
                     courseItem.id = course.id;
                     courseItem.innerHTML = `
-                        <div class="course-image"><img src="${course.carouselImages[0]}" alt="课程封面"></div>
+                        <div class="course-image"><img src="${course.carouselImages[0]}" alt="Course Cover"></div>
                         <div class="course-info">
-                            <a id="drop-out" href="#drop-out" onclick="dropOut(${ref_student_courses.id})">申请退课</a>
+                            <a id="drop-out" href="#drop-out" onclick="dropOut(${ref_student_courses.id})">Drop Course</a>
                                 <br>
                                 <h2>${course.title}</h2>
                                 <p class="course-description">${course.description}</p>
                                 
                                 <div class="progress-container">
                                     <div class="progress-bar" style="width: ${ref_student_courses.progress}%"></div>
-                                    <text class="progress-percent">已完成: ${ref_student_courses.progress}%</text>
+                                    <text class="progress-percent">Completed: ${ref_student_courses.progress}%</text>
                                 </div>
-                                <button id="preview-course" onclick="previewCourse(${courseItem.id})">继续学习</button>
+                                <button id="preview-course" onclick="previewCourse(${courseItem.id})">Continue Learning</button>
                             </div>
                             
                         </div>
@@ -221,19 +221,19 @@ function loadMyNotes() {
             notesToolbar.innerHTML = `
                 <div class="notes-controls">
                     <div class="search-container">
-                        <input type="text" id="noteSearchInput" placeholder="搜索笔记..." onkeyup="searchNotes()">
+                        <input type="text" id="noteSearchInput" placeholder="Search notes..." onkeyup="searchNotes()">
                         <button class="search-btn" onclick="searchNotes()">🔍</button>
                     </div>
                     <div class="sort-container">
-                        <label>排序方式：</label>
+                        <label>Sort by:</label>
                         <select id="noteSortSelect" onchange="sortNotes(this.value)">
-                            <option value="time">按时间</option>
-                            <option value="length">按长度</option>
-                            <option value="course">按课程</option>
+                            <option value="time">By time</option>
+                            <option value="length">By length</option>
+                            <option value="course">By course</option>
                         </select>
                     </div>
                     <div class="notes-stats">
-                        <span class="total-notes">共 ${notes.length} 条笔记</span>
+                        <span class="total-notes">Total ${notes.length} notes</span>
                     </div>
                 </div>
             `;
@@ -244,8 +244,8 @@ function loadMyNotes() {
             var noNote = document.createElement('div');
             noNote.classList.add('message');
             noNote.innerHTML = `
-                <img src="images/smile.png" alt="笑脸图片">
-                <p class="message">目前还没有任何笔记</p>
+                <img src="images/smile.png" alt="Smile Image">
+                <p class="message">No notes yet</p>
             `;
             myNotes.appendChild(noNote);
         }
@@ -264,7 +264,7 @@ function loadMyNotes() {
                     noteItem.classList.add('note-card');
                     
                     // 格式化时间戳（如果有的话）
-                    var timeStamp = note.timestamp ? new Date(note.timestamp).toLocaleString('zh-CN') : '最近';
+                    var timeStamp = note.timestamp ? new Date(note.timestamp).toLocaleString('zh-CN') : 'Recently';
                     
                     // 截取笔记内容预览
                     var notePreview = note.text.length > 120 ? note.text.substring(0, 120) + '...' : note.text;
@@ -274,9 +274,9 @@ function loadMyNotes() {
                             <div class="note-header">
                                 <div class="note-meta">
                                     <div class="note-author">
-                                        <img src="${avatar}" alt="用户头像" class="avatar-small">
+                                        <img src="${avatar}" alt="User Avatar" class="avatar-small">
                                         <div class="author-details">
-                                            <span class="author-name">${user.name || '我'}</span>
+                                            <span class="author-name">${user.name || 'Me'}</span>
                                             <span class="note-time">📅 ${timeStamp}</span>
                                         </div>
                                     </div>
@@ -285,14 +285,14 @@ function loadMyNotes() {
                                     </div>
                                 </div>
                                 <div class="note-actions">
-                                    <button class="action-btn edit-btn" onclick="editNote(${note.id})" title="编辑笔记">
+                                    <button class="action-btn edit-btn" onclick="editNote(${note.id})" title="Edit note">
                                         <span class="btn-icon">✏️</span>
                                     </button>
-                                    <button class="action-btn delete-btn" onclick="deleteNote(${note.id})" title="删除笔记">
+                                    <button class="action-btn delete-btn" onclick="deleteNote(${note.id})" title="Delete note">
                                         <span class="btn-icon">🗑️</span>
                                     </button>
                                     ${note.text.length > 120 ? `
-                                    <button class="action-btn expand-btn" onclick="toggleNoteExpansion(this)" title="展开/收起">
+                                    <button class="action-btn expand-btn" onclick="toggleNoteExpansion(this)" title="Expand/Collapse">
                                         <span class="btn-icon">📖</span>
                                     </button>
                                     ` : ''}
@@ -309,7 +309,7 @@ function loadMyNotes() {
                                 <div class="note-stats">
                                     <span class="stat-item">
                                         <span class="stat-icon">📝</span>
-                                        <span class="stat-text">${note.text.length} 字</span>
+                                        <span class="stat-text">${note.text.length} characters</span>
                                     </span>
                                 </div>
                                 <div class="note-tags">
@@ -334,7 +334,7 @@ function loadComments() {
     var request = index.getAll(studentId);
     request.onsuccess = function (event) {
         var comments = event.target.result;
-        var talks = document.getElementsByClassName('tabs-content')[5];
+        var talks = document.getElementsByClassName('tabs-content')[6];
         talks.innerHTML = '';
         
         // 添加评论工具栏
@@ -344,19 +344,19 @@ function loadComments() {
             commentsToolbar.innerHTML = `
                 <div class="comments-controls">
                     <div class="search-container">
-                        <input type="text" id="commentSearchInput" placeholder="搜索评论..." onkeyup="searchComments()">
+                        <input type="text" id="commentSearchInput" placeholder="Search comments..." onkeyup="searchComments()">
                         <button class="search-btn" onclick="searchComments()">🔍</button>
                     </div>
                     <div class="sort-container">
-                        <label>排序方式：</label>
+                        <label>Sort by:</label>
                         <select id="commentSortSelect" onchange="sortComments(this.value)">
-                            <option value="time">按时间</option>
-                            <option value="length">按长度</option>
-                            <option value="course">按课程</option>
+                            <option value="time">By time</option>
+                            <option value="length">By length</option>
+                            <option value="course">By course</option>
                         </select>
                     </div>
                     <div class="comments-stats">
-                        <span class="total-comments">共 ${comments.length} 条评论</span>
+                        <span class="total-comments">Total ${comments.length} comments</span>
                     </div>
                 </div>
             `;
@@ -367,8 +367,8 @@ function loadComments() {
             var noComment = document.createElement('div');
             noComment.classList.add('message');
             noComment.innerHTML = `
-                <img src="images/smile.png" alt="笑脸图片">
-                <p class="message">目前还没有任何评论</p>
+                <img src="images/smile.png" alt="Smile Image">
+                <p class="message">No comments yet</p>
             `;
             talks.appendChild(noComment);
         }
@@ -387,7 +387,7 @@ function loadComments() {
                     commentItem.classList.add('comment-card');
                     
                     // 格式化时间戳（如果有的话）
-                    var timeStamp = comment.timestamp ? new Date(comment.timestamp).toLocaleString('zh-CN') : '最近';
+                    var timeStamp = comment.timestamp ? new Date(comment.timestamp).toLocaleString('zh-CN') : 'Recently';
                     
                     // 截取评论内容预览
                     var commentPreview = comment.text.length > 100 ? comment.text.substring(0, 100) + '...' : comment.text;
@@ -397,9 +397,9 @@ function loadComments() {
                             <div class="comment-header">
                                 <div class="comment-meta">
                                     <div class="comment-author">
-                                        <img src="${avatar}" alt="用户头像" class="avatar-small">
+                                        <img src="${avatar}" alt="User Avatar" class="avatar-small">
                                         <div class="author-details">
-                                            <span class="author-name">${user.name || '我'}</span>
+                                            <span class="author-name">${user.name || 'Me'}</span>
                                             <span class="comment-time">💬 ${timeStamp}</span>
                                         </div>
                                     </div>
@@ -408,14 +408,14 @@ function loadComments() {
                                     </div>
                                 </div>
                                 <div class="comment-actions">
-                                    <button class="action-btn edit-btn" onclick="editComment(${comment.id})" title="编辑评论">
+                                    <button class="action-btn edit-btn" onclick="editComment(${comment.id})" title="Edit comment">
                                         <span class="btn-icon">✏️</span>
                                     </button>
-                                    <button class="action-btn delete-btn" onclick="deleteComment(${comment.id})" title="删除评论">
+                                    <button class="action-btn delete-btn" onclick="deleteComment(${comment.id})" title="Delete comment">
                                         <span class="btn-icon">🗑️</span>
                                     </button>
                                     ${comment.text.length > 100 ? `
-                                    <button class="action-btn expand-btn" onclick="toggleCommentExpansion(this)" title="展开/收起">
+                                    <button class="action-btn expand-btn" onclick="toggleCommentExpansion(this)" title="Expand/Collapse">
                                         <span class="btn-icon">💭</span>
                                     </button>
                                     ` : ''}
@@ -432,7 +432,7 @@ function loadComments() {
                                 <div class="comment-stats">
                                     <span class="stat-item">
                                         <span class="stat-icon">💬</span>
-                                        <span class="stat-text">${comment.text.length} 字</span>
+                                        <span class="stat-text">${comment.text.length} characters</span>
                                     </span>
                                 </div>
                                 <div class="comment-tags">
@@ -469,8 +469,8 @@ function loadDocuments() {
             documents.innerHTML = '';
             noDocument.classList.add('message');
             noDocument.innerHTML = `
-                <img src="images/smile.png" alt="笑脸图片">
-                <p class="message">目前还没有任何课件</p>
+                <img src="images/smile.png" alt="Smile Image">
+                <p class="message">No documents yet</p>
             `;
             documents.appendChild(noDocument);
         }
@@ -496,8 +496,8 @@ function loadDocuments() {
                     var noDocument = document.createElement('div');
                     noDocument.classList.add('message');
                     noDocument.innerHTML = `
-                    <img src="images/smile.png" alt="笑脸图片">
-                    <p class="message">目前还没有任何课件</p>
+                    <img src="images/smile.png" alt="Smile Image">
+                    <p class="message">No documents yet</p>
                 `;
                     documents.appendChild(noDocument);
                 }
@@ -507,7 +507,7 @@ function loadDocuments() {
                         documentItem.classList.add('document');
                         documentItem.classList.add('courseware');
                         documentItem.innerHTML = `
-                        <div class="document-image"><img src="images/document.gif" alt="课件图标"></div>
+                        <div class="document-image"><img src="images/document.gif" alt="Document Icon"></div>
                         <a href="${courseware.fileData}" target="_blank" download="${courseware.name}"><h2>${courseware.name}</h2></a>
                     `;
                         documents.appendChild(documentItem);
@@ -518,7 +518,7 @@ function loadDocuments() {
     }
 }
 
-//为“选择作业”添加点击事件
+//为"选择作业"添加点击事件
 function choose() {
     document.getElementById('file-upload').click();
 }
@@ -526,7 +526,7 @@ function choose() {
 //将提交的文件先暂时存储起来
 let allFiles = [];
 
-//为“文件上传”添加改变事件
+//为"文件上传"添加改变事件
 function fileUpload(event) {
     const files = event.target.files;
     const fileList = document.getElementById('file-list');
@@ -544,10 +544,10 @@ function fileUpload(event) {
     }
 }
 
-//为“确认提交”添加点击事件
+//为"确认提交"添加点击事件
 function submit(title, id) {
     storeFileInIndexedDB(allFiles, title);
-    alert('作业已成功提交！');
+    alert('Homework submitted successfully!');
     document.getElementById('file-list').innerHTML = '';
     document.getElementById('confirm-submit').style.display = 'none';
     allFiles = [];
@@ -588,8 +588,8 @@ function loadHomeworks() {
             homeworks.innerHTML = '';
             noHomework.classList.add('message');
             noHomework.innerHTML = `
-                    <img src="images/smile.png" alt="笑脸图片">
-                    <p class="message">目前还没有任何待提交作业</p>
+                    <img src="images/smile.png" alt="Smile Image">
+                    <p class="message">No pending homework</p>
                 `;
             homeworks.appendChild(noHomework);
         }
@@ -615,8 +615,8 @@ function loadHomeworks() {
                     var noHomework = document.createElement('div');
                     noHomework.classList.add('message');
                     noHomework.innerHTML = `
-                    <img src="images/smile.png" alt="笑脸图片">
-                    <p class="message">目前还没有任何待提交作业</p>
+                    <img src="images/smile.png" alt="Smile Image">
+                    <p class="message">No pending homework</p>
                 `;
                     homeworks.appendChild(noHomework);
                 }
@@ -627,14 +627,14 @@ function loadHomeworks() {
                             homeworkItem.classList.add('homework');
                             homeworkItem.classList.add('submit');
                             homeworkItem.innerHTML = `
-                        <div class="homework-image"><img src="images/homework.gif" alt="作业图标"></div>
+                        <div class="homework-image"><img src="images/homework.gif" alt="Homework Icon"></div>
                         <div class="homework-info">
                             <a id="submit-homework" href="#submit" onclick="choose()"><h2>${assignment.title}</h2></a>
                             <input type="file" id="file-upload" multiple onchange="fileUpload(event)">
                             <ul id="file-list"></ul>
-                            <button id="confirm-submit" style="display: none;" onclick="submit('${assignment.title}',${assignment.id})">确认提交</button>
-                            <p>作业要求：${assignment.text}</p>
-                            <p>截止日期：${assignment.deadline}</p>
+                            <button id="confirm-submit" style="display: none;" onclick="submit('${assignment.title}',${assignment.id})">Confirm Submission</button>
+                            <p>Homework Requirements: ${assignment.text}</p>
+                            <p>Deadline: ${assignment.deadline}</p>
                         </div>
                         `;
                             homeworks.appendChild(homeworkItem);
@@ -644,8 +644,8 @@ function loadHomeworks() {
                         var noHomework = document.createElement('div');
                         noHomework.classList.add('message');
                         noHomework.innerHTML = `
-                        <img src="images/smile.png" alt="笑脸图片">
-                        <p class="message">目前还没有任何待提交作业</p>
+                        <img src="images/smile.png" alt="Smile Image">
+                        <p class="message">No pending homework</p>
                     `;
                         homeworks.appendChild(noHomework);
                     }
@@ -670,8 +670,8 @@ function loadFinishedHomeworks() {
             var noHomework = document.createElement('div');
             noHomework.classList.add('message');
             noHomework.innerHTML = `
-                <img src="images/smile.png" alt="笑脸图片">
-                <p class="message">目前还没有任何已完成作业</p>
+                <img src="images/smile.png" alt="Smile Image">
+                <p class="message">No completed homework</p>
             `;
             finishedHomeworks.appendChild(noHomework);
         }
@@ -681,10 +681,10 @@ function loadFinishedHomeworks() {
                 homeworkItem.classList.add('homework');
                 homeworkItem.classList.add('finished');
                 homeworkItem.innerHTML = `
-                    <div class="homework-image"><img src="images/homework.gif" alt="作业图标"></div>
+                    <div class="homework-image"><img src="images/homework.gif" alt="Homework Icon"></div>
                     <div class="homework-info">
                         <h2>${homework.title}</h2>
-                        <p>作业文件：</p>
+                        <p>Homework Files:</p>
                         <ul>
                             ${homework.filesName.map(function (fileName, index) {
                     return `<li><a href="${homework.filesData[index]}" target="_blank" download="${fileName}">${fileName}</a></li>`;
@@ -760,7 +760,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function searchCourses() {
     const searchInput = document.getElementById('searchInput').value.trim();
     if (!searchInput) {
-        alert('请输入搜索关键词');
+        alert('Please enter a search keyword');
         document.getElementById('searchInput').focus();
         return;
     }
@@ -775,7 +775,7 @@ function editNote(noteId) {
     
     request.onsuccess = function(event) {
         const note = event.target.result;
-        const newText = prompt('编辑笔记内容：', note.text);
+        const newText = prompt('Edit note content:', note.text);
         
         if (newText !== null && newText.trim() !== '') {
             note.text = newText.trim();
@@ -783,33 +783,33 @@ function editNote(noteId) {
             
             const updateRequest = objectStore.put(note);
             updateRequest.onsuccess = function() {
-                alert('笔记编辑成功！');
+                alert('Note edited successfully!');
                 loadMyNotes(); // 重新加载笔记
             };
             updateRequest.onerror = function() {
-                alert('编辑失败，请重试！');
+                alert('Edit failed, please try again!');
             };
         }
     };
     
     request.onerror = function() {
-        alert('获取笔记失败！');
+        alert('Failed to get note!');
     };
 }
 
 function deleteNote(noteId) {
-    if (confirm('确定要删除这条笔记吗？删除后无法恢复！')) {
+    if (confirm('Are you sure you want to delete this note? It cannot be recovered!')) {
         const transaction = db.transaction(['notes'], 'readwrite');
         const objectStore = transaction.objectStore('notes');
         const request = objectStore.delete(noteId);
         
         request.onsuccess = function() {
-            alert('笔记删除成功！');
+            alert('Note deleted successfully!');
             loadMyNotes(); // 重新加载笔记
         };
         
         request.onerror = function() {
-            alert('删除失败，请重试！');
+            alert('Delete failed, please try again!');
         };
     }
 }
@@ -827,14 +827,14 @@ function toggleNoteExpansion(button) {
             noteText.innerHTML = preview;
             noteText.classList.remove('expanded');
             expandIcon.textContent = '📖';
-            button.title = '展开全文';
+            button.title = 'Expand Full';
         } else {
             // 展开
             const fullText = decodeURIComponent(noteText.dataset.fullText);
             noteText.innerHTML = fullText;
             noteText.classList.add('expanded');
             expandIcon.textContent = '📄';
-            button.title = '收起';
+            button.title = 'Collapse';
         }
     }
 }
@@ -874,9 +874,9 @@ function sortNotes(sortBy) {
             const timeB = b.querySelector('.note-time').textContent.replace('📅 ', '');
             
             // 处理"最近"这种特殊情况
-            if (timeA === '最近' && timeB === '最近') return 0;
-            if (timeA === '最近') return -1; // 最近的排在前面
-            if (timeB === '最近') return 1;
+            if (timeA === 'Recently' && timeB === 'Recently') return 0;
+            if (timeA === 'Recently') return -1; // 最近的排在前面
+            if (timeB === 'Recently') return 1;
             
             return new Date(timeB) - new Date(timeA); // 最新在前
         } else if (sortBy === 'length') {
@@ -912,7 +912,7 @@ function editComment(commentId) {
     
     request.onsuccess = function(event) {
         const comment = event.target.result;
-        const newText = prompt('编辑评论内容：', comment.text);
+        const newText = prompt('Edit comment content:', comment.text);
         
         if (newText !== null && newText.trim() !== '') {
             comment.text = newText.trim();
@@ -920,33 +920,33 @@ function editComment(commentId) {
             
             const updateRequest = objectStore.put(comment);
             updateRequest.onsuccess = function() {
-                alert('评论编辑成功！');
+                alert('Comment edited successfully!');
                 loadComments(); // 重新加载评论
             };
             updateRequest.onerror = function() {
-                alert('编辑失败，请重试！');
+                alert('Edit failed, please try again!');
             };
         }
     };
     
     request.onerror = function() {
-        alert('获取评论失败！');
+        alert('Failed to get comment!');
     };
 }
 
 function deleteComment(commentId) {
-    if (confirm('确定要删除这条评论吗？删除后无法恢复！')) {
+    if (confirm('Are you sure you want to delete this comment? It cannot be recovered!')) {
         const transaction = db.transaction(['comments'], 'readwrite');
         const objectStore = transaction.objectStore('comments');
         const request = objectStore.delete(commentId);
         
         request.onsuccess = function() {
-            alert('评论删除成功！');
+            alert('Comment deleted successfully!');
             loadComments(); // 重新加载评论
         };
         
         request.onerror = function() {
-            alert('删除失败，请重试！');
+            alert('Delete failed, please try again!');
         };
     }
 }
@@ -964,14 +964,14 @@ function toggleCommentExpansion(button) {
             commentText.innerHTML = preview;
             commentText.classList.remove('expanded');
             expandIcon.textContent = '💭';
-            button.title = '展开全文';
+            button.title = 'Expand Full';
         } else {
             // 展开
             const fullText = decodeURIComponent(commentText.dataset.fullText);
             commentText.innerHTML = fullText;
             commentText.classList.add('expanded');
             expandIcon.textContent = '📄';
-            button.title = '收起';
+            button.title = 'Collapse';
         }
     }
 }
@@ -1011,9 +1011,9 @@ function sortComments(sortBy) {
             const timeB = b.querySelector('.comment-time').textContent.replace('💬 ', '');
             
             // 处理"最近"这种特殊情况
-            if (timeA === '最近' && timeB === '最近') return 0;
-            if (timeA === '最近') return -1; // 最近的排在前面
-            if (timeB === '最近') return 1;
+            if (timeA === 'Recently' && timeB === 'Recently') return 0;
+            if (timeA === 'Recently') return -1; // 最近的排在前面
+            if (timeB === 'Recently') return 1;
             
             return new Date(timeB) - new Date(timeA); // 最新在前
         } else if (sortBy === 'length') {
@@ -1045,8 +1045,8 @@ const examsData = {
     all: [
         {
             id: 1,
-            title: "期末考试",
-            course: "高等数学",
+            title: "Final Exam",
+            course: "Advanced Mathematics",
             startTime: "2023-06-15T09:00:00",
             endTime: "2023-06-15T11:00:00",
             duration: 120,
@@ -1055,8 +1055,8 @@ const examsData = {
         },
         {
             id: 2,
-            title: "期中考试",
-            course: "大学英语",
+            title: "Midterm Exam",
+            course: "College English",
             startTime: "2023-05-10T14:00:00",
             endTime: "2023-05-10T16:00:00",
             duration: 120,
@@ -1065,8 +1065,8 @@ const examsData = {
         },
         {
             id: 3,
-            title: "单元测试",
-            course: "数据结构",
+            title: "Unit Test",
+            course: "Data Structure",
             startTime: "2023-06-01T10:00:00",
             endTime: "2023-06-01T11:30:00",
             duration: 90,
@@ -1077,8 +1077,8 @@ const examsData = {
     upcoming: [
         {
             id: 1,
-            title: "期末考试",
-            course: "高等数学",
+            title: "Final Exam",
+            course: "Advanced Mathematics",
             startTime: "2023-06-15T09:00:00",
             endTime: "2023-06-15T11:00:00",
             duration: 120,
@@ -1089,8 +1089,8 @@ const examsData = {
     ongoing: [
         {
             id: 3,
-            title: "单元测试",
-            course: "数据结构",
+            title: "Unit Test",
+            course: "Data Structure",
             startTime: "2023-06-01T10:00:00",
             endTime: "2023-06-01T11:30:00",
             duration: 90,
@@ -1101,8 +1101,8 @@ const examsData = {
     completed: [
         {
             id: 2,
-            title: "期中考试",
-            course: "大学英语",
+            title: "Midterm Exam",
+            course: "College English",
             startTime: "2023-05-10T14:00:00",
             endTime: "2023-05-10T16:00:00",
             duration: 120,
@@ -1120,8 +1120,8 @@ function renderExamList(exams) {
     if (exams.length === 0) {
         examListContainer.innerHTML = `
             <div class="no-exams">
-                <img src="images/smile.png" alt="笑脸图片">
-                <p>当前没有考试</p>
+                <img src="images/smile.png" alt="Smile Image">
+                <p>No exams yet</p>
             </div>
         `;
         return;
@@ -1129,9 +1129,9 @@ function renderExamList(exams) {
     
     exams.forEach(exam => {
         const statusText = {
-            upcoming: "即将开始",
-            ongoing: "进行中",
-            completed: "已完成"
+            upcoming: "Upcoming",
+            ongoing: "Ongoing",
+            completed: "Completed"
         }[exam.status];
         
         const statusClass = `status-${exam.status}`;
@@ -1144,12 +1144,12 @@ function renderExamList(exams) {
                 <span class="exam-status ${statusClass}">${statusText}</span>
             </div>
             <div class="exam-details">
-                <p><i class="far fa-calendar-alt"></i> 考试时间: ${formatDateTime(exam.startTime)} - ${formatTime(exam.endTime)}</p>
-                <p><i class="far fa-clock"></i> 持续时间: ${exam.duration}分钟</p>
-                <p><i class="fas fa-percentage"></i> 占总成绩: ${exam.weight}%</p>
+                <p><i class="far fa-calendar-alt"></i> Exam Time: ${formatDateTime(exam.startTime)} - ${formatTime(exam.endTime)}</p>
+                <p><i class="far fa-clock"></i> Duration: ${exam.duration} minutes</p>
+                <p><i class="fas fa-percentage"></i> Weight in Grade: ${exam.weight}%</p>
             </div>
             <div class="exam-actions">
-                <button class="btn-view" data-exam-id="${exam.id}">查看详情</button>
+                <button class="btn-view" data-exam-id="${exam.id}">View Details</button>
             </div>
         `;
         

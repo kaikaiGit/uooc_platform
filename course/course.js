@@ -96,16 +96,16 @@ function displayCourse(course) {
             </div>
             <div class="course-details">
                 <h2>${course.title}</h2>
-                <p>类别: ${course.category}</p>
+                <p>Category: ${course.category}</p>
                 <p>${course.description}</p>
                 <div class="course-actions" style="display: flex; justify-content: space-between;align-items: center;gap: 20px;">
                     <div>
-                        <button id="temp" onclick="registerCourse(${course.id})">注册课程</button>
+                        <button id="temp" onclick="registerCourse(${course.id})">Register Course</button>
                     </div>
                 
                     <div class="like-section">
                         <button onclick="likeCourse(${course.id})" id="likeButton"></button>
-                        <span id="likeCount">${course.likes || 0}</span>个点赞
+                        <span id="likeCount">${course.likes || 0}</span> Likes
                     </div>
                 </div>
             </div>
@@ -124,12 +124,12 @@ function displayCourse(course) {
     //评论区
     const comment = document.getElementById('comment');
     comment.innerHTML = `
-        <p>评论区: ${course.enableComments ? '开启' : '已关闭'}</p>
+        <p>Comments: ${course.enableComments ? 'Enabled' : 'Disabled'}</p>
         <div class="comments-section" style="display: ${course.enableComments ? 'block' : 'none'};">
-            <h3 class="section=-title">评论区</h3>
+            <h3 class="section=-title">Comments</h3>
             <ul id="commentsList" class="comments-list"></ul>
-            <textarea id="newComment" placeholder="添加评论" class="comment-input"></textarea>
-            <button onclick="addComment(${course.id})" >提交评论</button>
+            <textarea id="newComment" placeholder="Add a comment" class="comment-input"></textarea>
+            <button onclick="addComment(${course.id})" >Submit Comment</button>
         </div>
     `;
     
@@ -140,12 +140,12 @@ function displayCourse(course) {
         enable=false;
     }
     note.innerHTML = `
-        <p>笔记区: ${enable ? '开启' : '已关闭'}</p>
+        <p>Notes: ${enable ? 'Enabled' : 'Disabled'}</p>
         <div class="notes-section" style="display: ${enable ? 'block' : 'none'};">
-            <h3 class="section=-title">笔记区</h3>
+            <h3 class="section=-title">Notes</h3>
             <ul id="notesList" class="notes-list"></ul>
-            <textarea id="newNote" placeholder="添加笔记" class="note-input"></textarea>
-            <button onclick="addNote(${course.id})" >提交笔记</button>
+            <textarea id="newNote" placeholder="Add a note" class="note-input"></textarea>
+            <button onclick="addNote(${course.id})" >Submit Note</button>
         </div>
     `;      
     
@@ -238,7 +238,7 @@ function checkCourseRegistrationStatus(courseId) {
                 // 用户已注册该课程，更新按钮显示
                 const button = document.getElementById('temp');
                 if (button) {
-                    button.innerHTML = '开始学习';
+                    button.innerHTML = 'Start Learning';
                 }
                 return;
             }
@@ -323,7 +323,7 @@ function addComment(courseId) {
 
     const currentUser = localStorage.getItem('token'); // 获取当前用户
     if (!currentUser) {
-        alert('游客不能评论');
+        alert('Guests cannot comment');
         return;
     }
 
@@ -558,7 +558,7 @@ function renderCoursewares(coursewares, parentElement) {
         if (courseware.fileData) {
             const previewLink = document.createElement('a');
             previewLink.href = courseware.fileData;
-            previewLink.textContent = '下载查看';
+            previewLink.textContent = 'Download/View';
             previewLink.target = '_blank';
             previewLink.style.marginLeft = '10px';
             previewLink.download = courseware.name; // 设置下载属性
@@ -646,13 +646,13 @@ function showTabContent(className) {
 function registerCourse(courseId) {
     const currentUser = getCurrentUserId();
     if (!currentUser) {
-        alert('请先登录');
+        alert('Please log in first');
         return;
     }
 
     // 检查是否已注册，如果已注册则跳转到视频页面
     const button = document.getElementById('temp');
-    if (button && button.innerHTML === '开始学习') {
+    if (button && button.innerHTML === 'Start Learning') {
         window.location.href = `../CourseVideo/video-player.html?courseId=${courseId}`;
         return;
     }
@@ -673,11 +673,11 @@ function checkAndRegisterCourse(courseId) {
     const currentUser = getCurrentUserId(); // 假设有一个获取当前用户信息的函数
     // console.log(currentUser)
     if(!currentUser){
-        alert('请先登录，再注册课程');
+        alert('Please log in before registering for the course');
         return; // 直接返回，不执行后续逻辑       
     }
     if (currentUser === 'teacher') {
-        alert('老师不能注册课程');
+        alert('Teachers cannot register for courses');
         return; // 直接返回，不执行后续逻辑
     }
 
@@ -692,7 +692,7 @@ function checkAndRegisterCourse(courseId) {
             const record = cursor.value;
             if (record.courseId === courseId && record.studentId === currentUser) {
                 isRegistered = true;
-                alert('已注册该课程');
+                alert('Already registered for this course');
                 return;
             }
             cursor.continue();
@@ -708,10 +708,10 @@ function checkAndRegisterCourse(courseId) {
                 const registerRequest = objectStore.add(ref);
 
                 registerRequest.onsuccess = function() {
-                    alert('注册成功');
+                    alert('Registration successful');
                     const button = document.getElementById('temp');
                     if (button) {
-                        button.innerHTML = '开始学习';
+                        button.innerHTML = 'Start Learning';
                     }
                 };
 
@@ -772,7 +772,7 @@ function updateCourseRegisterCount(courseId) {
             const updateRequest = objectStore.put(course);
 
             updateRequest.onsuccess = function() {
-                console.log('课程注册人数更新成功');
+                console.log('Course registration count updated successfully');
             };
 
             updateRequest.onerror = function(event) {
@@ -789,7 +789,7 @@ function updateCourseRegisterCount(courseId) {
 function searchCourses() {
     const searchInput = document.getElementById('searchInput').value.trim();
     if (!searchInput) {
-        alert('请输入搜索关键词');
+        alert('Please enter a search keyword');
         document.getElementById('searchInput').focus();
         return;
     }

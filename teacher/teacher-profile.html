@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>优课联盟</title>
+    <title>Youke Union</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="shortcut icon" href="../header-footer/images/ico.png" type="image/x-icon">
     <link rel="stylesheet" href="../Homepage/css/header.css">
@@ -18,20 +18,20 @@
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="Youke Union"></a>
             </div>
             <nav>
                 <ul>
                     <!-- TODO 补充链接 -->
-                    <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
-                    <li><a href="../Homepage/courseList.html">课程</a></li>
-                    <li><a href="../Homepage/league.html">联盟院校</a></li>
-                    <li><a href="../Homepage/about.html">关于我们</a></li>
+                    <li><a href="../Homepage/WebsiteHomepage.html">Home</a></li>
+                    <li><a href="../Homepage/courseList.html">Courses</a></li>
+                    <li><a href="../Homepage/league.html">Alliance Universities</a></li>
+                    <li><a href="../Homepage/about.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="搜索课程...">
+            <input type="text" id="searchInput" placeholder="Search courses...">
             <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
         </div>
         <div class="info">
@@ -41,27 +41,27 @@
     <!-- 主体 -->
     <div class="student-profile-header">
         <div class="student-profile-head">
-            <img id="avatar" src="" alt="用户头像">
+            <img id="avatar" src="" alt="User Avatar">
             <div class="student-profile-info">
-                <h2 id="user-name">用户名</h2>
-                <p id="signature">签名：这是我的签名。</p>
+                <h2 id="user-name">Username</h2>
+                <p id="signature">Signature: This is my signature.</p>
             </div>
         </div>
     </div>
 
     <div class="student-profile-body" style="width: 60%;">
         <div class="sidebar">
-            <a class="sidebar-item" href="#courses">我的课程</a>
-            <a class="sidebar-item" href="#courseManager">发布课程</a>
-            <!-- <a class="sidebar-item" href="#exams">发布试卷</a> -->
-            <a class="sidebar-item" href="#student">管理学生</a>
+            <a class="sidebar-item" href="#courses">My Courses</a>
+            <a class="sidebar-item" href="#courseManager">Publish Course</a>
+            <!-- <a class="sidebar-item" href="#exams">Publish Exam</a> -->
+            <a class="sidebar-item" href="#student">Manage Students</a>
         </div>
         <div class="content">
 
             <!-- 我的课程 -->
             <div id="courses">
                 <div class="tabs">
-                    <a class="tabs-item" href="#courses/teach">负责课程</a>
+                    <a class="tabs-item" href="#courses/teach">Courses in Charge</a>
                 </div>
 
                 <div class="tabs-content">
@@ -72,7 +72,7 @@
             <!-- 发布课程 -->
             <div id="courseManager">
                 <div class="tabs">
-                    <a class="tabs-item" href="#courseManager/courseM">新的课程</a>
+                    <a class="tabs-item" href="#courseManager/courseM">New Course</a>
                 </div>
 
                 <div class="tabs-content">
@@ -80,71 +80,71 @@
                         <div class="file-part">
                             <form id="coursePublishForm">
 
-                                <h2>课程信息</h2>
+                                <h2>Course Information</h2>
                                 <div class="form-group">
-                                    <label for="courseTitle">课程标题:</label>
+                                    <label for="courseTitle">Course Title:</label>
                                     <input type="text" id="courseTitle" name="courseTitle" required>
-                                    <label for="courseDescription">课程描述:</label>
+                                    <label for="courseDescription">Course Description:</label>
                                     <textarea id="courseDescription" name="courseDescription" required></textarea>
-                                    <label for="courseCategory">课程类别:</label>
+                                    <label for="courseCategory">Course Category:</label>
                                     <select id="courseCategory" name="courseCategory" required>
-                                        <option value="理学·工学">理学·工学</option>
-                                        <option value="计算机">计算机</option>
-                                        <option value="教育·语言">教育·语言</option>
-                                        <!-- 其他课程类别 -->
-                                        <option value="文学·艺术">文学·艺术</option>
-                                        <option value="创业·职场">创业·职场</option>
-                                        <option value="哲史·文化">哲史·文化</option>
-                                        <option value="经济·管理">经济·管理</option>
-                                        <option value="医学">医学</option>
+                                        <option value="Science & Engineering">Science & Engineering</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Education & Language">Education & Language</option>
+                                        <!-- Other course categories -->
+                                        <option value="Literature & Art">Literature & Art</option>
+                                        <option value="Entrepreneurship & Workplace">Entrepreneurship & Workplace</option>
+                                        <option value="Philosophy, History & Culture">Philosophy, History & Culture</option>
+                                        <option value="Economics & Management">Economics & Management</option>
+                                        <option value="Medicine">Medicine</option>
                                     </select>
-                                    <label for="courseIntro">课程简介:</label>
+                                    <label for="courseIntro">Course Introduction:</label>
                                     <textarea id="courseIntro" name="courseIntro" required></textarea>
                                     
-                                    <label>候选轮播图:</label>
+                                    <label>Carousel Images:</label>
                                     <div id="carouselContainer" class="carousel-container"></div>
                                     <input type="file" id="carouselImageInput" accept="image/*" multiple>
-                                    <button type="button" onclick="addCarouselImages()">添加图片</button>
+                                    <button type="button" onclick="addCarouselImages()">Add Images</button>
                                     <div class="form-group-checkbox">
-                                        <label for="enableComments">打开课程评论区:</label>
+                                        <label for="enableComments">Enable Course Comments:</label>
                                         <input type="checkbox" id="enableComments" name="enableComments">
                                     </div>
                                     <div class="form-group-checkbox">
-                                        <label for="enableNotes">打开课程笔记区域:</label>
+                                        <label for="enableNotes">Enable Course Notes:</label>
                                         <input type="checkbox" id="enableNotes" name="enableNotes">
                                     </div>
                                 </div>
 
-                                <h2>添加课件</h2>
+                                <h2>Add Courseware</h2>
                                 <div class="form-group">
-                                    <label for="coursewareFile">上传课件:</label>
+                                    <label for="coursewareFile">Upload Courseware:</label>
                                     <input type="file" id="coursewareFile" multiple>
-                                    <button type="button" onclick="saveCourseware()">保存课件</button>
+                                    <button type="button" onclick="saveCourseware()">Save Courseware</button>
                                     <div id="courseware">
                                         <ul id="savedCoursewares"></ul>
                                     </div>
                                 </div>
 
-                                <h2>添加作业</h2>
+                                <h2>Add Assignment</h2>
                                 <div class="form-group">
-                                    <label for="assignmentTitle">作业名称:</label>
+                                    <label for="assignmentTitle">Assignment Title:</label>
                                     <input type="text" id="assignmentTitle" name="assignmentTitle">
-                                    <label for="newAssignment">作业要求:</label>
+                                    <label for="newAssignment">Assignment Requirements:</label>
                                     <textarea id="newAssignment" name="newAssignment"></textarea>
-                                    <label for="assignmentDeadline">截止日期:</label>
+                                    <label for="assignmentDeadline">Deadline:</label>
                                     <input type="datetime-local" id="assignmentDeadline" name="assignmentDeadline">
-                                    <button type="button" onclick="addAssignment()">布置作业</button>
+                                    <button type="button" onclick="addAssignment()">Assign Homework</button>
                                     <div id="assignmentsContainer"></div>
                                 </div>
 
                                 <div class="submit-button">
-                                    <button type="button" onclick="previewCourse()">预览课程</button>
-                                    <button type="button" onclick="publishCourse()">发布课程</button>
+                                    <button type="button" onclick="previewCourse()">Preview Course</button>
+                                    <button type="button" onclick="publishCourse()">Publish Course</button>
                                 </div>
                             </form>
                             <br>
                             <div id="forget">
-                                <h2>已发布的课程</h2>
+                                <h2>Published Courses</h2>
                                 <ul id="publishedCourses"></ul>
                             </div>
                         </div>
@@ -155,25 +155,25 @@
             <!-- 修改 exams 部分的代码 -->
             <div id="exams">
                 <div class="tabs">
-                    <a id="import-exam-file" class="tabs-item active" href="#exams/import-exam-file">上传文件导入</a>
-                    <a id="manual-input" class="tabs-item" href="#exams/manual-input">手动录入</a>
+                    <a id="import-exam-file" class="tabs-item active" href="#exams/import-exam-file">Import File</a>
+                    <a id="manual-input" class="tabs-item" href="#exams/manual-input">Manual Entry</a>
                 </div>
                 <div class="tabs-content">
                     <!-- 上传文件导入区域 -->
                     <div class="import-exam-file" style="display: block;">
                         <div class="upload-area">
-                            <img src="images/upload.png" alt="上传图片">
-                            <p class="upload-text">拖放文件到此处或点击上传</p>
-                            <p class="upload-hint">支持 Excel (.xlsx, .xls) 或 JSON 格式</p>
+                            <img src="images/upload.png" alt="Upload Image">
+                            <p class="upload-text">Drag and drop files here or click to upload</p>
+                            <p class="upload-hint">Supports Excel (.xlsx, .xls) or JSON format</p>
                             <input type="file" id="examFileInput" accept=".xlsx,.xls,.json" />
                             <div class="file-info" id="fileInfo"></div>
                         </div>
                         <div class="exam-preview" id="examPreview" style="display: none;">
-                            <h3>试卷预览</h3>
+                            <h3>Exam Preview</h3>
                             <div id="previewContent"></div>
                             <div class="publish-actions">
-                                <button class="btn-cancel" onclick="cancelUpload()">取消</button>
-                                <button class="btn-publish" onclick="publishExam()">发布试卷</button>
+                                <button class="btn-cancel" onclick="cancelUpload()">Cancel</button>
+                                <button class="btn-publish" onclick="publishExam()">Publish Exam</button>
                             </div>
                         </div>
                     </div>
@@ -181,25 +181,25 @@
                     <!-- 手动录入区域 -->
                     <div class="manual-input" style="display: none;">
                         <div class="manual-entry-form">
-                            <h3>手动录入试题</h3>
+                            <h3>Manual Entry of Questions</h3>
                             <form id="manualExamForm">
                                 <div class="form-group">
-                                    <label for="examTitle">试卷标题:</label>
+                                    <label for="examTitle">Exam Title:</label>
                                     <input type="text" id="examTitle" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="examDuration">考试时长(分钟):</label>
+                                    <label for="examDuration">Exam Duration (minutes):</label>
                                     <input type="number" id="examDuration" min="1" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="examTotalScore">总分:</label>
+                                    <label for="examTotalScore">Total Score:</label>
                                     <input type="number" id="examTotalScore" min="1" required>
                                 </div>
                                 <div class="question-list" id="questionList"></div>
-                                <button type="button" class="btn-add-question" onclick="addQuestion()">添加试题</button>
+                                <button type="button" class="btn-add-question" onclick="addQuestion()">Add Question</button>
                                 <div class="publish-actions">
-                                    <button type="button" class="btn-preview" onclick="previewManualExam()">预览</button>
-                                    <button type="button" class="btn-publish" onclick="publishManualExam()">发布试卷</button>
+                                    <button type="button" class="btn-preview" onclick="previewManualExam()">Preview</button>
+                                    <button type="button" class="btn-publish" onclick="publishManualExam()">Publish Exam</button>
                                 </div>
                             </form>
                         </div>
@@ -211,22 +211,22 @@
             <!-- 我的学生 -->
             <div id="student">
                 <div class="tabs">
-                    <a class="tabs-item" href="#student/account">学生账户</a>
+                    <a class="tabs-item" href="#student/account">Student Accounts</a>
                 </div>
                 <div class="tabs-content">
                     <div class="account">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>学号</th>
-                                    <th>姓名</th>
-                                    <th>性别</th>
-                                    <th>手机号码</th>
-                                    <th>操作</th>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Phone Number</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- 学生数据 -->
+                                <!-- Student data -->
                             </tbody>
                         </table>
                     </div>
@@ -239,19 +239,19 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="#home"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="#home"><img src="../header-footer/images/logo.png" alt="Youke Union"></a>
             </div>
             <div class="footer-text">
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="../Homepage/about.html">关于我们</a></li>
-                        <li><a href="../Homepage/contact.html">联系我们</a></li>
-                        <li><a href="../Homepage/privacy.html">隐私政策</a></li>
-                        <li><a href="../Homepage/terms.html">服务条款</a></li>
+                        <li><a href="../Homepage/about.html">About Us</a></li>
+                        <li><a href="../Homepage/contact.html">Contact Us</a></li>
+                        <li><a href="../Homepage/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../Homepage/terms.html">Terms of Service</a></li>
                     </ul>
                 </nav>
                 <div class="footer-info">
-                    <p>&copy; 2025 优课联盟. 保留所有权利.</p>
+                    <p>&copy; 2025 Youke Union. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -274,26 +274,26 @@
                 let accountUrl = '';
                 if (userid === 'admin') {
                     profileUrl = '../account/admin-profile.html';
-                    profileName = '个人中心';
+                    profileName = 'Profile Center';
                     accountUrl = '../account/admin-profile.html';
                 } else if (userid === 'teacher') {
                     profileUrl = '../teacher/teacher-profile.html';
-                    profileName = '个人中心';
+                    profileName = 'Profile Center';
                     accountUrl = '../account/teacher-setting.html';
                 } else {
                     profileUrl = '../student/student-profile.html';
-                    profileName = '我的学习';
+                    profileName = 'My Learning';
                     accountUrl = '../account/student-setting.html';
                 }
                 document.querySelector('.info').innerHTML = `
                     <div id="user-menu-trigger" style="cursor: pointer;">
-                        <img id="user-head" src="${user.avatar}" alt="用户头像">
+                        <img id="user-head" src="${user.avatar}" alt="User Avatar">
                     </div>
                     <div class="card" id="user-dropdown">
                         <ul>
                             <li><a href="${profileUrl}">${profileName}</a></li>
-                            <li><a href="${accountUrl}">账号设置</a></li>
-                            <li><a id="logout" href="#logout">退出登录</a></li>
+                            <li><a href="${accountUrl}">Account Settings</a></li>
+                            <li><a id="logout" href="#logout">Logout</a></li>
                         </ul>
                     </div>
                 `;
@@ -329,8 +329,8 @@
             }
             else {
                 document.querySelector('.info').innerHTML = `
-                    <a href="../account/login.html"><button class="login">登录</button></a>
-                    <a href="../account/register.html"><button class="register">注册</button></a>
+                    <a href="../account/login.html"><button class="login">Login</button></a>
+                    <a href="../account/register.html"><button class="register">Register</button></a>
                 `;
             }
         }
@@ -353,10 +353,10 @@
         document.getElementById('user-name').innerText = user.username;
         //如果签名为空，显示"还没有设置签名"
         if (user.signature === '') {
-            document.getElementById('signature').innerText = '还没有设置签名';
+            document.getElementById('signature').innerText = 'No signature set yet';
         }
         else {
-            document.getElementById('signature').innerText = '签名：' + user.signature;
+            document.getElementById('signature').innerText = 'Signature: ' + user.signature;
         }
     </script>
     <script>
@@ -378,10 +378,10 @@
                         <td>${student.phone}</td>
                         <td>
                             <a id="reset-password" class="reset-password" href="#" 
-                                data-id="${index}">重置密码</a>
+                                data-id="${index}">Reset Password</a>
                             <a id="disable" class="disable" href="#" data-id="${index}">
-                                ${student.status === false ? '启用' : '禁用'}</a>
-                            <a id="delete" class="delete" href="#" data-id="${index}">删除</a>
+                                ${student.status === false ? 'Enable' : 'Disable'}</a>
+                            <a id="delete" class="delete" href="#" data-id="${index}">Delete</a>
                         </td>
                     </tr>
                 `;
@@ -422,7 +422,7 @@
             student.password = simpleHash(userid, userid);//重置密码为学号
             localStorage.setItem(student.userid, JSON.stringify(student));
             render();
-            alert('密码重置成功！');
+            alert('Password reset successfully!');
         }
         //禁用/启用账号
         function changeStatus(e) {
@@ -432,17 +432,17 @@
             student.status = !student.status;
             localStorage.setItem(student.userid, JSON.stringify(student));
             render();
-            alert(`账号已${student.status ? '启用' : '禁用'}！`);
+            alert(`Account has been ${student.status ? 'enabled' : 'disabled'}!`);
         }
         //删除账号
         function deleteAccount(e) {
             let students = getStudents();
             const index = e.target.dataset.id;
             const student = students[index];
-            if (confirm('确定删除此账号？')) {
+            if (confirm('Are you sure you want to delete this account?')) {
                 localStorage.removeItem(student.userid);
                 render();
-                alert('账号已删除！');
+                alert('Account deleted!');
             }
         }
         function publishManualExam() {
@@ -452,7 +452,7 @@
     const examTotalScore = document.getElementById('examTotalScore').value;
     
     if (!examTitle || !examDuration || !examTotalScore) {
-        alert('请填写完整的试卷信息');
+        alert('Please complete the exam information');
         return;
     }
     
@@ -464,7 +464,7 @@
         const score = document.getElementById(`questionScore${id}`).value;
         
         if (!text || !score) {
-            alert(`试题 #${id} 的内容或分值未填写完整`);
+            alert(`Content or score of question #${id} is incomplete`);
             return;
         }
         
@@ -475,7 +475,7 @@
             q.querySelectorAll('.option-item input').forEach((input, i) => {
                 options.push({
                     id: i,
-                    text: input.value || `选项${String.fromCharCode(65 + i)}`
+                    text: input.value || `Option${String.fromCharCode(65 + i)}`
                 });
             });
             question.options = options;
@@ -485,7 +485,7 @@
     });
     
     if (questions.length === 0) {
-        alert('请至少添加一道试题');
+        alert('Please add at least one question');
         return;
     }
     
@@ -501,7 +501,7 @@
     
     // 在实际应用中，这里应该将试卷数据保存到数据库
     console.log('发布的试卷数据:', examData);
-    alert('试卷发布成功！');
+    alert('Exam published successfully!');
     
     // 重置表单
     document.getElementById('manualExamForm').reset();
@@ -513,7 +513,7 @@
 function publishExam() {
     const examFile = document.getElementById('examFileInput').files[0];
     if (!examFile) {
-        alert('请先上传试卷文件');
+        alert('Please upload the exam file first');
         return;
     }
     
@@ -548,7 +548,7 @@ function publishExam() {
     };
     
     console.log('发布的试卷数据:', examData);
-    alert('试卷发布成功！');
+    alert('Exam published successfully!');
     cancelUpload();
 }
 
@@ -566,34 +566,34 @@ function addQuestion() {
     
     const questionHtml = `
         <div class="question-item" data-id="${questionId}">
-            <h4>试题 #${questionId}</h4>
+            <h4>Question #${questionId}</h4>
             <div class="form-group">
-                <label for="questionType${questionId}">题型:</label>
+                <label for="questionType${questionId}">Question Type:</label>
                 <select id="questionType${questionId}" onchange="changeQuestionType(${questionId})">
-                    <option value="single_choice">单选题</option>
-                    <option value="multiple_choice">多选题</option>
-                    <option value="true_false">判断题</option>
-                    <option value="fill_blank">填空题</option>
-                    <option value="short_answer">简答题</option>
+                    <option value="single_choice">Single Choice</option>
+                    <option value="multiple_choice">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="fill_blank">Fill in the Blank</option>
+                    <option value="short_answer">Short Answer</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="questionText${questionId}">题目内容:</label>
+                <label for="questionText${questionId}">Question Content:</label>
                 <textarea id="questionText${questionId}" required></textarea>
             </div>
             <div class="form-group" id="optionsContainer${questionId}">
-                <label>选项:</label>
+                <label>Options:</label>
                 <div class="option-item">
-                    <input type="text" placeholder="选项A">
-                    <button type="button" onclick="removeOption(this)">删除</button>
+                    <input type="text" placeholder="Option${String.fromCharCode(65 + questionId - 1)}">
+                    <button type="button" onclick="removeOption(this)">Delete</button>
                 </div>
-                <button type="button" onclick="addOption(${questionId})">添加选项</button>
+                <button type="button" onclick="addOption(${questionId})">Add Option</button>
             </div>
             <div class="form-group">
-                <label for="questionScore${questionId}">分值:</label>
+                <label for="questionScore${questionId}">Score:</label>
                 <input type="number" id="questionScore${questionId}" min="1" value="10" required>
             </div>
-            <button type="button" class="btn-remove-question" onclick="removeQuestion(${questionId})">删除此题</button>
+            <button type="button" class="btn-remove-question" onclick="removeQuestion(${questionId})">Delete this question</button>
         </div>
     `;
     
@@ -620,8 +620,8 @@ function addOption(questionId) {
     
     const optionHtml = `
         <div class="option-item">
-            <input type="text" placeholder="选项${nextChar}">
-            <button type="button" onclick="removeOption(this)">删除</button>
+            <input type="text" placeholder="Option${nextChar}">
+            <button type="button" onclick="removeOption(this)">Delete</button>
         </div>
     `;
     
@@ -640,7 +640,7 @@ function removeQuestion(questionId) {
     const questions = document.querySelectorAll('.question-item');
     questions.forEach((q, i) => {
         q.setAttribute('data-id', i + 1);
-        q.querySelector('h4').textContent = `试题 #${i + 1}`;
+        q.querySelector('h4').textContent = `Question #${i + 1}`;
     });
 }
 
@@ -652,7 +652,7 @@ function previewManualExam() {
     const examTotalScore = document.getElementById('examTotalScore').value;
     
     if (!examTitle || !examDuration || !examTotalScore) {
-        alert('请填写完整的试卷信息');
+        alert('Please complete the exam information');
         return;
     }
     
@@ -664,7 +664,7 @@ function previewManualExam() {
         const score = document.getElementById(`questionScore${id}`).value;
         
         if (!text || !score) {
-            alert(`试题 #${id} 的内容或分值未填写完整`);
+            alert(`Content or score of question #${id} is incomplete`);
             return;
         }
         
@@ -675,7 +675,7 @@ function previewManualExam() {
             q.querySelectorAll('.option-item input').forEach((input, i) => {
                 options.push({
                     id: i,
-                    text: input.value || `选项${String.fromCharCode(65 + i)}`
+                    text: input.value || `Option${String.fromCharCode(65 + i)}`
                 });
             });
             question.options = options;
@@ -685,7 +685,7 @@ function previewManualExam() {
     });
     
     if (questions.length === 0) {
-        alert('请至少添加一道试题');
+        alert('Please add at least one question');
         return;
     }
     
@@ -693,14 +693,14 @@ function previewManualExam() {
     const previewContent = document.getElementById('previewContent');
     previewContent.innerHTML = `
         <h4>${examTitle}</h4>
-        <p><strong>总分:</strong> ${examTotalScore}分</p>
-        <p><strong>时长:</strong> ${examDuration}分钟</p>
+        <p><strong>Total Score:</strong> ${examTotalScore}</p>
+        <p><strong>Duration:</strong> ${examDuration} minutes</p>
         <div class="questions-preview">
-            <h5>试题列表:</h5>
+            <h5>Question List:</h5>
             <ol>
                 ${questions.map(q => `
                     <li>
-                        <p><strong>${q.text}</strong> (${q.score}分)</p>
+                        <p><strong>${q.text}</strong> (${q.score})</p>
                         ${q.options ? `<ul>${q.options.map(o => `<li>${o.text}</li>`).join('')}</ul>` : ''}
                     </li>
                 `).join('')}

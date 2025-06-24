@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学生注册 - 教学管理系统</title>
+    <title>Student Registration - Teaching Management System</title>
     <link rel="stylesheet" href="account-login.css">
 </head>
 <body>
     <div class="container">
-        <h2>创建账号</h2>
+        <h2>Create Account</h2>
         <form id="register-form">
             <div class="input-group">
-                <label for="userid">学号</label>
-                <input type="text" id="userid" placeholder="请输入您的学号" required>
+                <label for="userid">Student ID</label>
+                <input type="text" id="userid" placeholder="Please enter your student ID" required>
                 <span id="us-error-message" class="error-message"></span>
             </div>
             
             <div class="input-group">
-                <label for="phone">手机号</label>
-                <input type="tel" id="phone" placeholder="请输入11位手机号码" required>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Please enter your 11-digit phone number" required>
                 <span id="ph-error-message" class="error-message"></span>
             </div>
             
             <div class="input-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" placeholder="6-16位数字和字母组合" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="6-16 characters, numbers and letters" required>
                 <span id="pa-error-message" class="error-message"></span>
             </div>
             
             <div class="input-group">
-                <label for="confirm-password">确认密码</label>
-                <input type="password" id="confirm-password" placeholder="请再次输入密码" required>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Please re-enter your password" required>
                 <span id="cp-error-message" class="error-message"></span>
             </div>
             
             <button id="btn" type="button" class="button">
-                <span class="button-text">立即注册</span>
+                <span class="button-text">Register Now</span>
             </button>
             
             <div id="success-message" class="success-message"></div>
@@ -43,7 +43,7 @@
         
         <div class="auth-links">
             <p>
-                已有账号？<a href="login.html">立即登录</a>
+                Already have an account? <a href="login.html">Login Now</a>
             </p>
         </div>
     </div>
@@ -55,7 +55,7 @@
         window.onload = function() {
             const teacher = JSON.parse(localStorage.getItem('teacher'));
             if(!teacher || !teacher.allowRegister) {
-                alert('注册功能已关闭，请联系老师');
+                alert('Registration is closed, please contact your teacher');
                 window.location.href = 'login.html';
             }
         }
@@ -97,14 +97,14 @@
             // 显示加载状态
             button.classList.add('loading');
             button.disabled = true;
-            buttonText.textContent = '注册中...';
+            buttonText.textContent = 'Registering...';
 
             // 模拟网络延迟
             setTimeout(() => {
                 // 检验用户id是否已存在
                 const item = JSON.parse(localStorage.getItem(userid));
                 if (item) {
-                    document.getElementById('us-error-message').textContent = '该学号已被注册';
+                    document.getElementById('us-error-message').textContent = 'This student ID has already been registered';
                     resetButtonState();
                     return;
                 }
@@ -112,7 +112,7 @@
 
                 // 验证密码和确认密码是否一致
                 if (password !== confirmPassword) {
-                    document.getElementById('cp-error-message').textContent = '两次密码输入不一致，请重新输入';
+                    document.getElementById('cp-error-message').textContent = 'The two passwords do not match, please re-enter';
                     resetButtonState();
                     return;
                 }
@@ -141,7 +141,7 @@
                 document.getElementById('cp-error-message').textContent = '';
 
                 // 显示注册成功信息
-                document.getElementById('success-message').textContent = '注册成功！正在跳转到登录页面...';
+                document.getElementById('success-message').textContent = 'Registration successful! Redirecting to login page...';
 
                 // 2s后跳转到登录页面
                 setTimeout(() => {
@@ -156,7 +156,7 @@
             const buttonText = button.querySelector('.button-text');
             button.classList.remove('loading');
             button.disabled = false;
-            buttonText.textContent = '立即注册';
+            buttonText.textContent = 'Register Now';
         }
 
         // 添加输入框动画效果
@@ -179,7 +179,7 @@
             const errorElement = document.getElementById('cp-error-message');
             
             if (confirmPassword && password !== confirmPassword) {
-                errorElement.textContent = '密码不匹配';
+                errorElement.textContent = 'Passwords do not match';
             } else {
                 errorElement.textContent = '';
             }

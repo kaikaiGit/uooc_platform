@@ -4,19 +4,19 @@ const commentsData = [
         id: 1,
         courseId: 1, // Python课程
         userid: "student",
-        text: "这门Python课程讲解得非常清晰，特别适合零基础学习者！"
+        text: "This Python course is explained very clearly, especially suitable for beginners!"
     },
     {
         id: 2,
         courseId: 1,
         userid: "student",
-        text: "希望能多讲一些实战项目案例"
+        text: "I hope there will be more practical project cases."
     },
     {
         id: 3,
         courseId: 2, // Web前端课程
         userid: "student",
-        text: "Vue.js部分讲得深入浅出，收获很大"
+        text: "The Vue.js section is explained in a simple and easy-to-understand way, I learned a lot."
     },
     
     // 新增学生评论（userid固定为"student"）
@@ -24,37 +24,37 @@ const commentsData = [
         id: 4,
         courseId: 1,
         userid: "student",
-        text: "老师讲的循环部分让我茅塞顿开！"
+        text: "The part about loops taught by the teacher was an eye-opener for me!"
     },
     {
         id: 5,
         courseId: 1,
         userid: "student",
-        text: "课后练习有点难度，但很有挑战性"
+        text: "The after-class exercises are a bit difficult, but very challenging."
     },
     {
         id: 6,
         courseId: 2,
         userid: "student",
-        text: "希望增加更多Vue3的实战案例"
+        text: "I hope to see more practical cases of Vue3."
     },
     {
         id: 7,
         courseId: 3, // 新增的数据库课程
         userid: "student",
-        text: "SQL语法讲得很系统，适合打基础"
+        text: "The SQL syntax is explained systematically, suitable for building a solid foundation."
     },
     {
         id: 8,
         courseId: 3,
         userid: "student",
-        text: "数据库设计部分可以再多些示例"
+        text: "There could be more examples in the database design section."
     },
     {
         id: 9,
         courseId: 4, // 新增的机器学习课程
         userid: "student",
-        text: "数学公式推导如果能更详细就好了"
+        text: "It would be better if the mathematical formula derivations were more detailed."
     }
 ];
 

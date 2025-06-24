@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI课程学习助手</title>
+    <title>AI Course Learning Assistant</title>
     <link rel="stylesheet" href="ai-chat.css">
     <!-- <link rel="stylesheet" href="../header-footer/common.css"> -->
     <link rel="icon" href="../header-footer/ico.png">
@@ -19,25 +19,25 @@
         <header class="chat-header">
             <div class="header-content">
                 <img src="../header-footer/images/logo.png" alt="Logo" class="logo">
-                <h1>AI课程学习助手</h1>
+                <h1>AI Course Learning Assistant</h1>
                 <div class="header-controls">
                     <button class="btn-secondary" id="settingsBtn">
                         <svg viewBox="0 0 24 24" width="18" height="18">
                             <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
                         </svg>
-                        设置
+                        Settings
                     </button>
                     <button class="btn-secondary" id="clearHistoryBtn">
                         <svg viewBox="0 0 24 24" width="18" height="18">
                             <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
                         </svg>
-                        清空记录
+                        Clear History
                     </button>
                     <button class="btn-secondary" id="exportHistoryBtn">
                         <svg viewBox="0 0 24 24" width="18" height="18">
                             <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                         </svg>
-                        导出对话
+                        Export Conversation
                     </button>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             <!-- 侧边栏 -->
             <aside class="chat-sidebar">
                 <div class="sidebar-header">
-                    <h3>对话历史</h3>
+                    <h3>Conversation History</h3>
                     <button class="btn-icon" id="newChatBtn">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
@@ -56,7 +56,7 @@
                     </button>
                 </div>
                 <div class="chat-history-list" id="chatHistoryList">
-                    <!-- 历史对话列表将在这里动态生成 -->
+                    <!-- History list will be generated here -->
                 </div>
             </aside>
 
@@ -65,20 +65,20 @@
                 <!-- 欢迎消息 -->
                 <div class="welcome-message" id="welcomeMessage">
                     <div class="welcome-content">
-                        <h2>👋 欢迎使用AI课程学习助手</h2>
-                        <p>我是您的专业学习伙伴，致力于帮助您提高学习效率，解答学科问题，提供学习建议和资源。</p>
+                        <h2>👋 Welcome to AI Course Learning Assistant</h2>
+                        <p>I am your professional learning partner, dedicated to helping you improve learning efficiency, answer subject questions, and provide study advice and resources.</p>
                         <div class="quick-actions">
-                            <button class="quick-btn" data-prompt="介绍一下你自己">自我介绍</button>
-                            <button class="quick-btn" data-prompt="如何制定有效的学习计划？">学习计划</button>
-                            <button class="quick-btn" data-prompt="推荐一些高效的学习方法">学习方法</button>
-                            <button class="quick-btn" data-prompt="如何提高记忆力和理解能力？">提升技巧</button>
+                            <button class="quick-btn" data-prompt="Introduce yourself">Self Introduction</button>
+                            <button class="quick-btn" data-prompt="How to make an effective study plan?">Study Plan</button>
+                            <button class="quick-btn" data-prompt="Recommend some efficient study methods">Study Methods</button>
+                            <button class="quick-btn" data-prompt="How to improve memory and comprehension?">Improvement Tips</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 消息列表 -->
                 <div class="messages-container" id="messagesContainer">
-                    <!-- 对话消息将在这里动态生成 -->
+                    <!-- Messages will be generated here -->
                 </div>
 
                 <!-- 输入区域 -->
@@ -87,7 +87,7 @@
                         <div class="input-wrapper">
                             <textarea 
                                 id="messageInput" 
-                                placeholder="输入您的问题..." 
+                                placeholder="Enter your question..." 
                                 rows="1"
                                 maxlength="2000"
                             ></textarea>
@@ -101,8 +101,8 @@
                         </div>
                         <div class="input-footer">
                             <span class="char-count" id="charCount">0/2000</span>
-                            <span class="save-status" id="saveStatus">✓ 自动保存</span>
-                            <span class="input-hint">按 Ctrl+Enter 快速发送</span>
+                            <span class="save-status" id="saveStatus">✓ Auto Save</span>
+                            <span class="input-hint">Press Ctrl+Enter to send quickly</span>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-content">
                 <div class="settings-header">
-                    <h3>对话设置</h3>
+                    <h3>Conversation Settings</h3>
                     <button class="btn-icon" id="closeSettingsBtn">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
@@ -122,22 +122,22 @@
                 </div>
                 <div class="settings-body">
                     <div class="setting-group">
-                        <label>API密钥</label>
-                        <input type="password" id="apiKeyInput" placeholder="输入您的API密钥">
+                        <label>API Key</label>
+                        <input type="password" id="apiKeyInput" placeholder="Enter your API key">
                     </div>
                     <div class="setting-group">
-                        <label>随机性 (top_k)</label>
+                        <label>Randomness (top_k)</label>
                         <input type="range" id="topKSlider" min="1" max="10" value="6">
                         <span id="topKValue">6</span>
                     </div>
                     <div class="setting-group">
-                        <label>系统提示词</label>
-                        <textarea id="systemPromptInput" rows="3" placeholder="设置AI的角色和行为...">你是一位专业的课程学习助手，致力于帮助学生提高学习效率和理解能力。你能够解答各种学科问题，提供学习方法建议，协助制定学习计划，并鼓励学生主动思考和探索。请以耐心、友善、专业的态度回答问题，并适时提供相关的学习资源和建议。</textarea>
+                        <label>System Prompt</label>
+                        <textarea id="systemPromptInput" rows="3" placeholder="Set the AI's role and behavior...">You are a professional course learning assistant dedicated to helping students improve learning efficiency and comprehension. You can answer various subject questions, provide study method suggestions, assist in making study plans, and encourage students to think and explore actively. Please answer questions with patience, friendliness, and professionalism, and provide relevant learning resources and advice when appropriate.</textarea>
                     </div>
                     <div class="setting-group">
                         <label class="checkbox-label">
                             <input type="checkbox" id="autoSaveToggle" checked>
-                            自动保存对话记录
+                            Auto save conversation history
                         </label>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
         <div class="loading-overlay" id="loadingOverlay">
             <div class="loading-content">
                 <div class="loading-spinner"></div>
-                <p>AI正在思考中...</p>
+                <p>AI is thinking...</p>
             </div>
         </div>
 

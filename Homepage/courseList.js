@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSortField = 'registerCount';
             if (search) {
                 searchCourses(search, currentSortField, currentSortOrder);
-            } else if (category && category !== '全部') {
+            } else if (category && category !== 'All') {
                 loadCoursesByCategory(category, currentSortField, currentSortOrder);
             } else {
                 loadAllCourses(currentSortField, currentSortOrder);
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSortField = event.target.getAttribute('data-sort');
             if (search) {
                 searchCourses(search, currentSortField, currentSortOrder);
-            } else if (category && category !== '全部') {
+            } else if (category && category !== 'All') {
                 loadCoursesByCategory(category, currentSortField, currentSortOrder);
             } else {
                 loadAllCourses(currentSortField, currentSortOrder);
@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
         category=document.querySelector('.category-option.active').getAttribute('data-category');
         search=document.getElementById('searchInput').value;
         currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
-        toggleSortOrderButton.textContent = currentSortOrder === 'asc' ? '升序' : '降序';
+        toggleSortOrderButton.textContent = currentSortOrder === 'asc' ? 'Ascending' : 'Descending';
         if (search) {
             searchCourses(search, currentSortField, currentSortOrder);
-        } else if (category && category !== '全部') {
+        } else if (category && category !== 'All') {
             loadCoursesByCategory(category, currentSortField, currentSortOrder);
         } else {
             loadAllCourses(currentSortField, currentSortOrder);
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchButton.addEventListener('click', function() {
         const searchInput = searchInputElement.value.trim();
         if (!searchInput) {
-            alert('请输入搜索关键词');
+            alert('Please enter a search keyword');
             searchInputElement.focus();
             return;
         }
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter') {
             const searchInput = searchInputElement.value.trim();
             if (!searchInput) {
-                alert('请输入搜索关键词');
+                alert('Please enter a search keyword');
                 searchInputElement.focus();
                 return;
             }
@@ -229,8 +229,8 @@ function displaySearchResults(courses, searchKeyword) {
     }
     
     searchTitle.innerHTML = `
-        <h2><i class="fas fa-search"></i> 搜索结果: "${searchKeyword}"</h2>
-        <p class="search-info">共找到 ${courses.length} 门相关课程</p>
+        <h2><i class="fas fa-search"></i> Search Results: "${searchKeyword}"</h2>
+        <p class="search-info">${courses.length} related courses found</p>
     `;
     
     displayCourses(courses);
@@ -241,7 +241,7 @@ function displayCourses(courses) {
     const tem=document.querySelector('.courses-container');
     tem.classList.add('content');
     if(!courseList) {
-        console.log('找不到课程列表');
+        console.log('Course list not found');
         return;
     }
     courseList.innerHTML = ''; // 清空课程列表
@@ -256,8 +256,8 @@ function displayCourses(courses) {
         var noCourse = document.createElement('div');
         noCourse.classList.add('message', 'empty-state');
         noCourse.innerHTML = `
-            <img src="../student/images/smile.png" alt="笑脸图片">
-            <p class="message">目前还没有任何课程</p>
+            <img src="../student/images/smile.png" alt="Smile Image">
+            <p class="message">No courses available yet</p>
         `;
         courseList.appendChild(noCourse);
         courseList.classList.add('tabs-content');
@@ -285,17 +285,17 @@ function displayCourses(courses) {
             courseItem.innerHTML = `
                 <div class="course-image">
                     <img src="${course.carouselImages && course.carouselImages[0] ? course.carouselImages[0] : '../Homepage/images/default-course.jpg'}" 
-                         alt="课程封面" 
+                         alt="Course Cover" 
                          onerror="this.src='../Homepage/images/default-course.jpg'">
-                    <div class="course-category-badge">${course.category || '未分类'}</div>
+                    <div class="course-category-badge">${course.category || 'Uncategorized'}</div>
                 </div>
                 <div class="course-info">
                     <h2>${course.title}</h2>
-                    <p class="course-description">${course.description || '暂无课程描述'}</p>
+                    <p class="course-description">${course.description || 'No course description available'}</p>
                     <div class="course-meta">
                         <div class="meta-item">
                             <i class="fas fa-users"></i>
-                            <span>${registerText}人学习</span>
+                            <span>${registerText} learners</span>
                         </div>
                         <div class="meta-item">
                             <i class="fas fa-heart"></i>
@@ -309,7 +309,7 @@ function displayCourses(courses) {
                     <div class="course-actions">
                         <button class="btn-preview" onclick="previewCourse(${course.id})">
                             <i class="fas fa-eye"></i>
-                            查看详情
+                            View Details
                         </button>
                     </div>
                 </div>
@@ -383,7 +383,7 @@ function sortCourses(courses, field, order) {
     });
 }
 
-//为“查看详情”添加点击事件
+//为"查看详情"添加点击事件
 function previewCourse(id) {
     window.open(`../course/course.html?courseId=${id}`, '_blank');
 }
@@ -397,7 +397,7 @@ function searchCourses(searchInput, sortField, sortOrder) {
         let courses = event.target.result.filter(course => {
             const titleMatch = course.title.toLowerCase().includes(searchInput);
             const category = document.querySelector('.category-option.active').getAttribute('data-category');
-            const categoryMatch = category === '全部' || course.category === category;
+            const categoryMatch = category === 'All' || course.category === category;
             return titleMatch && categoryMatch;
         });
         courses = sortCourses(courses, sortField, sortOrder);

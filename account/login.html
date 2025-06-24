@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学生登录 - 教学管理系统</title>
+    <title>Student Login - Teaching Management System</title>
     <link rel="stylesheet" href="account-login.css">
 </head>
 <body>
     <div class="container">
-        <h2>欢迎登录</h2>
+        <h2>Welcome to Login</h2>
         <form id="login-form">
             <div class="input-group">
-                <label for="userid">学号</label>
-                <input type="text" id="userid" placeholder="请输入您的学号" required>
+                <label for="userid">Student ID</label>
+                <input type="text" id="userid" placeholder="Please enter your student ID" required>
                 <span id="us-error-message" class="error-message"></span>
             </div>
             
             <div class="input-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" placeholder="请输入您的密码" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Please enter your password" required>
                 <span id="pa-error-message" class="error-message"></span>
             </div>
 
             <div class="checkbox-group">
                 <div class="checkbox-item">
                     <input type="checkbox" id="remember-me">
-                    <label for="remember-me">记住账号</label>
+                    <label for="remember-me">Remember Account</label>
                 </div>
                 <div class="checkbox-item">
                     <input type="checkbox" id="agree-policy" required>
-                    <label for="agree-policy">我已同意 <a href="#" target="_blank">《隐私政策》</a></label>
+                    <label for="agree-policy">I agree to the <a href="#" target="_blank">Privacy Policy</a></label>
                 </div>
             </div>
 
             <button id="btn" type="submit" class="button">
-                <span class="button-text">登录</span>
+                <span class="button-text">Login</span>
             </button>
             
             <div id="success-message" class="success-message"></div>
@@ -42,8 +42,8 @@
         
         <div class="auth-links">
             <p>
-                没有账号？<a href="register.html">立即注册</a><br>
-                <a href="forgot-password.html">忘记密码？</a>
+                Don't have an account? <a href="register.html">Register Now</a><br>
+                <a href="forgot-password.html">Forgot Password?</a>
             </p>
         </div>
     </div>
@@ -88,7 +88,7 @@
 
             // 检查是否同意隐私政策
             if (!agreePolicy) {
-                alert('请先同意隐私政策');
+                alert('Please agree to the Privacy Policy first');
                 return;
             }
 
@@ -100,14 +100,14 @@
             // 显示加载状态
             button.classList.add('loading');
             button.disabled = true;
-            buttonText.textContent = '登录中...';
+            buttonText.textContent = 'Logging in...';
 
             // 模拟网络延迟
             setTimeout(() => {
                 // 检验用户id是否存在
                 const item = JSON.parse(localStorage.getItem(userid));
                 if (!item) {
-                    document.getElementById('us-error-message').textContent = '用户学号不存在';
+                    document.getElementById('us-error-message').textContent = 'Student ID does not exist';
                     resetButtonState();
                     return;
                 }
@@ -115,13 +115,13 @@
 
                 // 根据localStorage判断密码是否正确
                 if(!isCorrect(password, userid, item.password)){
-                    document.getElementById('pa-error-message').textContent = `密码错误，错误${maxErrors}次后将冻结账户${freezeTime/1000}秒`;
+                    document.getElementById('pa-error-message').textContent = `Incorrect password. After ${maxErrors} errors, the account will be frozen for ${freezeTime/1000} seconds`;
                     document.getElementById('password').value = '';
                     errorCount++;
                     
                     // 错误次数达到5次后冻结账户
                     if(errorCount >= maxErrors){
-                        alert('账户已冻结，请稍后再试');
+                        alert('Account has been frozen, please try again later');
                         button.disabled = true;
                         document.getElementById('login-form').style.pointerEvents = 'none';
                         setTimeout(() => {
@@ -141,13 +141,13 @@
 
                 // 检验账号状态
                 if(!item.status){
-                    alert('账号已被禁用，请联系老师');
+                    alert('Account has been disabled, please contact your teacher');
                     resetButtonState();
                     return;
                 }
 
                 // 登录成功
-                document.getElementById('success-message').textContent = '登录成功！正在跳转...';
+                document.getElementById('success-message').textContent = 'Login successful! Redirecting...';
                 
                 // 重置错误次数和冻结时间
                 errorCount = 0;
@@ -184,14 +184,14 @@
             const buttonText = button.querySelector('.button-text');
             button.classList.remove('loading');
             button.disabled = false;
-            buttonText.textContent = '登录';
+            buttonText.textContent = 'Login';
         }
 
         // 重写checkPassword函数，不检验密码格式
         function checkPassword() {
             const password = document.getElementById('password').value;
             if (!password) {
-                document.getElementById('pa-error-message').textContent = '请输入密码';
+                document.getElementById('pa-error-message').textContent = 'Please enter your password';
                 return false;
             }
             document.getElementById('pa-error-message').textContent = '';

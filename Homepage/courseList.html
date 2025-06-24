@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线课程教学平台</title>
+    <title>Online Course Teaching Platform</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -22,20 +22,20 @@
     <header class="navbar">
         <div class="nav">
             <div class="logo">
-                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="../Homepage/WebsiteHomepage.html"><img src="../header-footer/images/logo.png" alt="Youke Union"></a>
             </div>
             <nav>
                 <ul>
                     <!-- TODO 补充链接 -->
-                    <li><a href="../Homepage/WebsiteHomepage.html">首页</a></li>
-                    <li><a href="./courseList.html">课程</a></li>
-                    <li><a href="./league.html">联盟院校</a></li>
-                    <li><a href="./about-us.html">关于我们</a></li>
+                    <li><a href="../Homepage/WebsiteHomepage.html">Home</a></li>
+                    <li><a href="./courseList.html">Courses</a></li>
+                    <li><a href="./league.html">Alliance Colleges</a></li>
+                    <li><a href="./about-us.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="搜索课程...">
+            <input type="text" id="searchInput" placeholder="Search courses...">
             <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
         </div>
         <div class="info">
@@ -47,30 +47,30 @@
         <div class="category-container">
 
             <div class="category">
-                <span class="category-title">课程分类：</span>
-                <button class="category-option first-button active" data-category="全部">全部</button>
-                <button class="category-option" data-category="理学·工学">理学·工学</button>
-                <button class="category-option" data-category="计算机">计算机</button>
-                <button class="category-option" data-category="教育·语言">教育·语言</button>
-                <button class="category-option" data-category="文学·艺术">文学·艺术</button>
-                <button class="category-option" data-category="创业·职场">创业·职场</button>
-                <button class="category-option" data-category="哲史·文化">哲史·文化</button>
-                <button class="category-option" data-category="经济·管理">经济·管理</button>
-                <button class="category-option" data-category="医学">医学</button>
-                <!-- 其余类别继续添加 -->
+                <span class="category-title">Course Categories:</span>
+                <button class="category-option first-button active" data-category="All">All</button>
+                <button class="category-option" data-category="Science & Engineering">Science & Engineering</button>
+                <button class="category-option" data-category="Computer Science">Computer Science</button>
+                <button class="category-option" data-category="Education & Language">Education & Language</button>
+                <button class="category-option" data-category="Literature & Art">Literature & Art</button>
+                <button class="category-option" data-category="Entrepreneurship & Workplace">Entrepreneurship & Workplace</button>
+                <button class="category-option" data-category="Philosophy, History & Culture">Philosophy, History & Culture</button>
+                <button class="category-option" data-category="Economics & Management">Economics & Management</button>
+                <button class="category-option" data-category="Medicine">Medicine</button>
+                <!-- Add more categories as needed -->
             </div>
 
             <div class="category">
-                <span class="category-title">排序标准：</span>
-                <button class="sort-option" data-sort="registerCount">注册人数</button>
-                <button class="sort-option" data-sort="created_at">发布时间</button>
-                <button class="sort-option" data-sort="updated_at">更新时间</button>
-                <button class="sort-option" data-sort="likes">点赞人数</button>
+                <span class="category-title">Sort By:</span>
+                <button class="sort-option" data-sort="registerCount">Number of Registrations</button>
+                <button class="sort-option" data-sort="created_at">Release Date</button>
+                <button class="sort-option" data-sort="updated_at">Update Date</button>
+                <button class="sort-option" data-sort="likes">Number of Likes</button>
             </div>
 
             <div class="category">
-                <span class="category-title">排序方向：</span>
-                <button id="toggleSortOrder" data-order="desc">降序</button>
+                <span class="category-title">Sort Order:</span>
+                <button id="toggleSortOrder" data-order="desc">Descending</button>
             </div>
 
         </div>
@@ -117,19 +117,19 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="#home"><img src="../header-footer/images/logo.png" alt="优课联盟"></a>
+                <a href="#home"><img src="../header-footer/images/logo.png" alt="Youke Union"></a>
             </div>
             <div class="footer-text">
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="about.html">关于我们</a></li>
-                        <li><a href="contact.html">联系我们</a></li>
-                        <li><a href="privacy.html">隐私政策</a></li>
-                        <li><a href="terms.html">服务条款</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
                     </ul>
                 </nav>
                 <div class="footer-info">
-                    <p>&copy; 2025 优课联盟. 保留所有权利.</p>
+                    <p>&copy; 2025 Youke Union. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -153,13 +153,13 @@
                 const user = JSON.parse(localStorage.getItem(userid));
                 document.querySelector('.info').innerHTML = `
                     <a href="${userid === 'teacher' ? '../teacher/teacher-profile.html' : '../student/student-profile.html'}">
-                        <img id="user-head" src="${user.avatar}" alt="用户头像"></a>
+                        <img id="user-head" src="${user.avatar}" alt="User Avatar"></a>
                     <div class="card">
                         <ul>
                             <li><a href="${userid === 'teacher' ? '../teacher/teacher-profile.html' : '../student/student-profile.html'}">
-                                ${userid === 'teacher' ? '个人中心' : '我的学习'}</a></li>
-                            <li><a href="${userid === 'teacher' ? '../account/teacher-setting.html' : '../account/student-setting.html'}">账号设置</a></li>
-                            <li><a id="logout" href="#logout">退出登录</a></li>
+                                ${userid === 'teacher' ? 'Profile Center' : 'My Learning'}</a></li>
+                            <li><a href="${userid === 'teacher' ? '../account/teacher-setting.html' : '../account/student-setting.html'}">Account Settings</a></li>
+                            <li><a id="logout" href="#logout">Logout</a></li>
                         </ul>
                     </div>
                 `;
@@ -171,8 +171,8 @@
             }
             else {
                 document.querySelector('.info').innerHTML = `
-                    <a href="../account/login.html"><button class="login">登录</button></a>
-                    <a href="../account/register.html"><button class="register">注册</button></a>
+                    <a href="../account/login.html"><button class="login">Login</button></a>
+                    <a href="../account/register.html"><button class="register">Register</button></a>
                 `;
             }
         }
